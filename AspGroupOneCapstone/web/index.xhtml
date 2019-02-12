@@ -12,22 +12,18 @@
         <b:navBar brand="Admin Dashboard" brandHref="#" inverse="true" fixed="top" fluid="true"></b:navBar>
         <b:container fluid="true">
             <b:row>
-                <b:column col-sm="3" col-md="1" styleClass="sidebar">
+                <b:column col-sm="3" col-md="2" styleClass="sidebar">
                     <b:listLinks>
-                        <b:dropMenu value="Doctors">
-                            <b:navLink href="#index.html" value="Register Doctor"/>
-                            <b:navLink href="#index.html" value="View Doctors"/>
-                            <b:navLink></b:navLink>
-                            <b:navLink href="#index.html" value="Remove Doctor"/>
-                        </b:dropMenu>
-                        <b:dropMenu value="Patients">
-                            <b:navLink href="#index.html" value="Register Patient"/>
-                            <b:navLink href="#index.html" value="View Patient"/>
-                            <b:navLink href="#index.html" value="View Medical History"/>
-                            <b:navLink></b:navLink>
-                            <b:navLink href="#index.html" value="Remove Patient"/>
-                        </b:dropMenu>
-                     
+                        <b:navLink class="navLinkHeaders" header="Doctors"/>
+                        <b:navLink href="#index.html" value="Register Doctor"/>
+                        <b:navLink href="#index.html" value="View Doctors"/>
+                        <b:navLink href="#index.html" value="Remove Doctor"/>
+                        <b:navLink class="navLinkHeaders" header="Patients"/>
+                        <b:navLink href="#index.html" value="Register Patient"/>
+                        <b:navLink href="#index.html" value="View Patient"/>
+                        <b:navLink href="#index.html" value="View Medical History"/>
+                        <b:navLink href="#index.html" value="Remove Patient"/>
+                        <b:navLink class="navLinkHeaders" header="Schedule"/>
                         <b:navLink href="#index.html" value="Schedule" active="true"/>
                     </b:listLinks>
                 </b:column>
@@ -48,9 +44,11 @@
             padding: 20px;
             position: fixed;
             top: 51px;
-            z-index: 1000;
-        }
-        
+            z-index: 1000; }
+            
+            .navLinkHeaders {
+                font-size: 15px;
+            }
         </style>
     </h:body>
 </html>
