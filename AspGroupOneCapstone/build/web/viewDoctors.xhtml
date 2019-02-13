@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body>
+        <h:form>
+        <b:navBar brand="Admin Dashboard" brandHref="#" inverse="true" fixed="top" fluid="true"></b:navBar>
+        </h:form>
+        <b:container fluid="true">
+            <b:row>
+                <b:column col-sm="3" col-md="2" styleClass="sidebar">
+                    <b:listLinks>
+                        <b:navLink class="navLinkHeaders" header="Doctors"/>
+                        <b:navLink outcome="viewDoctors" value="Register Doctor"/>
+                        <b:navLink href="#index.html"  value="View Doctors"/>
+                        <b:navLink href="#index.html" value="Remove Doctor"/>
+                        <hr/>
+                        <b:navLink class="navLinkHeaders" header="Patients"/>
+                        <b:navLink href="#index.html" value="Register Patient"/>
+                        <b:navLink href="#index.html" value="View Patient"/>
+                        <b:navLink href="#index.html" value="View Medical History"/>
+                        <b:navLink href="#index.html" value="Remove Patient"/>
+                        <hr/>
+                        <b:navLink class="navLinkHeaders" header="Schedule"/>
+                        <b:navLink href="#index.html" value="Schedule" active="true"/>
+                    </b:listLinks>
+                </b:column>
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <hr/>
+                    <hr/>
+                    <h1>Dashboard</h1>
+                    <hr/>
+                </b:column>
+            </b:row>  
+        </b:container>
+                      
+        
+        <style type="text/css">
+            .navbar-fixed-top {background-color: #30373E;}
+            .sidebar {
+            background-color: #F3F3F3;
+            border-right: 1px solid #eee;
+            bottom: 0;
+            display: block;
+            left: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 20px;
+            position: fixed;
+            top: 51px;
+            z-index: 1000; }
+            
+            .navLinkHeaders {
+                font-size: 15px;
+            }
+        </style>
+    </h:body>
+</html>
+
