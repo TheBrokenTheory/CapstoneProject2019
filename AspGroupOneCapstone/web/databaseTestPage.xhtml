@@ -15,7 +15,7 @@
             <b:row>
                 <b:column col-sm="3" col-md="2" styleClass="sidebar">
                     <b:listLinks>
-                         <b:navLink class="navLinkHeaders" header="Doctors"/>
+                        <b:navLink class="navLinkHeaders" header="Doctors"/>
                         <b:navLink outcome="viewDoctors" value="Register Doctor"/>
                         <b:navLink outcome="index"  value="View Doctors"/>
                         <b:navLink href="#index.html" value="Remove Doctor"/>
@@ -39,22 +39,30 @@
                     <h1>Dashboard</h1>
                     <hr/>
                     
+                    <!-- START HERE -->
                     <b:form>
+                        <!-- You can change these input fields to whatever you like -->
                         <b:inputText id= "firstName" label="Add First Name to Data Base" value="#{dbBean.firstName}" 
                                      ajax="ajax:dbBean.setFirstName()" update="@next"/>
                         <b:inputText id= "lsatName" label="Add to Last Name Base" value="#{dbBeanlastName}" 
                                      ajax="ajax:dbBean.setLastName()" update="@next"/>
                         <b:inputText id= "docId" label="Add to Doc ID Data Base" value="#{dbBean.docId}" 
                                      ajax="ajax:dbBean.setDocIdName()" update="@next"/>
-                        <b:commandButton update="@form"/>
-                        <b:dataTable>
-                        <b:dataTableColumn value="#{dbBean.docId}"
-                                 label="Doctor ID"/>
-                      <b:dataTableColumn value="#{dbBean.firstName}" />
-                      <b:dataTableColumn value="#{dbBean.lastName}" />                   
-                    </b:dataTable>
-                  </b:form>
-                    
+
+                        <b:commandButton value="Update DB " update="@form"/>
+                        <hr/>
+
+                        <!--Change this to add the values from db query Link for help -->
+                        <!-- https://showcase.bootsfaces.net/forms/DataTable.jsf;jsessionid=MVCkGvoidu4GTGDZq7ZAP0EgLbOMTkpFHQR_kl5D.showcase04 -->
+                        <b:dataTable value="#{dbBean.docId}">           
+                            <b:dataTableColumn value="#{dbBean.docId}"
+                                     label="Doctor ID"/>
+                            <b:dataTableColumn value="#{dbBean.firstName}" />
+                            <b:dataTableColumn value="#{dbBean.lastName}" />                   
+                        </b:dataTable>
+                    </b:form>
+                   <!-- END HERE -->
+                   
                 </b:column>
             </b:row>  
         </b:container>
