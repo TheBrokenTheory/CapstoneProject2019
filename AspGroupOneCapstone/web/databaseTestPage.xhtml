@@ -2,9 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:b="http://bootsfaces.net/ui">
+  
     <h:head>
         <title>Health Care System Project</title>
     </h:head>
@@ -39,6 +38,23 @@
                     <hr/>
                     <h1>Dashboard</h1>
                     <hr/>
+                    
+                    <b:form>
+                        <b:inputText id= "firstName" label="Add First Name to Data Base" value="#{dbBean.firstName}" 
+                                     ajax="ajax:dbBean.setFirstName()" update="@next"/>
+                        <b:inputText id= "lsatName" label="Add to Last Name Base" value="#{dbBeanlastName}" 
+                                     ajax="ajax:dbBean.setLastName()" update="@next"/>
+                        <b:inputText id= "docId" label="Add to Doc ID Data Base" value="#{dbBean.docId}" 
+                                     ajax="ajax:dbBean.setDocIdName()" update="@next"/>
+                        <b:commandButton update="@form"/>
+                        <b:dataTable>
+                        <b:dataTableColumn value="#{dbBean.docId}"
+                                 label="Doctor ID"/>
+                      <b:dataTableColumn value="#{dbBean.firstName}" />
+                      <b:dataTableColumn value="#{dbBean.lastName}" />                   
+                    </b:dataTable>
+                  </b:form>
+                    
                 </b:column>
             </b:row>  
         </b:container>

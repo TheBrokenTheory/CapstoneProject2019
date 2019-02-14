@@ -18,7 +18,7 @@
                     <b:listLinks>
                         <b:navLink class="navLinkHeaders" header="Doctors"/>
                         <b:navLink outcome="viewDoctors" value="Register Doctor"/>
-                        <b:navLink href="#index.html"  value="View Doctors"/>
+                        <b:navLink outcome="index"  value="View Doctors"/>
                         <b:navLink href="#index.html" value="Remove Doctor"/>
                         <hr/>
                         <b:navLink class="navLinkHeaders" header="Patients"/>
@@ -28,7 +28,10 @@
                         <b:navLink href="#index.html" value="Remove Patient"/>
                         <hr/>
                         <b:navLink class="navLinkHeaders" header="Schedule"/>
-                        <b:navLink href="#index.html" value="Schedule" active="true"/>
+                        <b:navLink outcome="schedule" value="Schedule"/>
+                        <hr/>
+                        <b:navLink class="navLinkHeaders" header="Data Base Test Page"/>
+                        <b:navLink outcome="databaseTestPage" value="Test Page"/>
                     </b:listLinks>
                 </b:column>
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
@@ -41,6 +44,7 @@
                         <h4>Label</h4>
                         <span class="text-muted">Something else</span>
                     </b:column>
+                    
                 </b:column>
             </b:row>  
         </b:container>
