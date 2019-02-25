@@ -14,18 +14,19 @@
         </h:form>
         <b:container fluid="true">
             <b:row>
+                <!-- Side nav bar -->
                 <b:column col-sm="3" col-md="2" styleClass="sidebar">
                     <b:listLinks>
                         <b:navLink class="navLinkHeaders" header="Doctors"/>
-                        <b:navLink outcome="viewDoctors" value="Register Doctor"/>
-                        <b:navLink outcome="index"  value="View Doctors"/>
-                        <b:navLink href="#index.html" value="Remove Doctor"/>
+                        <b:navLink outcome="" value="Register Doctor"/>
+                        <b:navLink outcome="viewDoctors"  value="View Doctors"/>
+                        <b:navLink outcome="" value="Remove Doctor"/>
                         <hr/>
                         <b:navLink class="navLinkHeaders" header="Patients"/>
-                        <b:navLink href="#index.html" value="Register Patient"/>
-                        <b:navLink href="#index.html" value="View Patient"/>
-                        <b:navLink href="#index.html" value="View Medical History"/>
-                        <b:navLink href="#index.html" value="Remove Patient"/>
+                        <b:navLink outcome="" value="Register Patient"/>
+                        <b:navLink outcome="viewPatients" value="View Patients"/>
+                        <b:navLink outcome="viewMedicalHistory" value="View Medical History"/>
+                        <b:navLink outcome="" value="Remove Patient"/>
                         <hr/>
                         <b:navLink class="navLinkHeaders" header="Schedule"/>
                         <b:navLink outcome="schedule" value="Schedule"/>
@@ -34,6 +35,8 @@
                         <b:navLink outcome="databaseTestPage" value="Test Page"/>
                     </b:listLinks>
                 </b:column>
+                
+                <!--Main Display area-->
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <hr/>
                     <hr/>
@@ -41,14 +44,14 @@
                     <hr/>
                     <b:column col-sm="3">
                         <b:thumbnail>
-                            <b:image value="resources/doctorimg.jpg" class="img-responsive" alt="Generic placeholder thumbnail"/>
+                            <b:image library="resources" name="doctorimg.jpg"/>
                         </b:thumbnail>
                         <b:navLink outcome="viewDoctors" value="View All Doctors"/>
                         <span class="text-muted"></span>
                     </b:column>
                     <b:column col-sm="3">
                         <b:thumbnail>
-                            <b:image value="resources/patient.jpg"  class="img-responsive" alt="Generic placeholder thumbnail"/>
+                            <b:image library="resources" name="patient.jpg"/>
                         </b:thumbnail>
                         <b:navLink outcome="schedule" value="View All Patients"/>
                         <span class="text-muted"></span>
