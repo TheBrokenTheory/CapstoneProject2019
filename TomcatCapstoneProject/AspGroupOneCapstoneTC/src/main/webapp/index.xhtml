@@ -42,6 +42,46 @@
                     <hr/>
                     <h1>Dashboard</h1>
                     <hr/>
+                    
+                    <!--Info Boxes-->
+                    <!--This should grab data from database and schedule-->
+                    <b:container>
+                        <b:row>
+                            <!-- Patients -->
+                            <b:column col-sm="4">
+                                <b:well class="infoBox">
+                                    <h5>Patients</h5>
+                                    <b:column col-sm="4">
+                                    <h:form><b:iconAwesome name="user" size="3x"/></h:form>
+                                    </b:column>
+                                    <p>107</p>
+                                </b:well>
+                            </b:column>
+                            <!-- Appointments -->
+                            <b:column col-sm="4">
+                                <b:well class="infoBox">
+                                    <h5>Today's Appointments</h5>
+                                    <b:column col-sm="4">
+                                    <h:form><b:iconAwesome name="calendar" size="3x"/></h:form>
+                                    </b:column>  
+                                    <p>3</p>
+                                </b:well>
+                            </b:column>
+                            <!-- Doctors -->
+                            <b:column col-sm="4">
+                                <b:well class="infoBox">
+                                    <h5>Doctors</h5>
+                                    <b:column col-sm="4">
+                                    <h:form><b:iconAwesome name="ambulance" size="3x"/></h:form>
+                                    </b:column>  
+                                    <p>12</p>
+                                </b:well>
+                            </b:column>
+                        </b:row>
+                    </b:container>
+                    
+                    <!-- Dashboard Navigation -->
+                    <!-- TODO: Fix the image sizes -->
                     <b:column col-sm="3">
                         <b:thumbnail>
                             <b:image library="resources" name="doctorimg.jpg"/>
@@ -56,9 +96,15 @@
                         <b:navLink outcome="schedule" value="View All Patients"/>
                         <span class="text-muted"></span>
                     </b:column>  
+                    <b:column col-sm="3">
+                        <b:thumbnail>
+                            <b:image library="resources" name="schedule.jpeg" />
+                        </b:thumbnail>
+                        <b:navLink outcome="schedule" value="View Schedule"/>
+                        <span class="text-muted"></span>
+                    </b:column>  
                 </b:column>
             </b:row>
-
         </b:container>
                       
         
@@ -79,6 +125,9 @@
             
             .navLinkHeaders {
                 font-size: 15px;
+            }
+            .infoBox{
+                background-color: #F3F3F3;
             }
         </style>
     </h:body>
