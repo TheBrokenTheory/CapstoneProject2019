@@ -35,11 +35,30 @@
                         <b:navLink outcome="databaseTestPage" value="Test Page"/>
                     </b:listLinks>
                 </b:column>
+                
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <hr/>
                     <hr/>
                     <h1>Dashboard</h1>
                     <hr/>
+                    
+                    <h:form>
+                        <b:panelGrid columns="6" size="sm" >
+                          <b:commandButton class="viewAllBtn" value="View All Patients" 
+                                    ajax="true" update="@none" style="width:125px" />
+                        </b:panelGrid>
+                  </h:form>
+                    
+                    
+                    <!--View Medical History Table Start-->
+                    <!--Add cols. as needed-->
+                    <b:dataTable value="#{dbBean.docId}">           
+                            <b:dataTableColumn label="Patient Number"/>
+                            <b:dataTableColumn label="Patient Last Name"/>
+                            <b:dataTableColumn label="Patient First Name"/>                   
+                    </b:dataTable>
+                    
+                    
                 </b:column>
             </b:row>  
         </b:container>
@@ -62,6 +81,10 @@
             
             .navLinkHeaders {
                 font-size: 15px;
+            }
+            
+            .viewAllBtn{
+                background-color: #E0E0E0;
             }
         </style>
     </h:body>

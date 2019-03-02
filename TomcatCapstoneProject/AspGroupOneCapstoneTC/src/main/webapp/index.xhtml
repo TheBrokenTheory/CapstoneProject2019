@@ -37,14 +37,17 @@
                 </b:column>
                 
                 <!--Main Display area-->
-                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">                  
                     <hr/>
                     <hr/>
                     <h1>Dashboard</h1>
                     <hr/>
                     
+                    <!-- Appointment Alert Populate from schedule's events.-->
+                    <b:alert severity="info" closable="true" title="Heads up!" value="You have __ appointments today!" />
+                    
                     <!--Info Boxes-->
-                    <!--This should grab data from database and schedule-->
+                    <!--This should grab data from database and schedule' events-->
                     <b:container>
                         <b:row>
                             <!-- Patients -->
