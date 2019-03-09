@@ -9,14 +9,14 @@ import javax.faces.bean.ManagedBean;
  * @author Jonathan Anders
  */
 @ManagedBean
-@Named(value = "testingBean")
+@Named(value = "scheduleBean")
 @RequestScoped
-public class testingBean {
+public class scheduleBean {
 
     /**
-     * Creates a new instance of testingBean
+     * Creates a new instance of scheduleBean
      */
-    public testingBean()
+    public scheduleBean()
     {
     }
     
