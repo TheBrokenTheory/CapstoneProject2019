@@ -85,27 +85,40 @@
                     
                     <!-- Dashboard Navigation -->
                     <!-- TODO: Fix the image sizes -->
+                    <b:row class="quickLinks">
                     <b:column col-sm="3">
-                        <b:thumbnail>
-                            <b:image library="resources" name="doctorimg.jpg"/>
+                        <b:thumbnail class="imageBox">
+                            <b:image style="width: 200px; height: 100px;" library="resources" name="doctorimg.jpg"/>
                         </b:thumbnail>
-                        <b:navLink outcome="viewDoctors" value="View All Doctors"/>
+                        <b:dropButton value="Doctors  ">
+                            <b:navLink outcome="" value="Register Doctor"/>
+                            <b:navLink outcome="viewDoctors"  value="View Doctors"/>
+                            <b:navLink outcome="" value="Remove Doctor"/>
+                        </b:dropButton>
+                        <span class="text-muted"></span>
+                    </b:column> 
+                    <b:column col-sm="3">
+                        <b:thumbnail class="imageBox">
+                            <b:image style="width: 200px; height: 100px;" library="resources" name="patient.jpg"/>
+                        </b:thumbnail>
+                        <b:dropButton value="Patients  ">
+                            <b:navLink outcome="" value="Register Patient"/>
+                            <b:navLink outcome="viewPatients" value="View Patients"/>
+                            <b:navLink outcome="viewMedicalHistory" value="View Medical History"/>
+                            <b:navLink outcome="" value="Remove Patient"/>
+                        </b:dropButton>
                         <span class="text-muted"></span>
                     </b:column>
-                    <b:column col-sm="3">
-                        <b:thumbnail>
-                            <b:image library="resources" name="patient.jpg"/>
+                   <b:column col-sm="3">
+                        <b:thumbnail class="imageBox">
+                            <b:image style="width: 200px; height: 100px;" library="resources" name="schedule.jpeg" />
                         </b:thumbnail>
-                        <b:navLink outcome="schedule" value="View All Patients"/>
+                        <b:dropButton value="Schedule  ">
+                            <b:navLink outcome="schedule" value="View Schedule"/>
+                        </b:dropButton>
                         <span class="text-muted"></span>
                     </b:column>  
-                    <b:column col-sm="3">
-                        <b:thumbnail>
-                            <b:image library="resources" name="schedule.jpeg" />
-                        </b:thumbnail>
-                        <b:navLink outcome="schedule" value="View Schedule"/>
-                        <span class="text-muted"></span>
-                    </b:column>  
+                    </b:row>
                     
                     <b:row>
                         <!-- calendar quick view -->
@@ -155,6 +168,15 @@
             }
             .infoBox{
                 background-color: #F3F3F3;
+            }
+            
+            .imageBox{
+                width: 200px;
+                height: 110px;
+            }
+            
+            .quickLinks{
+                padding-left: 15%;
             }
         </style>
     </h:body>
