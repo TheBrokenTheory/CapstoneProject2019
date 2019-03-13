@@ -2,9 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:b="http://bootsfaces.net/ui">
+  
     <h:head>
         <title>Health Care System Project</title>
     </h:head>
@@ -39,23 +38,33 @@
                     <hr/>
                     <h1>Dashboard</h1>
                     <hr/>
-                    <b:column col-sm="3">
-                        <b:thumbnail>
-                        <b:image value="resources/doctorimg.jpg" class="img-responsive" alt="Generic placeholder thumbnail"/>
-                        </b:thumbnail>
-                        <b:navLink outcome="viewDoctors" value="View All Doctors"/>
-                        <span class="text-muted"></span>
-                    </b:column>
-                    <b:column col-sm="3">
-                        <b:thumbnail>
-                            <b:image value="resources/patient.jpg"  class="img-responsive" alt="Generic placeholder thumbnail"/>
-                        </b:thumbnail>
-                        <b:navLink outcome="schedule" value="View All Patients"/>
-                        <span class="text-muted"></span>
-                    </b:column>  
-                </b:column>
-            </b:row>
+                    
+                    <!-- START HERE -->
+                    <b:form>
+                        <!-- You can change these input fields to whatever you like -->
+                        <b:inputText id= "firstName" label="Add First Name to Data Base" value="#{dbBean.firstName}" 
+                                     ajax="ajax:dbBean.setFirstName()" update="@next"/>
+                        <b:inputText id= "lsatName" label="Add to Last Name Base" value="#{dbBeanlastName}" 
+                                     ajax="ajax:dbBean.setLastName()" update="@next"/>
+                        <b:inputText id= "docId" label="Add to Doc ID Data Base" value="#{dbBean.docId}" 
+                                     ajax="ajax:dbBean.setDocIdName()" update="@next"/>
 
+                        <b:commandButton value="Update DB " update="@form"/>
+                        <hr/>
+
+                        <!--Change this to add the values from db query Link for help -->
+                        <!-- https://showcase.bootsfaces.net/forms/DataTable.jsf;jsessionid=MVCkGvoidu4GTGDZq7ZAP0EgLbOMTkpFHQR_kl5D.showcase04 -->
+                        <b:dataTable value="#{dbBean.docId}">           
+                            <b:dataTableColumn value="#{dbBean.docId}"
+                                     label="Doctor ID"/>
+                            <b:dataTableColumn value="#{dbBean.firstName}" />
+                            <b:dataTableColumn value="#{dbBean.lastName}" />                   
+                        </b:dataTable>
+                    </b:form>
+                   <!-- END HERE -->
+                   
+                </b:column>
+            </b:row>  
         </b:container>
                       
         

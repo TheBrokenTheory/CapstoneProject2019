@@ -16,7 +16,7 @@
             <b:row>
                 <b:column col-sm="3" col-md="2" styleClass="sidebar">
                     <b:listLinks>
-                        <b:navLink class="navLinkHeaders" header="Doctors"/>
+                         <b:navLink class="navLinkHeaders" header="Doctors"/>
                         <b:navLink outcome="viewDoctors" value="Register Doctor"/>
                         <b:navLink outcome="index"  value="View Doctors"/>
                         <b:navLink href="#index.html" value="Remove Doctor"/>
@@ -39,23 +39,9 @@
                     <hr/>
                     <h1>Dashboard</h1>
                     <hr/>
-                    <b:column col-sm="3">
-                        <b:thumbnail>
-                        <b:image value="resources/doctorimg.jpg" class="img-responsive" alt="Generic placeholder thumbnail"/>
-                        </b:thumbnail>
-                        <b:navLink outcome="viewDoctors" value="View All Doctors"/>
-                        <span class="text-muted"></span>
-                    </b:column>
-                    <b:column col-sm="3">
-                        <b:thumbnail>
-                            <b:image value="resources/patient.jpg"  class="img-responsive" alt="Generic placeholder thumbnail"/>
-                        </b:thumbnail>
-                        <b:navLink outcome="schedule" value="View All Patients"/>
-                        <span class="text-muted"></span>
-                    </b:column>  
+                    <b:fullCalendar />
                 </b:column>
-            </b:row>
-
+            </b:row>  
         </b:container>
                       
         
