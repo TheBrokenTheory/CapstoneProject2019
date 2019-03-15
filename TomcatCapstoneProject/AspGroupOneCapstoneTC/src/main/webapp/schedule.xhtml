@@ -42,23 +42,69 @@
                     <hr/>
                     <h1>Schedule</h1>
                     <hr/>
-                    
-                    <b:row>
-                        <b:column>
-                            <!--Date and time picker to create a new event -->
-                            <b:form>
-                                    <b:form>
-                                    <b:dateTimePicker value="" mode="inline" label="Add new appointment"/>
-                                    <!--Submit button to create a new event -->
+                    <h:form id="newApptForm">
+                        <b:container fluid="true">
+                            <b:row>
+                                <!--This is where the user will select the date and time for the appointment-->
+                                <b:column col-md="3">
+                                    <b:dateTimePicker id="aptDateAndTime" value="" mode="inline" label="Time and date for new appointment"/>
+                                </b:column>
+                                
+                                <b:column col-md="8">
+                                    <!--The user will enter the first name of the patient here -->
+                                    <b:column>
+                                        <b:inputText id="firstName" value="" ajax="true" required="true" col-md="3" label="Enter patient's first name:"/>
+                                    </b:column>
+                                    
+                                    <!--The user will enter the last name of the patient here -->
+                                    <b:column>
+                                        <b:inputText id="lsatName" value="" ajax="true" required="true" col-md="3" label="Enter patient's last name:"/>
+                                    </b:column>
+                                    
+                                    <!--The user will select the reason for their visit here-->
+                                    <b:column>
+                                        <b:selectOneMenu id="reasonForVisit" value="" colMd="2" required="true" label="Reason for visit:">
+                                            <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                            <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
+                                            <f:selectItem itemLabel="More Reasons"/>
+                                            <f:selectItem itemLabel="More Reasons"/>
+                                            <f:selectItem itemLabel="More Reasons"/>
+                                        </b:selectOneMenu>
+                                    </b:column>
+                                    
+                                    <!--The user will select which doctor they are seeing here -->
+                                    <b:column>
+                                        <b:selectOneMenu id="seeingDoc" value="" colMd="2" required="true" label="Select Doctor:">
+                                            <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                            <f:selectItem itemLabel="Dr. Anders" itemValue="Dr. Anders"/>
+                                            <f:selectItem itemLabel="Enter More Docs here"/>
+                                            <f:selectItem itemLabel="Enter More Docs here"/>
+                                            <f:selectItem itemLabel="Enter More Docs here"/>
+                                        </b:selectOneMenu>
+                                    </b:column>
+                                    
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <!--
+                                    SUBMIT BUTTON. This button will gather all the info
+                                    from above and send it to the schedule bean. Where it will
+                                    create a event object
+                                -->
+                                <b:column>
                                     <b:commandButton class="searchBtn" value="Create New appointment" 
-                                        ajax="true" update="@form"/>
-                                    </b:form>
-                            </b:form>
-                        </b:column>
-                    </b:row>
+                                    ajax="true" update="@form"/>
+                                </b:column>
+                            </b:row>
+                        </b:container>
+                    </h:form>
+                    
                     <hr/>
                     
-                    <!--Adds the full calendar to the page.  -->
+                    <!--
+                        Adds the full calendar to the page.
+                        Add the events to this main calendar.
+                    -->
                     <b:fullCalendar weekends="false"/>
                 </b:column>
             </b:row>  
