@@ -52,10 +52,10 @@ public class loginBean {
         System.out.println("testTwo");
         Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println("Test3");
-        String dbName = System.getProperty("aspgroupwebproj");
+        String dbName = System.getProperty("aa1uoe8uwsl9q6i");
         String userName = System.getProperty("aspgroup1");
         String password = System.getProperty("aspgroup1");
-        String hostname = System.getProperty("aspgroupwebproj.chxan6yoffks.us-east-2.rds.amazonaws.com");
+        String hostname = System.getProperty("aa1uoe8uwsl9q6i.chxan6yoffks.us-east-2.rds.amazonaws.com");
         String port = System.getProperty("3303");
         String jdbcUrl = "jdbc:mysql://" + hostname + ":3303" + "/" + dbName + "?user=" + userName + "&password=" + password;
         System.out.println("Test44");
