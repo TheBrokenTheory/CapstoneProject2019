@@ -14,20 +14,20 @@
                 <h2 class="form-signin-heading">Please sign in</h2>
                 
                 <!--Enter Username-->
-                <b:inputText id="username" placeholder="Username" >
+                <b:inputText id="username" placeholder="Username">
                     <f:facet name="prepend">
                         <b:icon name="user" />
                     </f:facet>
                 </b:inputText>
                 
                 <!--Enter Password-->
-                <b:inputText id="password" placeholder="Password" type="password">
+                <b:inputText id="password" value="#{loginBean.name}" type="password">
                     <f:facet name="prepend">
                         <b:iconAwesome name="key" />
                     </f:facet>
                 </b:inputText>
                 <!--Submit login-->
-                <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg"/>
+                <b:commandButton  look="primary btn-block" value="Sign In" onclick="ajax:loginBean.login()" icon="log-in" size="lg"/>
             </h:form>
         </b:container>
     <style type="text/css">
