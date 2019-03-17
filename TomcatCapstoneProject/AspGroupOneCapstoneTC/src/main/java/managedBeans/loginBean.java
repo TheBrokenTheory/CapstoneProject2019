@@ -51,10 +51,10 @@ public class loginBean {
     public void login() throws SQLException, ClassNotFoundException
     {
          // Read RDS connection information from the environment
-  String dbName = System.getProperty("finalaspgroup1");
+  String dbName = System.getProperty("aspgroup1");
   String userName = System.getProperty("aspgroup1");
   String password = System.getProperty("finalaspgroup1");
-  String hostname = System.getProperty("ec2-3-18-190-197.us-east-2.compute.amazonaws.com");
+  String hostname = System.getProperty("aspgroup1@finalaspgroup1.chxan6yoffks.us-east-2.rds.amazonaws.com");
   String port = System.getProperty("3306");
   String jdbcUrl = "jdbc:mysql://" + hostname + ":3306" + "/" + dbName + "?user=" + userName + "&password=" + password;
   
@@ -77,13 +77,13 @@ public class loginBean {
 
   try {
     // Create connection to RDS DB instance
-    conn = DriverManager.getConnection(jdbcUrl);
+    conn = DriverManager.getConnection("jdbc:mysql://aspgroup1@finalaspgroup1.chxan6yoffks.us-east-2.rds.amazonaws.com:3306/aspgroup1?user=aspgroup1&password=finalaspgroup1");
     
     // Create a table and write two rows
     setupStatement = conn.createStatement();
-    String createTable = "CREATE TABLE Beanstalk (Resource char(50));";
-    String insertRow1 = "INSERT INTO Beanstalk (Resource) VALUES ('EC2 Instance');";
-    String insertRow2 = "INSERT INTO Beanstalk (Resource) VALUES ('RDS Instance');";
+    String createTable = "CREATE TABLE TestingTwo (Resource char(50));";
+    String insertRow1 = "INSERT INTO TestingTwo (Resource) VALUES ('EC2 Instance');";
+    String insertRow2 = "INSERT INTO TestingTwo (Resource) VALUES ('RDS Instance');";
     
     setupStatement.addBatch(createTable);
     setupStatement.addBatch(insertRow1);
