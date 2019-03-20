@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body>
+        <h:form>
+        <b:navBar brand="Admin Dashboard" brandHref="index.xhtml" inverse="true" fixed="top" fluid="true"></b:navBar>
+        </h:form>
+        <b:container fluid="true">
+            <b:row>
+                <!-- Side nav bar -->
+                <b:column col-sm="3" col-md="2" styleClass="sidebar">
+                    <b:listLinks>
+                        <b:navLink class="navLinkHeaders" header="Doctors"/>
+                        <b:navLink outcome="" value="Register Doctor"/>
+                        <b:navLink outcome="viewDoctors"  value="View Doctors"/>
+                        <b:navLink outcome="" value="Remove Doctor"/>
+                        <hr/>
+                        <b:navLink class="navLinkHeaders" header="Patients"/>
+                        <b:navLink outcome="" value="Register Patient"/>
+                        <b:navLink outcome="viewPatients" value="View Patients"/>
+                        <b:navLink outcome="viewMedicalHistory" value="View Medical History"/>
+                        <b:navLink outcome="" value="Remove Patient"/>
+                        <hr/>
+                        <b:navLink class="navLinkHeaders" header="Schedule"/>
+                        <b:navLink outcome="schedule" value="Schedule"/>
+                        <hr/>
+                        <b:navLink class="navLinkHeaders" header="Data Base Test Page"/>
+                        <b:navLink outcome="databaseTestPage" value="Test Page"/>
+                    </b:listLinks>
+                </b:column>
+                
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <hr/>
+                    <hr/>
+                    <h1>View Medical History</h1>
+                    <hr/>
+                    
+                   <!--Search DB for medical records -->
+                    <b:row>
+                        <b:column>
+                            <!-- Search Database for Medical History Add Menu items as needed -->
+                            <b:form horizontal="true">
+                                <b:formGroup>
+                                    <b:selectOneMenu value="" colMd="2" required="true" label="Search By:" labelColMd="1">
+                                      <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                      <f:selectItem itemLabel="First Name"/>
+                                      <f:selectItem itemLabel="Last Name"/>
+                                      <f:selectItem itemLabel="Patient Id Number"/>
+                                      <f:selectItem itemLabel="Doctor Seen"/>
+                                    </b:selectOneMenu>
+                                    <b:inputText value="" colMd="2" label="Enter Search Field:" labelColMd="1" />
+                                    <b:commandButton class="searchBtn" value="Search" 
+                                        ajax="true" update="@none" style="width:125px" />
+                                </b:formGroup>
+                                
+                            </b:form>
+                        </b:column>
+                    </b:row>
+                   
+                    <hr/>
+                    <!--View Medical History Table Start-->
+                    <!--Add columns as needed-->
+                    <!--CHANGE VALUE OF DATATABLE TO THE ACTUAL BEAN-->
+                    <b:dataTable value="#{dbBean.docId}">           
+                        <b:dataTableColumn label="Patient Number"/>
+                        <b:dataTableColumn label="Patient Last Name"/>
+                        <b:dataTableColumn label="Patient First Name"/>
+                        <b:dataTableColumn label="Reason For Visit"/>
+                        <b:dataTableColumn label="Past Diagnosis"/>
+                        <b:dataTableColumn label="Treatments"/>
+                        <b:dataTableColumn label="Doctor Seen"/>
+                    </b:dataTable>
+                    <!--End table-->
+                    
+                </b:column>
+            </b:row>  
+        </b:container>
+                      
+        
+        <style type="text/css">
+            .navbar-fixed-top {background-color: #30373E;}
+            .sidebar {
+            background-color: #F3F3F3;
+            border-right: 1px solid #eee;
+            bottom: 0;
+            display: block;
+            left: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 20px;
+            position: fixed;
+            top: 51px;
+            z-index: 1000; }
+            
+            .navLinkHeaders {
+                font-size: 15px;
+            }
+            
+            .searchBtn{
+                background-color: #E0E0E0;
+            }
+        </style>
+    </h:body>
+</html>
+

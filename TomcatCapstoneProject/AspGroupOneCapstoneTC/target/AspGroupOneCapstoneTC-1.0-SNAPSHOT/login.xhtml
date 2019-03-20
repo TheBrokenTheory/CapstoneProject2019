@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+ <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body styleClass="body">
+        <b:container>
+            <h:form styleClass="form-signin" prependId="false">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                
+                <!--Enter Username-->
+                <b:inputText id="username" value="#{loginBean.username}" required="true">
+                    <f:facet name="prepend">
+                        <b:icon name="user" />
+                    </f:facet>
+                </b:inputText>
+                
+                <!--Enter Password-->
+                <b:inputText id="password" type="password" value="#{loginBean.password}" required="true">
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="key" />
+                    </f:facet>
+                </b:inputText>
+                
+                <!--Submit login-->
+                <b:commandButton action="#{loginBean.login()}" update="@form" 
+                                value="Sign In" icon="log-in" size="lg"/>
+            </h:form>
+        </b:container>
+    <style type="text/css">
+        .body{
+            background-color: #F3F3F3;
+        }
+        .form-signin {
+            margin: 0 auto;
+            max-width: 330px;
+            padding: 15px;
+            background-color: #F3F3F3;
+        }
+    </style>
+</h:body>
+</html>
