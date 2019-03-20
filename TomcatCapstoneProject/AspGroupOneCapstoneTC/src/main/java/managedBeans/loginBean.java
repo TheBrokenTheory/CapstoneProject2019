@@ -1,5 +1,6 @@
 package managedBeans;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,6 +11,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -25,7 +28,8 @@ public class loginBean implements Serializable {
     //String results = "";
     private String username = "";
     private String password = "";
-    
+    private static final long serialVersionUID = 1L;
+    private String page="login.xhtml";
     
     /**
      * Creates a new instance of loginBean
@@ -50,7 +54,7 @@ public class loginBean implements Serializable {
     }
     
     
-    public void login() throws SQLException, ClassNotFoundException
+    public void login() throws SQLException, ClassNotFoundException, IOException
     {
     
         Statement readStatement = null;
@@ -75,6 +79,8 @@ public class loginBean implements Serializable {
                 if(username.equals(results))
                 {
                     System.out.println("Match!");
+                    System.out.println(username);
+                    System.out.println(password);
                     usernameMatch = true;
                     resultSet.close();
                     readStatement.close();
@@ -96,6 +102,7 @@ public class loginBean implements Serializable {
             resultSet.close();
             readStatement.close();
             con.close();
+            System.out.println(page);
 
           } catch (SQLException ex) {
             // Handle any errors
@@ -108,8 +115,19 @@ public class loginBean implements Serializable {
           }
 
     }
-    
-    
+
+    public String getPage()
+    {
+        System.out.println(page);
+        return page;
+    }
+ 
+    public void setPage(String currentPage)
+    {
+        System.out.println(page);
+        this.page=currentPage;
+    }
+
     //Getters and setters
     public String getUsername() {return username;}
     public void setUsername(String username) {this.username = username;}

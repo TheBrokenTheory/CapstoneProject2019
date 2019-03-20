@@ -27,7 +27,7 @@
                     </f:facet>
                 </b:inputText>
                 <!--Submit login-->
-                <b:commandButton update="@form" onclick="#{loginBean.login()}" icon="log-in" size="lg"/>
+                <b:commandButton update="@form" icon="log-in" size="lg" action="#{loginBean.login()}"/>
             </h:form>
         </b:container>
     <style type="text/css">
