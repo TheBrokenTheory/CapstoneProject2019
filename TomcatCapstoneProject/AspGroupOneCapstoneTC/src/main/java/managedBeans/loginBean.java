@@ -54,7 +54,7 @@ public class loginBean implements Serializable {
     }
     
     
-    public void login() throws SQLException, ClassNotFoundException, IOException
+    public String login() throws SQLException, ClassNotFoundException, IOException
     {
     
         Statement readStatement = null;
@@ -79,8 +79,7 @@ public class loginBean implements Serializable {
                 if(username.equals(results))
                 {
                     System.out.println("Match!");
-                    System.out.println(username);
-                    System.out.println(password);
+                    page="index.xhtml";
                     usernameMatch = true;
                     resultSet.close();
                     readStatement.close();
@@ -88,11 +87,10 @@ public class loginBean implements Serializable {
                 else
                 {
                     System.out.println("No Match");
+                    page="login.xhtml";
                 }
             }
-            
-            
-            
+
             //resultSet.first();
             //results = resultSet.getString("username");
             //resultSet.next();
@@ -113,18 +111,16 @@ public class loginBean implements Serializable {
                 System.out.println("Closing the connection.");
                 if (con != null) try { con.close(); } catch (SQLException ignore) {}
           }
-
+        return page;
     }
 
     public String getPage()
     {
-        System.out.println(page);
         return page;
     }
  
     public void setPage(String currentPage)
     {
-        System.out.println(page);
         this.page=currentPage;
     }
 

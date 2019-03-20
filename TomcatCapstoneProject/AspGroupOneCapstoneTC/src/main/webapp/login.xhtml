@@ -8,7 +8,7 @@
  <h:head>
         <title>Health Care System Project</title>
     </h:head>
-    <h:body style="padding-top: 60px; background-color: #add;">
+    <h:body styleClass="body">
         <b:container>
             <h:form styleClass="form-signin" prependId="false">
                 <h2 class="form-signin-heading">Please sign in</h2>
@@ -26,15 +26,21 @@
                         <b:iconAwesome name="key" />
                     </f:facet>
                 </b:inputText>
+                
                 <!--Submit login-->
-                <b:commandButton update="@form" icon="log-in" size="lg" action="#{loginBean.login()}"/>
+                <b:commandButton action="#{loginBean.login()}" update="@form" 
+                                value="Sign In" icon="log-in" size="lg"/>
             </h:form>
         </b:container>
     <style type="text/css">
+        .body{
+            background-color: #F3F3F3;
+        }
         .form-signin {
             margin: 0 auto;
             max-width: 330px;
             padding: 15px;
+            background-color: #F3F3F3;
         }
     </style>
 </h:body>
