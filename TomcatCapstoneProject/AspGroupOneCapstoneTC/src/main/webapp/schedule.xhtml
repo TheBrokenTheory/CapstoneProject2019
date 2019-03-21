@@ -53,12 +53,12 @@
                                 <b:column col-md="8">
                                     <!--The user will enter the first name of the patient here -->
                                     <b:column>
-                                        <b:inputText id="firstName" value="" ajax="true" required="true" col-md="3" label="Enter patient's first name:"/>
+                                        <b:inputText id="firstName" value="#{scheduleBean.firstName}" required="true" col-md="3" label="Enter patient's first name:"/>
                                     </b:column>
                                     
                                     <!--The user will enter the last name of the patient here -->
                                     <b:column>
-                                        <b:inputText id="lsatName" value="" ajax="true" required="true" col-md="3" label="Enter patient's last name:"/>
+                                        <b:inputText id="lsatName" value="" required="true" col-md="3" label="Enter patient's last name:"/>
                                     </b:column>
                                     
                                     <!--The user will select the reason for their visit here-->
@@ -92,8 +92,8 @@
                                     create a event object
                                 -->
                                 <b:column>
-                                    <b:commandButton class="searchBtn" value="Create New appointment" 
-                                    ajax="true" update="@form"/>
+                                    <b:commandButton value="Create new appointment"
+                                                     action="#{scheduleBean.createAppointment()}" update="@form"/>
                                 </b:column>
                             </b:row>
                         </b:container>
