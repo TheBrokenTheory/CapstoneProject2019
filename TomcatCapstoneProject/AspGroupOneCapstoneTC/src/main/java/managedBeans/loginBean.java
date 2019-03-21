@@ -13,6 +13,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,9 +29,11 @@ public class loginBean implements Serializable {
     //String readTable="SELECT * FROM Doctor;";
     //String results = "";
     private String username = "";
+    private String usernameErrorMsg= "";
+    private String passwordErrorMsg= "";
     private String password = "";
     private static final long serialVersionUID = 1L;
-    private String page="login.xhtml";
+    private String page="";
     
     /**
      * Creates a new instance of loginBean
@@ -66,41 +70,50 @@ public class loginBean implements Serializable {
         
         try {
             readStatement = con.createStatement();
-            resultSet = readStatement.executeQuery("SELECT username FROM Users;");
+            resultSet = readStatement.executeQuery("SELECT * FROM Users;");
             
             ResultSetMetaData metadata = resultSet.getMetaData();
             int numberOfColumns = metadata.getColumnCount();
             ArrayList<String> arrayList = new ArrayList<String>();
-            boolean usernameMatch = false;
+            boolean accountMatch = false;
             
-            while (resultSet.next() || usernameMatch==true)
+            while (resultSet.next() || accountMatch==true)
             {
                 results = resultSet.getString("username");
+                
+                //Account Type: 1 for admin, 2 for general user
+                String AccountType = resultSet.getString("class");
+                String dbPassword = resultSet.getString("password");
+                
                 if(username.equals(results))
                 {
-                    System.out.println("Match!");
-                    page="index.xhtml";
-                    usernameMatch = true;
-                    resultSet.close();
-                    readStatement.close();
+                    if(dbPassword.equals(password))
+                    {
+                        page="index.xhtml";
+                        accountMatch = true;
+                    }
+                    else
+                    {
+                        passwordErrorMsg = "Invalid Password";
+                    }
                 }
                 else
                 {
-                    System.out.println("No Match");
-                    page="login.xhtml";
+                    usernameErrorMsg = "Invalid Username";
                 }
             }
-
+            
+            //Close DB Connection
+            resultSet.close();
+            readStatement.close();
+            con.close();
+            
             //resultSet.first();
             //results = resultSet.getString("username");
             //resultSet.next();
             //results += ", " + resultSet.getString("username");
             //System.out.println(results);
             //System.out.println(username + " " + password);
-            resultSet.close();
-            readStatement.close();
-            con.close();
-            System.out.println(page);
 
           } catch (SQLException ex) {
             // Handle any errors
@@ -111,22 +124,22 @@ public class loginBean implements Serializable {
                 System.out.println("Closing the connection.");
                 if (con != null) try { con.close(); } catch (SQLException ignore) {}
           }
+        
+        //Return page to be be displayed base on account type
         return page;
     }
 
-    public String getPage()
-    {
-        return page;
-    }
- 
-    public void setPage(String currentPage)
-    {
-        this.page=currentPage;
-    }
+    //Get and set for return page
+    public String getPage() {return page;}
+    public void setPage(String currentPage){this.page=currentPage;}
 
     //Getters and setters
     public String getUsername() {return username;}
     public void setUsername(String username) {this.username = username;}
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
+    public String getUsernameErrorMsg(){return usernameErrorMsg;}
+    public void setUsernameErrorMsg(String errMsg) {this.usernameErrorMsg = errMsg;}
+    public String getPasswordErrorMsg(){return passwordErrorMsg;}
+    public void setPasswordErrorMsg(String errMsg) {this.passwordErrorMsg = errMsg;}
 }

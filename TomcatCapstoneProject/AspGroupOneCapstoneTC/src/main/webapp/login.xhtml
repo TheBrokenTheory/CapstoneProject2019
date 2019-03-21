@@ -14,22 +14,30 @@
                 <h2 class="form-signin-heading">Please sign in</h2>
                 
                 <!--Enter Username-->
-                <b:inputText id="username" value="#{loginBean.username}" required="true">
+                <b:inputText id="username" value="#{loginBean.username}" > 
+                    <b:message for="@previous"/>
                     <f:facet name="prepend">
                         <b:icon name="user" />
                     </f:facet>
                 </b:inputText>
                 
+                <!--Error Message for Username -->
+                <h:outputText styleClass="ErrorMsg" value="#{loginBean.usernameErrorMsg}"/>
+                
                 <!--Enter Password-->
-                <b:inputText id="password" type="password" value="#{loginBean.password}" required="true">
+                <b:inputText id="password" type="password" value="#{loginBean.password}" >
                     <f:facet name="prepend">
                         <b:iconAwesome name="key" />
                     </f:facet>
                 </b:inputText>
                 
+                <!--Error Message for Username -->
+                <h:outputText styleClass="ErrorMsg" value="#{loginBean.passwordErrorMsg}"/>
+                <br/>
                 <!--Submit login-->
                 <b:commandButton action="#{loginBean.login()}" update="@form" 
                                 value="Sign In" icon="log-in" size="lg"/>
+                
             </h:form>
         </b:container>
     <style type="text/css">
@@ -42,6 +50,10 @@
             padding: 15px;
             background-color: #F3F3F3;
         }
+        .ErrorMsg{
+            color: red;
+        }
+       
     </style>
 </h:body>
 </html>
