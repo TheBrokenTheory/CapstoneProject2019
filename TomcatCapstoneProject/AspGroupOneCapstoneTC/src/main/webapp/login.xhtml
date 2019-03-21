@@ -20,10 +20,7 @@
                         <b:icon name="user" />
                     </f:facet>
                 </b:inputText>
-                
-                <!--Error Message for Username -->
-                <h:outputText styleClass="ErrorMsg" value="#{loginBean.usernameErrorMsg}"/>
-                
+
                 <!--Enter Password-->
                 <b:inputText id="password" type="password" value="#{loginBean.password}" >
                     <f:facet name="prepend">
@@ -32,7 +29,7 @@
                 </b:inputText>
                 
                 <!--Error Message for Username -->
-                <h:outputText styleClass="ErrorMsg" value="#{loginBean.passwordErrorMsg}"/>
+                <h:outputText styleClass="ErrorMsg" value="#{loginBean.loginErrorMsg}"/>
                 <br/>
                 <!--Submit login-->
                 <b:commandButton action="#{loginBean.login()}" update="@form" 

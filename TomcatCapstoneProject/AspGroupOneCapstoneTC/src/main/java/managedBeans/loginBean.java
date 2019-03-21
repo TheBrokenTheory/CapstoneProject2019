@@ -29,8 +29,7 @@ public class loginBean implements Serializable {
     //String readTable="SELECT * FROM Doctor;";
     //String results = "";
     private String username = "";
-    private String usernameErrorMsg= "";
-    private String passwordErrorMsg= "";
+    private String loginErrorMsg= "";
     private String password = "";
     private static final long serialVersionUID = 1L;
     private String page="";
@@ -42,7 +41,8 @@ public class loginBean implements Serializable {
     public loginBean() throws SQLException
     {
     }
-
+    
+    //Gets connection to the database
     private static Connection getRemoteConnection() throws ClassNotFoundException, SQLException
     {
         Connection conn = null;
@@ -57,7 +57,8 @@ public class loginBean implements Serializable {
         return conn;
     }
     
-    
+    //Checks the credentials of the login form and either returns error message
+    //or redirects to proper page based on account type
     public String login() throws SQLException, ClassNotFoundException, IOException
     {
     
@@ -82,6 +83,7 @@ public class loginBean implements Serializable {
                 results = resultSet.getString("username");
                 
                 //Account Type: 1 for admin, 2 for general user
+                //TODO: add redirect to proper page based on acct Type
                 String AccountType = resultSet.getString("class");
                 String dbPassword = resultSet.getString("password");
                 
@@ -89,17 +91,17 @@ public class loginBean implements Serializable {
                 {
                     if(dbPassword.equals(password))
                     {
-                        page="index.xhtml";
+                        page = "index.xhtml";
                         accountMatch = true;
                     }
                     else
                     {
-                        passwordErrorMsg = "Invalid Password";
+                        loginErrorMsg = "Invalid Username or Password";
                     }
                 }
                 else
                 {
-                    usernameErrorMsg = "Invalid Username";
+                    loginErrorMsg = "Invalid Username or Password";
                 }
             }
             
@@ -107,13 +109,6 @@ public class loginBean implements Serializable {
             resultSet.close();
             readStatement.close();
             con.close();
-            
-            //resultSet.first();
-            //results = resultSet.getString("username");
-            //resultSet.next();
-            //results += ", " + resultSet.getString("username");
-            //System.out.println(results);
-            //System.out.println(username + " " + password);
 
           } catch (SQLException ex) {
             // Handle any errors
@@ -138,8 +133,6 @@ public class loginBean implements Serializable {
     public void setUsername(String username) {this.username = username;}
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
-    public String getUsernameErrorMsg(){return usernameErrorMsg;}
-    public void setUsernameErrorMsg(String errMsg) {this.usernameErrorMsg = errMsg;}
-    public String getPasswordErrorMsg(){return passwordErrorMsg;}
-    public void setPasswordErrorMsg(String errMsg) {this.passwordErrorMsg = errMsg;}
+    public String getLoginErrorMsg(){return loginErrorMsg;}
+    public void setLoginErrorMsg(String errMsg) {this.loginErrorMsg = errMsg;}
 }
