@@ -10,7 +10,14 @@
     </h:head>
     <h:body>
         <h:form>
-        <b:navBar brand="Admin Dashboard" brandHref="index.xhtml" inverse="true" fixed="top" fluid="true"></b:navBar>
+            <b:navBar brand="Admin Dashboard" brandHref="index.xhtml" inverse="true" fixed="top" fluid="true">
+                <navbarLinks pull="right">
+                    <b:dropMenu icon="user" value="Account">
+                        <b:navLink value="Manage Users" outcome=""/>
+                        <b:navLink value="Log Out" outcome="login"/>
+                    </b:dropMenu>
+                </navbarLinks>
+            </b:navBar>
         </h:form>
         <b:container fluid="true">
             <b:row>
@@ -18,18 +25,18 @@
                 <b:column col-sm="3" col-md="2" styleClass="sidebar">
                     <b:listLinks>
                         <b:navLink class="navLinkHeaders" header="Doctors"/>
-                        <b:navLink outcome="" value="Register Doctor"/>
-                        <b:navLink outcome="viewDoctors"  value="View Doctors"/>
-                        <b:navLink outcome="" value="Remove Doctor"/>
+                        <b:navLink class="navLinks" outcome="" value="Register Doctor"/>
+                        <b:navLink class="navLinks" outcome="viewDoctors"  value="View Doctors"/>
+                        <b:navLink class="navLinks" outcome="" value="Remove Doctor"/>
                         <hr/>
                         <b:navLink class="navLinkHeaders" header="Patients"/>
-                        <b:navLink outcome="" value="Register Patient"/>
-                        <b:navLink outcome="viewPatients" value="View Patients"/>
-                        <b:navLink outcome="viewMedicalHistory" value="View Medical History"/>
-                        <b:navLink outcome="" value="Remove Patient"/>
+                        <b:navLink class="navLinks" outcome="" value="Register Patient"/>
+                        <b:navLink class="navLinks" outcome="viewPatients" value="View Patients"/>
+                        <b:navLink class="navLinks" outcome="viewMedicalHistory" value="View Medical History"/>
+                        <b:navLink class="navLinks" outcome="" value="Remove Patient"/>
                         <hr/>
                         <b:navLink class="navLinkHeaders" header="Schedule"/>
-                        <b:navLink outcome="schedule" value="Schedule"/>
+                        <b:navLink class="navLinks" outcome="schedule" value="Schedule"/>
                         <hr/>
                         <b:navLink class="navLinkHeaders" header="Data Base Test Page"/>
                         <b:navLink outcome="databaseTestPage" value="Test Page"/>
@@ -48,100 +55,42 @@
                     
                     <!--Info Boxes-->
                     <!--This should grab data from database and schedule' events-->
-                    <b:container>
-                        <b:row>
+                    <b:row>
+                        <b:column class="infoBoxRow">
                             <!-- Patients -->
-                            <b:column col-sm="4">
-                                <b:well class="infoBox">
-                                    <h5>Patients</h5>
-                                    <b:column col-sm="4">
-                                    <h:form><b:iconAwesome name="ambulance" size="3x"/></h:form>
-                                    </b:column>
-                                    <p>107</p>
-                                </b:well>
-                            </b:column>
+                            <b:well class="infoBox" col-sm="3">
+                                <h5>Patients</h5>
+                                <b:column col-sm="4">
+                                <h:form><b:iconAwesome name="ambulance" size="3x"/></h:form>
+                                </b:column>
+                                <p>107</p>
+                            </b:well>
                             <!-- Appointments -->
-                            <b:column col-sm="4">
-                                <b:well class="infoBox">
-                                    <h5>Today's Appointments</h5>
-                                    <b:column col-sm="4">
-                                    <h:form><b:iconAwesome name="calendar" size="3x"/></h:form>
-                                    </b:column>  
-                                    <p>3</p>
-                                </b:well>
-                            </b:column>
+                            <b:well class="infoBox" col-sm="3">
+                                <h5>Today's Appointments</h5>
+                                <b:column col-sm="4">
+                                <h:form><b:iconAwesome name="calendar" size="3x"/></h:form>
+                                </b:column>  
+                                <p>3</p>
+                            </b:well>
                             <!-- Doctors -->
-                            <b:column col-sm="4">
-                                <b:well class="infoBox">
-                                    <h5>Doctors</h5>
-                                    <b:column col-sm="4">
-                                    <h:form><b:iconAwesome name="user" size="3x"/></h:form>
-                                    </b:column>  
-                                    <p>12</p>
-                                </b:well>
-                            </b:column>
-                        </b:row>
-                    </b:container>
-                    
-                    <!-- Dashboard Navigation -->
-                    <!-- TODO: Fix the image sizes -->
-                    <b:row class="quickLinks">
-                    <b:column col-sm="3">
-                        <b:thumbnail class="imageBox">
-                            <b:image style="width: 200px; height: 100px;" library="resources" name="doctorimg.jpg"/>
-                        </b:thumbnail>
-                        <b:dropButton value="Doctors  ">
-                            <b:navLink outcome="" value="Register Doctor"/>
-                            <b:navLink outcome="viewDoctors"  value="View Doctors"/>
-                            <b:navLink outcome="" value="Remove Doctor"/>
-                        </b:dropButton>
-                        <span class="text-muted"></span>
-                    </b:column> 
-                    <b:column col-sm="3">
-                        <b:thumbnail class="imageBox">
-                            <b:image style="width: 200px; height: 100px;" library="resources" name="patient.jpg"/>
-                        </b:thumbnail>
-                        <b:dropButton value="Patients  ">
-                            <b:navLink outcome="" value="Register Patient"/>
-                            <b:navLink outcome="viewPatients" value="View Patients"/>
-                            <b:navLink outcome="viewMedicalHistory" value="View Medical History"/>
-                            <b:navLink outcome="" value="Remove Patient"/>
-                        </b:dropButton>
-                        <span class="text-muted"></span>
-                    </b:column>
-                   <b:column col-sm="3">
-                        <b:thumbnail class="imageBox">
-                            <b:image style="width: 200px; height: 100px;" library="resources" name="schedule.jpeg" />
-                        </b:thumbnail>
-                        <b:dropButton value="Schedule  ">
-                            <b:navLink outcome="schedule" value="View Schedule"/>
-                        </b:dropButton>
-                        <span class="text-muted"></span>
-                    </b:column>  
+                            <b:well class="infoBox" col-sm="3">
+                                <h5>Doctors</h5>
+                                <b:column col-sm="4">
+                                <h:form><b:iconAwesome name="user" size="3x"/></h:form>
+                                </b:column>  
+                                <p>12</p>
+                            </b:well>
+                        </b:column>
                     </b:row>
-                    
+
                     <b:row>
                         <!-- calendar quick view -->
-                        <b:column col-sm="7">
+                        <b:column>
                             <hr/>
                             <b:fullCalendar weekends="false"/>
                         </b:column>
                         
-                        <!-- Reminders and events-->
-                        <b:column col-sm="3">
-                            <hr/>
-                            <b:panel title="Reminders &amp; Office Events" collapsible="false">
-                                <b:panel title="Office Party - April 19th" collapsible="false">
-                                    Party starts at 3:30pm in the breakroom. Bring your party hats!
-                                </b:panel>
-                                <b:panel title="Jenny's 32nd birthday - April 25th " collapsible="false">
-                                    Make sure to wish Jenny a happy birthday!
-                                </b:panel>
-                                <b:panel title="Hiring Event - April 29th" collapsible="false">
-                                    Know anyone who wants to apply? Send their resume to Jack in HR.
-                                </b:panel>
-                            </b:panel>
-                        </b:column>
                     </b:row>                    
                 </b:column>
             </b:row>
@@ -163,20 +112,32 @@
             top: 51px;
             z-index: 1000; }
             
+            .navLinks{
+                background-color: #EEEEEE;
+                border-color: #EEEEEE;
+                border: 2px;
+                margin-bottom: 3px
+            }
+            
             .navLinkHeaders {
                 font-size: 15px;
             }
             .infoBox{
                 background-color: #F3F3F3;
+                margin: 5px;
             }
             
             .imageBox{
                 width: 200px;
                 height: 110px;
             }
+            .infoBoxRow
+            {
+                margin: -5px;
+            }
             
             .quickLinks{
-                padding-left: 15%;
+                
             }
         </style>
     </h:body>

@@ -9,20 +9,24 @@
         <title>Health Care System Project</title>
     </h:head>
     <h:body styleClass="body">
+        <br/>
+        <h2 class="centered">Healthcare Administration Software Demo</h2>
+        <br/>
+        <br/>
+        <br/>
         <b:container>
             <h:form styleClass="form-signin" prependId="false">
-                <h2 class="form-signin-heading">Please sign in</h2>
+                <h3 class="form-signin-heading">Please sign in</h3>
                 
                 <!--Enter Username-->
-                <b:inputText id="username" value="#{loginBean.username}" > 
-                    <b:message for="@previous"/>
+                <b:inputText id="username" value="#{loginBean.username}" placeholder="Username"> 
                     <f:facet name="prepend">
                         <b:icon name="user" />
                     </f:facet>
                 </b:inputText>
 
                 <!--Enter Password-->
-                <b:inputText id="password" type="password" value="#{loginBean.password}">
+                <b:inputText id="password" type="password" value="#{loginBean.password}" placeholder="Password">
                     <f:facet name="prepend">
                         <b:icon name="pencil" />
                     </f:facet>
@@ -30,8 +34,6 @@
                 
                 <!--Error Message for Username -->
                 <h:outputText styleClass="ErrorMsg" value="#{loginBean.loginErrorMsg}"/>
-                <br/>
-                
                 <!--Submit login-->
                 <b:commandLink look="default"  value="Sign In" icon="log-in" 
                         action="#{loginBean.login()}" outcome="#{loginBean.page}"/>
@@ -45,12 +47,18 @@
             margin: 0 auto;
             max-width: 330px;
             padding: 15px;
-            background-color: #F3F3F3;
+            background-color: #DADADA;
+            
         }
         .ErrorMsg{
             color: red;
         }
-       
+       .centered {
+            font-size: 25px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </h:body>
 </html>
