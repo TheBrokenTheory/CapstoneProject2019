@@ -22,19 +22,19 @@
                 </b:inputText>
 
                 <!--Enter Password-->
-                <b:inputText id="password" type="password" value="#{loginBean.password}" >
+                <b:inputText id="password" type="password" value="#{loginBean.password}">
                     <f:facet name="prepend">
-                        <b:iconAwesome name="key" />
+                        <b:icon name="pencil" />
                     </f:facet>
                 </b:inputText>
                 
                 <!--Error Message for Username -->
                 <h:outputText styleClass="ErrorMsg" value="#{loginBean.loginErrorMsg}"/>
                 <br/>
-                <!--Submit login-->
-                <b:commandButton action="#{loginBean.login()}" update="@form" 
-                                value="Sign In" icon="log-in" size="lg"/>
                 
+                <!--Submit login-->
+                <b:commandLink look="default"  value="Sign In" icon="log-in" 
+                        action="#{loginBean.login()}" outcome="#{loginBean.page}"/>
             </h:form>
         </b:container>
     <style type="text/css">

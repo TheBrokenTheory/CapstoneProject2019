@@ -91,7 +91,7 @@ public class loginBean implements Serializable {
                 {
                     if(dbPassword.equals(password))
                     {
-                        page = "index.xhtml";
+                        page = "index";
                         accountMatch = true;
                     }
                     else
