@@ -23,11 +23,7 @@ import javax.validation.constraints.Size;
 @ManagedBean(name = "loginBean")
 @ViewScoped
 public class loginBean implements Serializable {
-    //Connection conn = null;
-    //Statement readStatement = null;
-    //ResultSet resultSet = null;
-    //String readTable="SELECT * FROM Doctor;";
-    //String results = "";
+    
     private String username = "";
     private String loginErrorMsg= "";
     private String password = "";
@@ -38,9 +34,7 @@ public class loginBean implements Serializable {
      * Creates a new instance of loginBean
      * @throws java.sql.SQLException
      */
-    public loginBean() throws SQLException
-    {
-    }
+    public loginBean(){}
     
     //Gets connection to the database
     private static Connection getRemoteConnection() throws ClassNotFoundException, SQLException
