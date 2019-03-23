@@ -10,7 +10,14 @@
     </h:head>
     <h:body>
         <h:form>
-        <b:navBar brand="Admin Dashboard" brandHref="index.xhtml" inverse="true" fixed="top" fluid="true"></b:navBar>
+            <b:navBar brand="Admin Dashboard" brandHref="index.xhtml" inverse="true" fixed="top" fluid="true">
+                <navbarLinks pull="right">
+                    <b:dropMenu icon="user" value="Account">
+                        <b:navLink value="Manage Users" outcome=""/>
+                        <b:navLink value="Log Out" outcome="login"/>
+                    </b:dropMenu>
+                </navbarLinks>
+            </b:navBar>
         </h:form>
         <b:container fluid="true">
             <b:row>

@@ -10,7 +10,14 @@
     </h:head>
     <h:body>
         <h:form>
-        <b:navBar brand="Admin Dashboard" brandHref="index.xhtml" inverse="true" fixed="top" fluid="true"></b:navBar>
+            <b:navBar brand="Admin Dashboard" brandHref="index.xhtml" inverse="true" fixed="top" fluid="true">
+                <navbarLinks pull="right">
+                    <b:dropMenu icon="user" value="Account">
+                        <b:navLink value="Manage Users" outcome=""/>
+                        <b:navLink value="Log Out" outcome="login"/>
+                    </b:dropMenu>
+                </navbarLinks>
+            </b:navBar>
         </h:form>
         <b:container fluid="true">
             <b:row>
@@ -50,7 +57,7 @@
                                     <b:dateTimePicker id="aptDateAndTime" value="" mode="inline" label="Time and date for new appointment"/>
                                 </b:column>
                                 
-                                <b:column col-md="8" style-class="newApptFormStyle">
+                                <b:column col-md="8" class="newApptFormStyle">
                                     <!--The user will enter the first name of the patient here -->
                                     <b:column>
                                         <b:inputText id="firstName" value="" ajax="true" required="true" col-md="4" label="Enter patient's first name:"/>
@@ -102,6 +109,7 @@
                         Add the events to this main calendar.
                     -->
                     <b:fullCalendar weekends="false"/>
+                    <br/>
                 </b:column>
             </b:row>  
         </b:container>
