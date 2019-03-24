@@ -78,7 +78,7 @@ public class loginBean implements Serializable {
                 
                 //Account Type: 1 for admin, 2 for general user
                 //TODO: add redirect to proper page based on acct Type
-                String AccountType = resultSet.getString("class");
+                String AccountType = resultSet.getString("accountType");
                 String dbPassword = resultSet.getString("password");
                 
                 if(username.equals(results))

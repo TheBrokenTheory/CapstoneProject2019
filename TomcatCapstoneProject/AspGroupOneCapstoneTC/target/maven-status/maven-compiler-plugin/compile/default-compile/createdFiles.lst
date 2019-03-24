@@ -1,3 +1,5 @@
 managedBeans\scheduleBean.class
+managedBeans\Account.class
 managedBeans\viewDoctorBean.class
+managedBeans\manageUsersBean.class
 managedBeans\loginBean.class
