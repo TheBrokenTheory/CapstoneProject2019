@@ -1,4 +1,4 @@
-package org.aspgroup1.crud;
+package org.aspgroup1.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
