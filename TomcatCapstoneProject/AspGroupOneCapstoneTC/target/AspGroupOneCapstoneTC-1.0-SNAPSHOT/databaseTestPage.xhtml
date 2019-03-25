@@ -41,28 +41,16 @@
                     
                     <!-- START HERE -->
                     <b:form>
-                        <!-- You can change these input fields to whatever you like 
-                        <b:inputText id= "firstName" label="Add First Name to Data Base" value="#{dbBean.firstName}" 
-                                     ajax="ajax:dbBean.setFirstName()" update="@next"/>
-                        <b:inputText id= "lsatName" label="Add to Last Name Base" value="#{dbBeanlastName}" 
-                                     ajax="ajax:dbBean.setLastName()" update="@next"/>
-                        <b:inputText id= "docId" label="Add to Doc ID Data Base" value="#{dbBean.docId}" 
-                                     ajax="ajax:dbBean.setDocIdName()" update="@next"/>
-
-                        <b:commandButton value="Update DB " update="@form"/>
-                        <hr/>
-                        -->
-
                         <!--Change this to add the values from db query Link for help -->
                         <!-- https://showcase.bootsfaces.net/forms/DataTable.jsf;jsessionid=MVCkGvoidu4GTGDZq7ZAP0EgLbOMTkpFHQR_kl5D.showcase04 -->
-                        <b:dataTable value="#{dbBean.docId}">           
-                            <b:dataTableColumn value="#{dbBean.docId}"
+                        <b:dataTable value="#{docBean.doctors}" var="item">           
+                            <b:dataTableColumn value="#{item.doctorID}"
                                      label="Doctor ID"/>
-                            <b:dataTableColumn value="#{dbBean.firstName}" />
-                            <b:dataTableColumn value="#{dbBean.lastName}" />                   
+                            <b:dataTableColumn value="#{item.doctorFirstName}" />
+                            <b:dataTableColumn value="#{item.doctorLastName}" />                   
                         </b:dataTable>
                         
-                        <b:commandButton value="Read Info In" update="@form"/>
+                        <b:commandButton value="Read Info In" update="@form"  onclick="#{docBean.getDoctors()}"/>
                     </b:form>
                    <!-- END HERE -->
                    
