@@ -41,7 +41,7 @@
                     
                     <!-- START HERE -->
                     <b:form>
-                        <!-- You can change these input fields to whatever you like -->
+                        <!-- You can change these input fields to whatever you like 
                         <b:inputText id= "firstName" label="Add First Name to Data Base" value="#{dbBean.firstName}" 
                                      ajax="ajax:dbBean.setFirstName()" update="@next"/>
                         <b:inputText id= "lsatName" label="Add to Last Name Base" value="#{dbBeanlastName}" 
@@ -51,6 +51,7 @@
 
                         <b:commandButton value="Update DB " update="@form"/>
                         <hr/>
+                        -->
 
                         <!--Change this to add the values from db query Link for help -->
                         <!-- https://showcase.bootsfaces.net/forms/DataTable.jsf;jsessionid=MVCkGvoidu4GTGDZq7ZAP0EgLbOMTkpFHQR_kl5D.showcase04 -->
@@ -60,6 +61,8 @@
                             <b:dataTableColumn value="#{dbBean.firstName}" />
                             <b:dataTableColumn value="#{dbBean.lastName}" />                   
                         </b:dataTable>
+                        
+                        <b:commandButton value="Read Info In" update="@form"/>
                     </b:form>
                    <!-- END HERE -->
                    
