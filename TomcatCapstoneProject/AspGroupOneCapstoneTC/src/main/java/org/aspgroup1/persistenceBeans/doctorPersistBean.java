@@ -5,14 +5,14 @@
  */
 package org.aspgroup1.persistenceBeans;
 
-import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.aspgroup1.crud.DoctorCrud;
 
 
-@Named(value = "docBean")
+@ManagedBean(name = "docBean")
 @Dependent
 public class doctorPersistBean {
 
