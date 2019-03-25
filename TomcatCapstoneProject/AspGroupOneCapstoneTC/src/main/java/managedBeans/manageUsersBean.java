@@ -30,10 +30,11 @@ import javax.validation.constraints.Size;
 @RequestScoped
 public class manageUsersBean implements Serializable {
     
-    List<Account> accounts = new ArrayList<Account>();
+    private static final Account[] accounts = new Account[12];
+    //List<Account> accounts = new ArrayList<Account>();
     private String username = "";
     private String password = "";
-    private String accountType = "";
+    private int accountType = 0;
     private String firstName = "";
     private String lastName = "";
     
@@ -65,7 +66,7 @@ public class manageUsersBean implements Serializable {
         return conn;
     }
     
-    public void getExistingAccounts() throws ClassNotFoundException, SQLException
+    public Account[] getExistingAccounts() throws ClassNotFoundException, SQLException
     {
         Statement readStatement = null;
         ResultSet resultSet = null;
@@ -90,10 +91,15 @@ public class manageUsersBean implements Serializable {
                 String un = resultSet.getString("username");
                 String pass = resultSet.getString("password");
                 String acctType = resultSet.getString("accountType");
+                int acct = Integer.parseInt(acctType);
                 String fName = resultSet.getString("fname");
                 String lName = resultSet.getString("lname");
-                Account account = new Account(un, pass, acctType, fName, lName);
-                accounts.add(counter, account);
+                accounts[counter] = new Account(un, pass, acct, fName, lName);
+                System.out.println(accounts[counter].getUsername());
+                System.out.println(accounts[counter].getPassword());
+                System.out.println(accounts[counter].getAccountType());
+                System.out.println(accounts[counter].getFirstName());
+                System.out.println(accounts[counter].getLastName());
                 
                 //Account Type: 1 for admin, 2 for general user
                 //TODO: add redirect to proper page based on acct Type
@@ -115,6 +121,8 @@ public class manageUsersBean implements Serializable {
             System.out.println("Closing the connection.");
             if (con != null) try { con.close(); } catch (SQLException ignore) {}
         }
+        
+        return accounts;
     }
     
     
@@ -125,13 +133,13 @@ public class manageUsersBean implements Serializable {
     public void setUsername(String username) {this.username = username;}
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}  
-    public String getFistName(){return firstName;}
+    public String getFirstName(){return firstName;}
     public void setFirstName(String name) {this.firstName = name;}
     public String getLastName(){return lastName;}
     public void setLastName(String name) {this.lastName = name;}
-    public String getAccountType(){return accountType;}
-    public void setAccountType(String type) {this.accountType = type;}
-    public List getAccounts() {return accounts;}
+    public int getAccountType(){return accountType;}
+    public void setAccountType(int type) {this.accountType = type;}
+    public Account[] getAccounts() {return accounts;}
     
     
 }

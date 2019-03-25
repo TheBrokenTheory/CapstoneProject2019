@@ -74,12 +74,12 @@
                     <hr/>
                     <!--View Medical History Table Start-->
                     <!--Add columns as needed-->
-                    <b:dataTable value="#{manageUsersBean.accounts}" var="accounts">           
-                        <b:dataTableColumn label="Username" value="#{accounts.username}"/>
-                        <b:dataTableColumn label="Password" value="#{accounts.password}"/>
-                        <b:dataTableColumn label="Account Type" value="#{accounts.accountType}"/>
-                        <b:dataTableColumn label="First Name" value="#{accounts.firstName}"/>
-                        <b:dataTableColumn label="Last Name" value="#{accounts.lastName}"/>
+                    <b:dataTable value="#{manageUsersBean.accounts}" var="account">           
+                        <b:dataTableColumn label="Username" value="#{account.username}"/>
+                        <b:dataTableColumn label="Password" value="#{account.password}"/>
+                        <b:dataTableColumn label="Account Type" value="#{account.accountType}"/>
+                        <b:dataTableColumn label="First Name" value="#{account.firstName}"/>
+                        <b:dataTableColumn label="Last Name" value="#{account.lastName}"/>
                     </b:dataTable>
                     <!--End table-->
                 </b:column>
