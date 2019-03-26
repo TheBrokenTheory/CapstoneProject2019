@@ -24,7 +24,7 @@ import javax.faces.bean.ManagedBean;
 @RequestScoped
 public class manageUsersBean implements Serializable {
     
-    private static final Account[] accounts = new Account[12];
+    private static final Account[] accounts = new Account[100];
     //List<Account> accounts = new ArrayList<Account>();
     private String username = "";
     private String password = "";
@@ -32,6 +32,8 @@ public class manageUsersBean implements Serializable {
     private String firstName = "";
     private String lastName = "";
     private String acctTypeString = "";
+    int counter = 0;
+    private String page="manageUsers";
 
     /**
      * Creates a new instance of manageUsersBean
@@ -78,7 +80,7 @@ public class manageUsersBean implements Serializable {
             int numberOfColumns = metadata.getColumnCount();
             ArrayList<String> arrayList = new ArrayList<String>();
             boolean accountMatch = false;
-            int counter = 0;
+            
             
             while (resultSet.next())
             {
@@ -110,7 +112,7 @@ public class manageUsersBean implements Serializable {
         return accounts;
     }
     
-    public void createNewUser() throws SQLException, ClassNotFoundException
+    public String createNewUser() throws SQLException, ClassNotFoundException
     {
         accountType = Integer.parseInt(acctTypeString);
         Statement writeStatement = null;
@@ -140,6 +142,7 @@ public class manageUsersBean implements Serializable {
             System.out.println("Closing the connection.");
             if (con != null) try { con.close(); } catch (SQLException ignore) {}
         }
+        return page;
     }
     
     
@@ -157,6 +160,7 @@ public class manageUsersBean implements Serializable {
     public Account[] getAccounts() {return accounts;}
     public String getAccountTypeString(){return acctTypeString;}
     public void setAccountTypeString(String type) {this.acctTypeString = type;}
- 
+    public String getPage() {return page;}
+    public void setPage(String currentPage){this.page=currentPage;}
     
 }
