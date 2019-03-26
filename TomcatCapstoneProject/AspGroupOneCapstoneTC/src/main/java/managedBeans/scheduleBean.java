@@ -26,12 +26,32 @@ public class scheduleBean {
     {
     }
     
-    public void createAppointment()
+    public scheduleBean(String fName, String lName, 
+                        String reason, String doctorSeen, String dateTime)
     {
-        System.out.println(firstName);
+        this.firstName = fName;
+        this.lastName = lName;
+        this.reasonForVisit = reason;
+        this.doctorSeen = reason;
+        this.dateTimeOfAppointment = dateTime;
     }
     
-    //First Name Getter and Setter
+    public void createAppointment()
+    {
+       // System.out.println(firstName + "TEST--" + lastName + " " + dateTimeOfAppointment);
+        System.out.println(firstName + " " + lastName + " " + reasonForVisit
+                          + " " + doctorSeen + " " + dateTimeOfAppointment );
+    }
+    
+    //Getters and Setters
     public String getFirstName(){return firstName;}
     public void setFirstName(String fName){this.firstName = fName;}
+    public String getLastName() {return lastName;}
+    public void setLastName(String lName){this.lastName = lName;}
+    public String getReasonForVisit() {return reasonForVisit;}
+    public void setReasonForVisit(String reason) {this.reasonForVisit = reason;}
+    public String getDoctorSeen(){return doctorSeen;}
+    public void setDoctorSeen(String doctorSeen){this.doctorSeen = doctorSeen;}
+    public String getDateTime(){return dateTimeOfAppointment;}
+    public void setDateTime(String dateTime) {this.dateTimeOfAppointment = dateTime;}
 }

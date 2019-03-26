@@ -46,8 +46,9 @@
                         <b:container fluid="true">
                             <b:row>
                                 <!--This is where the user will select the date and time for the appointment-->
+                                
                                 <b:column col-sm="7" style-class="newApptFormStyle">
-                                    <b:dateTimePicker id="aptDateAndTime" value="" mode="inline" label="Time and date for new appointment"/>
+                                    <b:dateTimePicker id="aptDateAndTime" value="#{scheduleBean.dateTime}" mode="inline" label="Time and date for new appointment"/>
                                 </b:column>
                                 
                                 <b:column col-md="8" style-class="newApptFormStyle">
@@ -56,29 +57,37 @@
                                         <b:inputText id="firstName" value="#{scheduleBean.firstName}" required="true" col-md="4" label="Enter patient's first name:"/>
                                     
                                     <!--The user will enter the last name of the patient here -->
-                                        <b:inputText id="lsatName" value="" required="true" col-md="4" label="Enter patient's last name:"/>
+                               
+                                    <b:inputText id="lsatName" value="#{scheduleBean.lastName}" required="true" col-md="4" label="Enter patient's last name:"/>
                                     </b:column>
-                                    
+                                   
                                     <!--The user will select the reason for their visit here-->
+                               
                                     <b:column>
-                                        <b:selectOneMenu id="reasonForVisit" value="" colMd="4" required="true" label="Reason for visit:">
-                                            <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                        <b:selectOneMenu id="reasonForVisit" value="#{scheduleBean.reasonForVisit}" colMd="4" required="true" label="Reason for visit:">
+                                            
+                                           <f:selectItem itemLabel="(Please select)" itemValue="" /> 
                                             <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
-                                            <f:selectItem itemLabel="More Reasons"/>
-                                            <f:selectItem itemLabel="More Reasons"/>
-                                            <f:selectItem itemLabel="More Reasons"/>
+                                            <f:selectItem itemLabel="High blood pressure" itemValue ="High blood pressure"/>
+                                            <f:selectItem itemLabel="Headaches and migraines" itemValue="Headaches and migraines"/>
+                                            <f:selectItem itemLabel="Diabetes" itemValue="Diabetes"/>
+                                            <f:selectItem itemLabel="Chronic neurologic disorders" itemValue="Chronic neurologic disorders"/>
+                                            <f:selectItem itemLabel="Cholesterol problems" itemValue="Cholesterol problems"/>
+                                                                                     
                                         </b:selectOneMenu>
-
-                                    <!--The user will select which doctor they are seeing here -->
-                                        <b:selectOneMenu id="seeingDoc" value="" colMd="4" required="true" label="Select Doctor:">
-                                            <f:selectItem itemLabel="(Please select)" itemValue="" />
+                              
+                                    <!--The user will select which doctor they are seeing here -->                                
+                              
+                                    <b:selectOneMenu id="seeingDoc" value="#{scheduleBean.doctorSeen}" colMd="4" required="true" label="Select Doctor:">
+                                            <f:selectItem itemLabel="(Please select)" itemValue="" /> 
                                             <f:selectItem itemLabel="Dr. Anders" itemValue="Dr. Anders"/>
-                                            <f:selectItem itemLabel="Enter More Docs here"/>
-                                            <f:selectItem itemLabel="Enter More Docs here"/>
-                                            <f:selectItem itemLabel="Enter More Docs here"/>
+                                            <f:selectItem itemLabel="Dr. Lim" itemValue="Dr. Lim"/>
+                                            <f:selectItem itemLabel="Dr. Ali" itemValue="Dr. Ali"/>
+                                            <f:selectItem itemLabel="Dr. Wilson" itemValue="Dr. Wilson"/>
                                         </b:selectOneMenu>
+                           
                                     </b:column>
-                                    
+                                   
                                 </b:column>
                             </b:row>
                             <b:row>
