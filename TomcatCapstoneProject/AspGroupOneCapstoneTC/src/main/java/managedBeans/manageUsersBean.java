@@ -12,15 +12,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -37,7 +31,7 @@ public class manageUsersBean implements Serializable {
     private int accountType = 0;
     private String firstName = "";
     private String lastName = "";
-    
+    private String acctTypeString = "";
 
     /**
      * Creates a new instance of manageUsersBean
@@ -95,16 +89,7 @@ public class manageUsersBean implements Serializable {
                 String fName = resultSet.getString("fname");
                 String lName = resultSet.getString("lname");
                 accounts[counter] = new Account(un, pass, acct, fName, lName);
-                System.out.println(accounts[counter].getUsername());
-                System.out.println(accounts[counter].getPassword());
-                System.out.println(accounts[counter].getAccountType());
-                System.out.println(accounts[counter].getFirstName());
-                System.out.println(accounts[counter].getLastName());
-                
-                //Account Type: 1 for admin, 2 for general user
-                //TODO: add redirect to proper page based on acct Type
-                String AccountType = resultSet.getString("accountType");
-                String dbPassword = resultSet.getString("password");
+
                 counter++;
             }
             
@@ -125,7 +110,37 @@ public class manageUsersBean implements Serializable {
         return accounts;
     }
     
-    
+    public void createNewUser() throws SQLException, ClassNotFoundException
+    {
+        accountType = Integer.parseInt(acctTypeString);
+        Statement writeStatement = null;
+        String results = "";
+        int numresults = 0;
+        String statement = null;
+        
+        Connection con = getRemoteConnection();
+        
+        String insertStringStmt = "INSERT INTO Users (username, password, accountType, fname, lname)"
+                + "VALUES ('" + username + "', '" + password + "', " + accountType + ", '"
+                + firstName + "', '" + lastName + "')";
+        
+        try {
+            writeStatement = con.createStatement();
+            writeStatement.executeUpdate(insertStringStmt);
+            
+            //Close DB Connection
+            writeStatement.close();
+            con.close();  
+        } catch (SQLException ex) {
+            // Handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        } finally {
+            System.out.println("Closing the connection.");
+            if (con != null) try { con.close(); } catch (SQLException ignore) {}
+        }
+    }
     
     
     //Getters and setters
@@ -140,6 +155,8 @@ public class manageUsersBean implements Serializable {
     public int getAccountType(){return accountType;}
     public void setAccountType(int type) {this.accountType = type;}
     public Account[] getAccounts() {return accounts;}
-    
+    public String getAccountTypeString(){return acctTypeString;}
+    public void setAccountTypeString(String type) {this.acctTypeString = type;}
+ 
     
 }
