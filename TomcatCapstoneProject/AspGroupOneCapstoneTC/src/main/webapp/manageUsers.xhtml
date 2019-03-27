@@ -49,15 +49,14 @@
                     <h1>Manage Users</h1>
                     <hr/>
                     
-                   <!--Search DB for medical records -->
                     <b:row>
                         <b:column>
-                            <!-- Search Database for Medical History Add Menu items as needed -->
                             <b:form>
                                 <b:column col-md="5">
                                     <b:inputText value="#{manageUsersBean.firstName}" colMd="2" label="Enter First Name:" labelColMd="10" />
                                     <b:inputText value="#{manageUsersBean.lastName}" colMd="2" label="Enter Last Name:" labelColMd="10" />
                                 </b:column>
+                                
                                 <b:column col-md="5">
                                     <b:inputText value="#{manageUsersBean.username}" colMd="2" label="Enter Username:" labelColMd="10" />
                                     <b:inputText value="#{manageUsersBean.password}" colMd="2" label="Enter Password:" type="password" labelColMd="10" />
@@ -70,31 +69,30 @@
                                         <f:selectItem itemLabel="General" itemValue="2"/>
                                     </b:selectOneMenu>
                                 </b:column>
+                                
                                 <b:column>
                                     <b:commandButton action="#{manageUsersBean.createNewUser()}" value="Create New User" 
-                                                    update="@form" ajax="false" />
+                                            update="dataTable"/>
+                                    <hr/>
                                 </b:column>
-                                
-                            </b:form>
+                            </b:form> 
+                            
+                            <!--View all current users. Updates when new user is added -->
+                            <b:dataTable  value="#{manageUsersBean.accounts}" var="account" id="dataTable" ajax="false">           
+                                <b:dataTableColumn label="Username" value="#{account.username}"/>
+                                <b:dataTableColumn label="Password" value="#{account.password}"/>
+                                <b:dataTableColumn label="Account Type" value="#{account.accountType}"/>
+                                <b:dataTableColumn label="First Name" value="#{account.firstName}"/>
+                                <b:dataTableColumn label="Last Name" value="#{account.lastName}"/>
+                            </b:dataTable>
+                            
                         </b:column>
                     </b:row>
-                   
-                    <hr/>
-                    <!--View Medical History Table Start-->
-                    <!--Add columns as needed-->
-                    <b:dataTable value="#{manageUsersBean.accounts}" var="account">           
-                        <b:dataTableColumn label="Username" value="#{account.username}"/>
-                        <b:dataTableColumn label="Password" value="#{account.password}"/>
-                        <b:dataTableColumn label="Account Type" value="#{account.accountType}"/>
-                        <b:dataTableColumn label="First Name" value="#{account.firstName}"/>
-                        <b:dataTableColumn label="Last Name" value="#{account.lastName}"/>
-                    </b:dataTable>
-                    <!--End table-->
                 </b:column>
-        
-        
+
             </b:row>
         </b:container>
+        
         <style type="text/css">
             .navbar-fixed-top {background-color: #30373E;}
             .sidebar {
