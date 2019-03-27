@@ -4,44 +4,20 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c = "http://java.sun.com/jsf/composite/uicomponents">
     <h:head>
         <title>Health Care System Project</title>
     </h:head>
     <h:body>
-        <h:form>
-            <b:navBar brand="Admin Dashboard" brandHref="index.xhtml" inverse="true" fixed="top" fluid="true">
-                <navbarLinks pull="right">
-                    <b:dropMenu icon="user" value="Account">
-                        <b:navLink value="Manage Users" outcome="manageUsers"/>
-                        <b:navLink value="Log Out" outcome="login"/>
-                    </b:dropMenu>
-                </navbarLinks>
-            </b:navBar>
-        </h:form>
+        <!--Top Menu Bar-->
+        <c:topNavMenu/>
+        
         <b:container fluid="true">
             <b:row>
-                <!-- Side nav bar -->
-                <b:column col-sm="3" col-md="2" styleClass="sidebar">
-                    <b:listLinks>
-                        <b:navLink class="navLinkHeaders" header="Doctors"/>
-                        <b:navLink outcome="" value="Register Doctor"/>
-                        <b:navLink outcome="viewDoctors"  value="View Doctors"/>
-                        <b:navLink outcome="" value="Remove Doctor"/>
-                        <hr/>
-                        <b:navLink class="navLinkHeaders" header="Patients"/>
-                        <b:navLink outcome="" value="Register Patient"/>
-                        <b:navLink outcome="viewPatients" value="View Patients"/>
-                        <b:navLink outcome="viewMedicalHistory" value="View Medical History"/>
-                        <b:navLink outcome="" value="Remove Patient"/>
-                        <hr/>
-                        <b:navLink class="navLinkHeaders" header="Schedule"/>
-                        <b:navLink outcome="schedule" value="Schedule"/>
-                        <hr/>
-                        <b:navLink class="navLinkHeaders" header="Data Base Test Page"/>
-                        <b:navLink outcome="databaseTestPage" value="Test Page"/>
-                    </b:listLinks>
-                </b:column>
+                <!--Side Menu Bar-->   
+                <c:sideNavMenu/>
+                
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <hr/>
                     <hr/>
