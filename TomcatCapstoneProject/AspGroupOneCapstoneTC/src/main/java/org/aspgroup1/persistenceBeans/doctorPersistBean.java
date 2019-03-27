@@ -16,16 +16,19 @@ import org.aspgroup1.crud.DoctorCrud;
 @Dependent
 public class doctorPersistBean {
 
-    DoctorCrud dc;
     ListDataModel doctors;
     
     public doctorPersistBean() {
-        dc = new DoctorCrud();
+        
     }
     
     public DataModel getDoctors(){
+        
+        
         if(doctors == null){
-            doctors = new ListDataModel(dc.getDoctors());
+            System.out.println("BEAN ACTIVITY!");
+            System.out.println("BEAN ACTIVITY!");
+            doctors = new ListDataModel(DoctorCrud.getDoctors());
             System.out.println("BEAN ACTIVITY!");
             System.out.println("BEAN ACTIVITY!");
             System.out.println("BEAN ACTIVITY!");

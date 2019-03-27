@@ -24,19 +24,18 @@ public class DoctorCrud {
 
      // This Method Is Used To Create The Hibernate's SessionFactory Object
     private static SessionFactory buildSessionFactory() {
-        // Creating Configuration Instance & Passing Hibernate Configuration File
-        Configuration configObj = new Configuration();
-        configObj.configure("hibernate.cfg.xml");
- 
-        // Since Hibernate Version 4.x, ServiceRegistry Is Being Used
-        ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder().applySettings(configObj.getProperties()).build(); 
- 
         // Creating Hibernate SessionFactory Instance
-        sessionFactoryObj = configObj.buildSessionFactory(serviceRegistryObj);
+        sessionFactoryObj = new Configuration().configure().buildSessionFactory();
         return sessionFactoryObj;
     }
     
-    public List getDoctors(){
+    public static void doctorStuff(){
+        System.out.println("Display method!");
+        System.out.println("Display method!");
+        System.out.println("Display method!");
+    }
+    
+    public static List getDoctors(){
         List<Doctor> doctorList = new ArrayList();
         
         try {
@@ -50,10 +49,10 @@ public class DoctorCrud {
             System.out.println("transations!!!");
             doctorList = sessionObj.createQuery("FROM Doctor").list();
         } catch(Exception sqlException) {
-            if(null != sessionObj.getTransaction()) {
+            /*if(sessionObj.getTransaction() != null) {
                 System.out.println("\n.......Transaction Is Being Rolled Back.......\n");
                 sessionObj.getTransaction().rollback();
-            }
+            }*/
             sqlException.printStackTrace();
         } finally {
             if(sessionObj != null) {
@@ -61,9 +60,6 @@ public class DoctorCrud {
             }
         }
         return doctorList;
-        
-        
-        
     }
     
 }
