@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c = "http://java.sun.com/jsf/composite/uicomponents">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body>
+        <!--Top Menu Bar-->
+        <c:topNavMenu/>
+        
+        <b:container fluid="true">
+            <b:row>
+                <!-- Side nav bar -->
+                <b:column col-sm="3" col-md="2" styleClass="sidebar">
+                    <b:listLinks>
+                        <b:navLink class="navLinkHeaders" header="Appointment Menu"/>
+                        <b:navLink class="navLinks" outcome="" value="Create Appointment"/>
+                        <b:navLink class="navLinks" outcome=""  value="Cancel Appointment"/>
+                        <b:navLink class="navLinks" outcome="genUserDashboard"  value="Schedule"/>
+                    </b:listLinks>
+                </b:column>
+                
+                <!--Main Display area-->
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">                  
+                    <hr/>
+                    <hr/>
+                    <h1>General User Dashboard</h1>
+                    <hr/>
+                    
+                    <!-- Appointment Alert Populate from schedule's events.-->
+                    <b:alert severity="info" closable="true" title="Heads up!" value="You have __ appointments today!" />
+
+                    <b:row>
+                        <!-- calendar quick view -->
+                        <b:column>
+                            <hr/>
+                            <b:fullCalendar weekends="false"/>
+                        </b:column>                      
+                    </b:row>   
+                    
+                </b:column>
+            </b:row>
+        </b:container>
+
+        <style type="text/css">
+            .navbar-fixed-top {
+                background-color: #30373E;
+            }
+            
+            .sidebar {
+                background-color: #F3F3F3;
+                border-right: 1px solid #eee;
+                bottom: 0;
+                display: block;
+                left: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                padding: 20px;
+                position: fixed;
+                top: 51px;
+                z-index: 1000; 
+            }
+            
+            .navLinks{
+                border-color: #EEEEEE;
+                border: 2px;
+                margin-bottom: 3px;
+            }
+            
+            .navLinkHeaders {
+                font-size: 15px;
+            }
+        </style>
+    </h:body>
+</html>

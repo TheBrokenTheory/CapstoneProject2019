@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c = "http://java.sun.com/jsf/composite/uicomponents">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <body>
+        <!--Top Menu Bar-->
+        <c:topNavMenu/>
+        
+        <b:container fluid="true">
+            <b:row>
+                <!--Side Menu Bar-->   
+                <c:sideNavMenu/>
+                
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <hr/>
+                    <hr/>
+                    <h1>Manage Users</h1>
+                    <hr/>
+                    
+                    <b:row>
+                        <b:column>
+                            <b:form>
+                                <b:column col-md="5">
+                                    <b:inputText value="#{manageUsersBean.firstName}" colMd="2" label="Enter First Name:" labelColMd="10" />
+                                    <b:inputText value="#{manageUsersBean.lastName}" colMd="2" label="Enter Last Name:" labelColMd="10" />
+                                </b:column>
+                                
+                                <b:column col-md="5">
+                                    <b:inputText value="#{manageUsersBean.username}" colMd="2" label="Enter Username:" labelColMd="10" />
+                                    <b:inputText value="#{manageUsersBean.password}" colMd="2" label="Enter Password:" type="password" labelColMd="10" />
+                                </b:column>
+                                
+                                <b:column class="selectMenu">
+                                    <b:selectOneMenu value="#{manageUsersBean.accountTypeString}" colMd="5" label="User Type:" labelColMd="10" >
+                                        <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                        <f:selectItem itemLabel="Admin" itemValue="1"/>
+                                        <f:selectItem itemLabel="General" itemValue="2"/>
+                                    </b:selectOneMenu>
+                                </b:column>
+                                
+                                <b:column>
+                                    <b:commandButton action="#{manageUsersBean.createNewUser()}" value="Create New User" 
+                                            update="dataTable"/>
+                                    <hr/>
+                                </b:column>
+                            </b:form> 
+                            
+                            <!--View all current users. Updates when new user is added -->
+                            <b:dataTable  value="#{manageUsersBean.accounts}" var="account" id="dataTable" ajax="false">           
+                                <b:dataTableColumn label="Username" value="#{account.username}"/>
+                                <b:dataTableColumn label="Password" value="#{account.password}"/>
+                                <b:dataTableColumn label="Account Type" value="#{account.accountType}"/>
+                                <b:dataTableColumn label="First Name" value="#{account.firstName}"/>
+                                <b:dataTableColumn label="Last Name" value="#{account.lastName}"/>
+                            </b:dataTable>
+                            
+                        </b:column>
+                    </b:row>
+                </b:column>
+
+            </b:row>
+        </b:container>
+        
+        <style type="text/css">
+            .navbar-fixed-top {background-color: #30373E;}
+            .sidebar {
+            background-color: #F3F3F3;
+            border-right: 1px solid #eee;
+            bottom: 0;
+            display: block;
+            left: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 20px;
+            position: fixed;
+            top: 51px;
+            z-index: 1000; }
+            .navLinks{
+                background-color: #EEEEEE;
+                border-color: #EEEEEE;
+                border: 2px;
+                margin-bottom: 3px
+            }
+            .navLinkHeaders {
+                font-size: 15px;
+            }
+            .selectMenu{
+                margin-left: -15px;
+            }
+        </style>
+    </body>
+</html>
