@@ -36,6 +36,7 @@ public class loginBean implements Serializable {
     private static Connection getRemoteConnection() throws ClassNotFoundException, SQLException
     {
         Connection conn = null;
+        
         try {
             //System.out.println("Loading driver...");
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -55,8 +56,7 @@ public class loginBean implements Serializable {
         Statement readStatement = null;
         ResultSet resultSet = null;
         String results = "";
-        int numresults = 0;
-        String statement = null;
+        
         Connection con = getRemoteConnection();
         
         try {
@@ -64,8 +64,6 @@ public class loginBean implements Serializable {
             resultSet = readStatement.executeQuery("SELECT * FROM Users;");
             
             ResultSetMetaData metadata = resultSet.getMetaData();
-            int numberOfColumns = metadata.getColumnCount();
-            ArrayList<String> arrayList = new ArrayList<String>();
             boolean accountMatch = false;
             
             while (resultSet.next() || accountMatch==true)
