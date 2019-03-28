@@ -4,19 +4,39 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
       xmlns:c = "http://java.sun.com/jsf/composite/uicomponents">
     <h:head>
         <title>Health Care System Project</title>
     </h:head>
     <h:body>
-        <!--Top Menu Bar-->
-        <c:topNavMenu/>
-        
+        <h:form>
+        <b:navBar brand="Admin Dashboard" brandHref="index.xhtml" inverse="true" fixed="top" fluid="true"></b:navBar>
+        </h:form>
         <b:container fluid="true">
             <b:row>
-                <!--Side Menu Bar-->   
-                <c:sideNavMenu/>
+                <!-- Side nav bar -->
+                <b:column col-sm="3" col-md="2" styleClass="sidebar">
+                    <b:listLinks>
+                        <b:navLink class="navLinkHeaders" header="Doctors"/>
+                        <b:navLink outcome="" value="Register Doctor"/>
+                        <b:navLink outcome="viewDoctors"  value="View Doctors"/>
+                        <b:navLink outcome="" value="Remove Doctor"/>
+                        <hr/>
+                        <b:navLink class="navLinkHeaders" header="Patients"/>
+                        <b:navLink outcome="" value="Register Patient"/>
+                        <b:navLink outcome="viewPatients" value="View Patients"/>
+                        <b:navLink outcome="viewMedicalHistory" value="View Medical History"/>
+                        <b:navLink outcome="" value="Remove Patient"/>
+                        <hr/>
+                        <b:navLink class="navLinkHeaders" header="Schedule"/>
+                        <b:navLink outcome="schedule" value="Schedule"/>
+                        <hr/>
+                        <b:navLink class="navLinkHeaders" header="Data Base Test Page"/>
+                        <b:navLink outcome="databaseTestPage" value="Test Page"/>
+                    </b:listLinks>
+                </b:column>
+                
                 
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <hr/>
@@ -27,7 +47,6 @@
                         <b:container fluid="true">
                             <b:row>
                                 <!--This is where the user will select the date and time for the appointment-->
-<<<<<<< HEAD
                                 
                                 <b:column col-sm="7" style-class="newApptFormStyle">
                                     <b:dateTimePicker id="aptDateAndTime" value="#{scheduleBean.dateTime}" mode="inline" label="Time and date for new appointment"/>
@@ -41,25 +60,11 @@
                                     <!--The user will enter the last name of the patient here -->
                                
                                     <b:inputText id="lsatName" value="#{scheduleBean.lastName}" required="true" col-md="4" label="Enter patient's last name:"/>
-=======
-                                <b:column col-sm="7" style-class="newApptFormStyle">
-                                    <b:dateTimePicker id="aptDateAndTime" value="" mode="inline" label="Time and date for new appointment"/>
-                                </b:column>
-                                
-                                <b:column col-md="8" class="newApptFormStyle">
-                                    <!--The user will enter the first name of the patient here -->
-                                    <b:column>
-                                        <b:inputText id="firstName" value="" ajax="true" required="true" col-md="4" label="Enter patient's first name:"/>
-                                    
-                                    <!--The user will enter the last name of the patient here -->
-                                        <b:inputText id="lsatName" value="" ajax="true" required="true" col-md="4" label="Enter patient's last name:"/>
->>>>>>> origin/JonathanBranch
                                     </b:column>
                                    
                                     <!--The user will select the reason for their visit here-->
                                
                                     <b:column>
-<<<<<<< HEAD
                                         <b:selectOneMenu id="reasonForVisit" value="#{scheduleBean.reasonForVisit}" colMd="4" required="true" label="Reason for visit:">
                                             
                                            <f:selectItem itemLabel="(Please select)" itemValue="" /> 
@@ -76,19 +81,6 @@
                               
                                     <b:selectOneMenu id="seeingDoc" value="#{scheduleBean.doctorSeen}" colMd="4" required="true" label="Select Doctor:">
                                             <f:selectItem itemLabel="(Please select)" itemValue="" /> 
-=======
-                                        <b:selectOneMenu id="reasonForVisit" value="" colMd="4" required="true" label="Reason for visit:">
-                                            <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                            <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
-                                            <f:selectItem itemLabel="More Reasons"/>
-                                            <f:selectItem itemLabel="More Reasons"/>
-                                            <f:selectItem itemLabel="More Reasons"/>
-                                        </b:selectOneMenu>                    
-                                        
-                                    <!--The user will select which doctor they are seeing here -->
-                                        <b:selectOneMenu id="seeingDoc" value="" colMd="4" required="true" label="Select Doctor:">
-                                            <f:selectItem itemLabel="(Please select)" itemValue="" />
->>>>>>> origin/JonathanBranch
                                             <f:selectItem itemLabel="Dr. Anders" itemValue="Dr. Anders"/>
                                             <f:selectItem itemLabel="Dr. Lim" itemValue="Dr. Lim"/>
                                             <f:selectItem itemLabel="Dr. Ali" itemValue="Dr. Ali"/>
@@ -120,7 +112,6 @@
                         Add the events to this main calendar.
                     -->
                     <b:fullCalendar weekends="false"/>
-                    <br/>
                 </b:column>
             </b:row>  
         </b:container>
@@ -148,15 +139,8 @@
             .searchBtn{
                 background-color: #E0E0E0;
             }
-<<<<<<< HEAD
             .newApptFormStyle{
                 padding: 10px;    
-=======
-            
-            .newApptFormStyle{
-                padding: 10px;
-                
->>>>>>> origin/JonathanBranch
             }
         </style>
     </h:body>
