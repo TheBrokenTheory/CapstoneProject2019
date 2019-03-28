@@ -26,8 +26,9 @@
                     
                     <!--Doctor Boxes. These should be created dynamically from DB-->
                     <b:row>
-                        <c:doctorComponent/>
-                        <c:doctorComponent/>
+                        <h:form>
+                            <c:doctorComponent value="#{viewDoctorBean.fields}"/>
+                        </h:form>
                     </b:row>
                 </b:column>
             </b:row>  

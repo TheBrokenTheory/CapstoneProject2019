@@ -1,23 +1,28 @@
 package managedBeans;
 
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Jonathan Anders
  */
-@ManagedBean
-@Named(value = "viewDoctorBean")
-@RequestScoped
+@ManagedBean(name = "viewDoctorBean")
+@ViewScoped
 public class viewDoctorBean {
 
-    /**
-     * Creates a new instance of viewDoctorBean
-     */
-    public viewDoctorBean()
-    {
+    private List<Field> fields;
+    
+
+    public viewDoctorBean() {
+        fields = new ArrayList<>();
+    }
+
+    public List<Field> getFields() {
+        return fields;
     }
     
+
 }

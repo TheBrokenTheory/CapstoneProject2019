@@ -4,14 +4,17 @@
    xmlns:h = "http://java.sun.com/jsf/html"
    xmlns:f = "http://java.sun.com/jsf/core"
    xmlns:b="http://bootsfaces.net/ui"
-   xmlns:composite = "http://java.sun.com/jsf/composite">
- 
-    <composite:interface>
-
-    </composite:interface>
+   xmlns:cc = "http://java.sun.com/jsf/composite">
     
-    <composite:implementation>
-        <b:column col-sm="2">
+    
+ 
+    <cc:interface componentType="doctorComponent">
+        <cc:attribute name="value" type="java.util.List" required="true" />
+    </cc:interface>
+    
+    <cc:implementation>      
+       <h:dataTable id="table"  value="#{cc.attrs.value}" var="field">
+            <h:column>
             <b:well class="doctorBox">                           
                 <h:form><b:iconAwesome name="user" size="5x"/></h:form>
                 <h4>Dr. Jonathan Anders</h4>
@@ -21,9 +24,24 @@
                     <b:navLink outcome="schedule" value="View Doctor Schedule"/>   
                 </p>
             </b:well>                   
-        </b:column>       
-   </composite:implementation>
+        </h:column>   
+        </h:dataTable>
+        
+        <h:commandButton value="add" action="#{cc.add}" />      
+   </cc:implementation>
     
-    
+    <!--        
+    <b:column col-sm="2">
+        <b:well class="doctorBox">                           
+            <h:form><b:iconAwesome name="user" size="5x"/></h:form>
+            <h4>Dr. Jonathan Anders</h4>
+            <p>
+                Specialty: Amateur Neurosurgeon
+                <br />
+                <b:navLink outcome="schedule" value="View Doctor Schedule"/>   
+            </p>
+        </b:well>                   
+    </b:column>  
+    -->
     
 </html>
