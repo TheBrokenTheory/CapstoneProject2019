@@ -34,6 +34,16 @@ public class Doctor implements Serializable {
     @Column(name="doctorPhoneNum")
     private String doctorPhoneNum;
 
+    public Doctor(long doctorID, String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+        this.doctorID = doctorID;
+        this.doctorFirstName = doctorFN;
+        this.doctorLastName = doctorLN;
+        this.doctorSpecialty = doctorS;
+        this.doctorDOB = doctorDOB;
+        this.doctorPhoneNum = doctorPN;
+        
+    }
+    
     
     public long getDoctorID() {
         return doctorID;

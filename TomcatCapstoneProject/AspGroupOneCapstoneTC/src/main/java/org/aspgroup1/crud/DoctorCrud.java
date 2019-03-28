@@ -1,6 +1,7 @@
 package org.aspgroup1.crud;
 
 //Java Utility Imports
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import org.aspgroup1.entity.Doctor;
@@ -44,15 +45,13 @@ public class DoctorCrud {
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
             
-            System.out.println("transations!!!");
-            System.out.println("transations!!!");
-            System.out.println("transations!!!");
+            
             doctorList = sessionObj.createQuery("FROM Doctor").list();
         } catch(Exception sqlException) {
-            /*if(sessionObj.getTransaction() != null) {
+            if(sessionObj.getTransaction() != null) {
                 System.out.println("\n.......Transaction Is Being Rolled Back.......\n");
                 sessionObj.getTransaction().rollback();
-            }*/
+            }
             sqlException.printStackTrace();
         } finally {
             if(sessionObj != null) {
@@ -60,6 +59,37 @@ public class DoctorCrud {
             }
         }
         return doctorList;
+    }
+    
+    public static void createDoctor(long doctorID, String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+        Doctor docObj = null;
+        
+        try {
+            // Getting Session Object From SessionFactory
+            sessionObj = buildSessionFactory().openSession();
+            // Getting Transaction Object From Session Object
+            sessionObj.beginTransaction();
+            
+            //Creating Doctor Object
+            docObj = new Doctor(doctorID, doctorFN, doctorLN, doctorS, doctorDOB, doctorPN);
+            
+            //Saving object information
+            sessionObj.save(docObj);
+            
+            //Commit to DB
+            sessionObj.getTransaction().commit();
+            
+        } catch(Exception sqlException) {
+            if(sessionObj.getTransaction() != null) {
+                System.out.println("\n.......Transaction Is Being Rolled Back.......\n");
+                sessionObj.getTransaction().rollback();
+            }
+            sqlException.printStackTrace();
+        } finally {
+            if(sessionObj != null) {
+                sessionObj.close();
+            }
+        }
     }
     
 }

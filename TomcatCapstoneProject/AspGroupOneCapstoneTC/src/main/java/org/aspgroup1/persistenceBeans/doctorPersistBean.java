@@ -5,35 +5,85 @@
  */
 package org.aspgroup1.persistenceBeans;
 
-import javax.enterprise.context.Dependent;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import org.aspgroup1.crud.DoctorCrud;
 
 
+/**
+ *
+ * @author tfran
+ */
 @ManagedBean(name = "docBean")
-@Dependent
+@RequestScoped
 public class doctorPersistBean {
 
-    ListDataModel doctors;
+    List doctorsL;
+    private long doctorID;
+    private String doctorFN;
+    private String doctorLN;
+    private String doctorS;
+    private Date doctorDOB;
+    private String doctorPN;
+    
     
     public doctorPersistBean() {
         
     }
     
-    public DataModel getDoctors(){
-        
-        
-        if(doctors == null){
-            System.out.println("BEAN ACTIVITY!");
-            System.out.println("BEAN ACTIVITY!");
-            doctors = new ListDataModel(DoctorCrud.getDoctors());
-            System.out.println("BEAN ACTIVITY!");
-            System.out.println("BEAN ACTIVITY!");
-            System.out.println("BEAN ACTIVITY!");
+    public List getDoctorsL(){
+        if(doctorsL == null){
+            doctorsL = new ArrayList(DoctorCrud.getDoctors());
         }
-        return doctors;
+        
+        return doctorsL;
+    }
+    
+    public String createDoc(){
+        
+        DoctorCrud.createDoctor(doctorID, doctorFN, doctorLN, doctorS, doctorDOB, doctorPN);
+        
+        return "databaseTestPage";
+    }
+
+    public long getDoctorID() {
+        return doctorID;
+    }
+    public void setDoctorID(long doctorID) {
+        this.doctorID = doctorID;
+    }
+    public String getDoctorFN() {
+        return doctorFN;
+    }
+    public void setDoctorFN(String doctorFN) {
+        this.doctorFN = doctorFN;
+    }
+    public String getDoctorLN() {
+        return doctorLN;
+    }
+    public void setDoctorLN(String doctorLN) {
+        this.doctorLN = doctorLN;
+    }
+    public String getDoctorS() {
+        return doctorS;
+    }
+    public void setDoctorS(String doctorS) {
+        this.doctorS = doctorS;
+    }
+    public Date getDoctorDOB() {
+        return doctorDOB;
+    }
+    public void setDoctorDOB(Date doctorDOB) {
+        this.doctorDOB = doctorDOB;
+    }
+    public String getDoctorPN() {
+        return doctorPN;
+    }
+    public void setDoctorPN(String doctorPN) {
+        this.doctorPN = doctorPN;
     }
     
 }
