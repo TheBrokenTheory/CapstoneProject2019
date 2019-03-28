@@ -43,14 +43,15 @@
                     <b:form>
                         <!--Change this to add the values from db query Link for help -->
                         <!-- https://showcase.bootsfaces.net/forms/DataTable.jsf;jsessionid=MVCkGvoidu4GTGDZq7ZAP0EgLbOMTkpFHQR_kl5D.showcase04 -->
-                        <b:dataTable value="#{docBean.doctors}" var="item">           
+                        <b:dataTable value="#{docBean.doctorsL}" var="item">           
                             <b:dataTableColumn value="#{item.doctorID}"
                                      label="Doctor ID"/>
                             <b:dataTableColumn value="#{item.doctorFirstName}" />
                             <b:dataTableColumn value="#{item.doctorLastName}" />                   
                         </b:dataTable>
                         
-                        <b:commandButton value="Read Info In" update="@form"  action="#{docBean.getDoctors()}"/>
+                        <b:commandButton value="Create Doctor" update="dataTable"  action="#{docBean.getDoctors()}"/>
+                        
                     </b:form>
                    <!-- END HERE -->
                    
