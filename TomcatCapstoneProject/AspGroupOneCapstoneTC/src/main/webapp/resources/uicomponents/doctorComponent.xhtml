@@ -4,30 +4,37 @@
    xmlns:h = "http://java.sun.com/jsf/html"
    xmlns:f = "http://java.sun.com/jsf/core"
    xmlns:b="http://bootsfaces.net/ui"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
    xmlns:cc = "http://java.sun.com/jsf/composite">
-    
-    
- 
+
     <cc:interface componentType="doctorComponent">
-        <cc:attribute name="value" type="java.util.List" required="true" />
+        <cc:attribute name="value" type="java.util.List" />
     </cc:interface>
-    
-    <cc:implementation>      
-       <h:dataTable id="table"  value="#{cc.attrs.value}" var="field">
-            <h:column>
-            <b:well class="doctorBox">                           
-                <h:form><b:iconAwesome name="user" size="5x"/></h:form>
-                <h4>Dr. Jonathan Anders</h4>
-                <p>
-                    Specialty: Amateur Neurosurgeon
-                    <br />
-                    <b:navLink outcome="schedule" value="View Doctor Schedule"/>   
-                </p>
-            </b:well>                   
-        </h:column>   
-        </h:dataTable>
+    <cc:implementation>
+            <ui:repeat value="#{viewDoctorBean.doctors}" var="doc">
+                <div style="float: left;">
+                        <b:well class="doctorBox"> 
+                        <h:form><b:iconAwesome class="icon" name="user" size="5x"/></h:form>
+                        <h:column><h:outputText value="Dr. #{doc.docFirstName}"/></h:column>
+                        <h:column><h:outputText value=" #{doc.docLastName}"/></h:column>
+                        <br/>
+                        <h:outputText  value="#{doc.docSpeciality}"/>
+                    </b:well>   
+                </div>
+            </ui:repeat>
         
-        <h:commandButton value="add" action="#{cc.add}" />      
+        <style type="text/css">
+            .doctorBox {
+                background-color: #F3F3F3;
+                border: 1px solid;
+                margin-right: 15px;
+                width: 200px;
+            }
+            .icon{
+                
+            }
+
+        </style>      
    </cc:implementation>
     
     <!--        
@@ -43,5 +50,4 @@
         </b:well>                   
     </b:column>  
     -->
-    
 </html>
