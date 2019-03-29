@@ -61,8 +61,8 @@ public class DoctorCrud {
         return doctorList;
     }
     
-    public static void createDoctor(long doctorID, String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
-        Doctor docObj = null;
+    public static void createDoctor(String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+        Doctor docObj;
         
         try {
             // Getting Session Object From SessionFactory
@@ -71,7 +71,12 @@ public class DoctorCrud {
             sessionObj.beginTransaction();
             
             //Creating Doctor Object
-            docObj = new Doctor(doctorID, doctorFN, doctorLN, doctorS, doctorDOB, doctorPN);
+            docObj = new Doctor();
+            docObj.setDoctorFirstName(doctorFN);
+            docObj.setDoctorLastName(doctorLN);
+            docObj.setDoctorSpecialty(doctorS);
+            docObj.setDoctorDOB(doctorDOB);
+            docObj.setDoctorPhoneNum(doctorPN);
             
             //Saving object information
             sessionObj.save(docObj);

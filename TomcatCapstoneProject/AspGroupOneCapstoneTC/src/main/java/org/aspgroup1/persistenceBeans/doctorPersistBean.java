@@ -5,34 +5,27 @@
  */
 package org.aspgroup1.persistenceBeans;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+
 import org.aspgroup1.crud.DoctorCrud;
 
 
-/**
- *
- * @author tfran
- */
 @ManagedBean(name = "docBean")
-@RequestScoped
-public class doctorPersistBean {
+@Dependent
+public class doctorPersistBean implements Serializable {
 
     List doctorsL;
-    private long doctorID;
+    private long doctorIDB;
     private String doctorFN;
     private String doctorLN;
     private String doctorS;
     private Date doctorDOB;
     private String doctorPN;
-    
-    
-    public doctorPersistBean() {
-        
-    }
     
     public List getDoctorsL(){
         if(doctorsL == null){
@@ -44,17 +37,18 @@ public class doctorPersistBean {
     
     public String createDoc(){
         
-        DoctorCrud.createDoctor(doctorID, doctorFN, doctorLN, doctorS, doctorDOB, doctorPN);
+        DoctorCrud.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
         
         return "databaseTestPage";
     }
 
-    public long getDoctorID() {
-        return doctorID;
+    public long getDoctorIDB() {
+        return doctorIDB;
     }
-    public void setDoctorID(long doctorID) {
-        this.doctorID = doctorID;
+    public void setDoctorIDB(long doctorIDB) {
+        this.doctorIDB = doctorIDB;
     }
+
     public String getDoctorFN() {
         return doctorFN;
     }
