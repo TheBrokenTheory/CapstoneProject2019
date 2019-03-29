@@ -13,6 +13,7 @@ import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 
 import org.aspgroup1.crud.DoctorCrud;
+import org.aspgroup1.entity.Doctor;
 
 
 @ManagedBean(name = "docBean")
@@ -20,12 +21,20 @@ import org.aspgroup1.crud.DoctorCrud;
 public class doctorPersistBean implements Serializable {
 
     List doctorsL;
+    Doctor docObj;
     private long doctorIDB;
     private String doctorFN;
     private String doctorLN;
     private String doctorS;
     private Date doctorDOB;
     private String doctorPN;
+    
+    public String createDoc(){
+        
+        DoctorCrud.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
+        
+        return "databaseTestPage";
+    }
     
     public List getDoctorsL(){
         if(doctorsL == null){
@@ -35,12 +44,28 @@ public class doctorPersistBean implements Serializable {
         return doctorsL;
     }
     
-    public String createDoc(){
+    public Doctor getDoctor(){
+       
+        docObj = DoctorCrud.findByID(doctorIDB);
         
-        DoctorCrud.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
+        return docObj;
+    }
+    
+    public String deleteDoc(){
+        
+        DoctorCrud.deleteDoctor(this.doctorIDB);
         
         return "databaseTestPage";
     }
+    
+    public String updateDoc(){
+        
+        DoctorCrud.updateDoctor(this.doctorIDB, this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
+        
+        return "databaseTestPage";
+    }
+    
+    
 
     public long getDoctorIDB() {
         return doctorIDB;
