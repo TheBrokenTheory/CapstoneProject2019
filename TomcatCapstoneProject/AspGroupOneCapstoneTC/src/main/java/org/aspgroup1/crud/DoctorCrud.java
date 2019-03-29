@@ -101,11 +101,11 @@ public class DoctorCrud {
             // Creating Transaction Entity
             Doctor docObj = (Doctor) sessionObj.get(Doctor.class, id);
             
-            docObj.setDoctorFirstName(doctorFN);
-            docObj.setDoctorLastName(doctorLN);
-            docObj.setDoctorSpecialty(doctorS);
-            docObj.setDoctorDOB(doctorDOB);
-            docObj.setDoctorPhoneNum(doctorPN);
+            if(docObj.getDoctorFirstName() != doctorFN){ docObj.setDoctorFirstName(doctorFN); }
+            if(docObj.getDoctorLastName() != doctorLN){ docObj.setDoctorLastName(doctorLN); }
+            if(docObj.getDoctorSpecialty() != doctorS){ docObj.setDoctorSpecialty(doctorS); }
+            if(docObj.getDoctorDOB() != doctorDOB) { docObj.setDoctorDOB(doctorDOB); }
+            if(docObj.getDoctorPhoneNum() != doctorPN) { docObj.setDoctorPhoneNum(doctorPN); }
             
             // Committing The Transactions To The Database
             sessionObj.getTransaction().commit();
