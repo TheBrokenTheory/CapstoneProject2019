@@ -30,7 +30,8 @@
                     <!--Info Boxes-->
                     <!--This should grab data from database and schedule' events-->
                     <b:row>
-                        <b:column class="infoBoxRow">
+                        <b:container class="infoBoxRow">
+                  
                             <!-- Patients -->
                             <b:well class="infoBox" col-sm="3">
                                 <h5>Patients</h5>
@@ -41,23 +42,20 @@
                             </b:well>
                             <!-- Appointments -->
                             <b:well class="infoBox" col-sm="3">
-                                <h5>Today's Appointments</h5>
-                                <b:column col-sm="4">
                                 <h:form><b:iconAwesome name="calendar" size="3x"/></h:form>
-                                </b:column>  
+                                <h5>Today's Appointments</h5>
+
                                 <p>3</p>
                             </b:well>
                             <!-- Doctors -->
                             <b:well class="infoBox" col-sm="3">
+                                <h:form><b:iconAwesome class="icons" name="user-md" size="3x"/></h:form>
                                 <h5>Doctors</h5>
-                                <b:column col-sm="4">
-                                <h:form><b:iconAwesome name="user" size="3x"/></h:form>
-                                </b:column>  
-                                <p>12</p>
+                                <h:outputText value="#{viewDoctorBean.numDoc}"/> 
                             </b:well>
-                        </b:column>
+                        </b:container>
                     </b:row>
-
+                    
                     <b:row>
                         <!-- calendar quick view -->
                         <b:column>
@@ -75,16 +73,20 @@
             .infoBox{
                 background-color: #F3F3F3;
                 margin: 5px;
-            }
-            
-            .imageBox{
-                width: 200px;
-                height: 110px;
+                border: 1px solid;
+                width: 250px;
             }
             .infoBoxRow
             {
-                margin: -5px;
-            }          
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+            }
+            .icons{
+                float: right;
+                padding-top: 5px;
+            }
         </style>
     </h:body>
 </html>

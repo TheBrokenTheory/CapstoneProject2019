@@ -21,13 +21,31 @@
                                 <h:column><h:outputText class="docName" value=" #{doc.doctorLastName}"/></h:column>
                             </p>
                         </div>
+                        
                         <br/>
+                        
                         <div class="center">
                             <p>
-                                <h:outputText class="text" value="Specialty:" />
+                                <h:outputText class="text" value="Specialty" />
                                 <br/>
                                 <h:outputText class="docSpec" value="#{doc.doctorSpecialty}"/>
                             </p>
+                        </div>
+                        
+                        <div class="center">
+                            <p>
+                                <h:outputText class="text" value="Doctor Info" />
+                                <br/>
+                                <h:outputText class="docInfo" value="Phone Number: #{doc.doctorPhoneNum}"/>
+                                <br/>
+                                <h:outputText class="docInfo" value="Date of Birth: #{doc.doctorDOB}"/>
+                            </p>
+                        </div>
+                        
+                        <div class="center">
+                            <h:form>
+                                <b:commandLink class="scheduleButton" look="default" value="Doctor Schedule"/>
+                            </h:form>
                         </div>
                     </b:well>   
                 </div>
@@ -49,11 +67,14 @@
                 font-size: 18px;
                 font-weight: lighter;
             }
+            .docInfo{
+                font-size: 15px;
+                font-weight: lighter;
+            }
             .icon{
                 padding-top: 12px;
                 padding-left: 80px;
                 padding-bottom: 10px;
-                
             }
             .center {
                 text-align: center;
@@ -61,7 +82,9 @@
             }
             .text{
                 font-size: 15px;
+                text-decoration: underline;
             }
+
 
         </style>      
    </cc:implementation>

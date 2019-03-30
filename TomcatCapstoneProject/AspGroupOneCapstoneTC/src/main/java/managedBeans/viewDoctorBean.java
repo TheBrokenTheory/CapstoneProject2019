@@ -25,14 +25,17 @@ import org.aspgroup1.entity.Doctor;
 public class viewDoctorBean {
     
     private List<Doctor> doctors;
+    private int numDoc;
     
     //Grabs list of doctors from DataBase
     public viewDoctorBean() throws SQLException
     {
-        doctors = DoctorCrud.getDoctors();       
+        doctors = DoctorCrud.getDoctors();  
+        numDoc = doctors.size();
     }
     
     //Getter for list
     public List<Doctor> getDoctors() {return doctors;}
+    public int getNumDoc(){return numDoc;}
 
 }
