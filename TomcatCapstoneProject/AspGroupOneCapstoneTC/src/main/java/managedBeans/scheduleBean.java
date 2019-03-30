@@ -54,8 +54,7 @@ public class scheduleBean {
     
      public List<Doctor> getDoctors()
     {
-        
-        //return (List<Doctor>) em.createNamedQuery("findBYID").getResultList();
+               
          if(doctorsL == null){
             doctorsL = new ArrayList(DoctorCrud.getDoctors());
         }
