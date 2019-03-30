@@ -34,25 +34,31 @@
                   
                             <!-- Patients -->
                             <b:well class="infoBox" col-sm="3">
-                                <h5>Patients</h5>
-                                <b:column col-sm="4">
-                                <h:form><b:iconAwesome name="ambulance" size="3x"/></h:form>
-                                </b:column>
-                                <p>107</p>
+                                <h:form><b:iconAwesome class="icons" name="ambulance" size="3x"/></h:form>
+                                <h:outputText class="text" value="Patients On File"/>
+                                <br/>
+                                <br/>
+                                <h:outputText class="dbText" value="106" />
                             </b:well>
+                            
                             <!-- Appointments -->
                             <b:well class="infoBox" col-sm="3">
-                                <h:form><b:iconAwesome name="calendar" size="3x"/></h:form>
-                                <h5>Today's Appointments</h5>
-
-                                <p>3</p>
+                                <h:form><b:iconAwesome class="icons" name="calendar" size="3x"/></h:form>
+                                <h:outputText class="text" value="Today's Appointments"/>
+                                <br/>
+                                <br/>
+                                <h:outputText class="dbText" value="4" />
                             </b:well>
+                            
                             <!-- Doctors -->
                             <b:well class="infoBox" col-sm="3">
                                 <h:form><b:iconAwesome class="icons" name="user-md" size="3x"/></h:form>
-                                <h5>Doctors</h5>
-                                <h:outputText value="#{viewDoctorBean.numDoc}"/> 
+                                <h:outputText class="text" value="Doctors On Staff"/>
+                                <br/>
+                                <br/>
+                                <h:outputText class="dbText" value="6" />
                             </b:well>
+                            
                         </b:container>
                     </b:row>
                     
@@ -72,9 +78,10 @@
         <style type="text/css">
             .infoBox{
                 background-color: #F3F3F3;
-                margin: 5px;
+                margin: 15px;
                 border: 1px solid;
                 width: 250px;
+                height: 100px;
             }
             .infoBoxRow
             {
@@ -86,6 +93,13 @@
             .icons{
                 float: right;
                 padding-top: 5px;
+            }
+            .text{
+                font-size: 15px;
+            }
+            .dbText{
+                padding-left: 50px;
+                font-size: 15px;
             }
         </style>
     </h:body>
