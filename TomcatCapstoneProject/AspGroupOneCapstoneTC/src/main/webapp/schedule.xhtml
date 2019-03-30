@@ -80,11 +80,22 @@
                                     <!--The user will select which doctor they are seeing here -->                                
                               
                                     <b:selectOneMenu id="seeingDoc" value="#{scheduleBean.doctorSeen}" colMd="4" required="true" label="Select Doctor:">
+                                      
+                                        <f:selectItems value="#{scheduleBean.doctors}" var="item"
+                                                       itemLabel="#{item.doctorFirstName}"
+                                                       itemValue="#{item.doctorLastName}"/>
+                                        
+                                       <!--
+                                       
+                                      
+                                        
                                             <f:selectItem itemLabel="(Please select)" itemValue="" /> 
                                             <f:selectItem itemLabel="Dr. Anders" itemValue="Dr. Anders"/>
                                             <f:selectItem itemLabel="Dr. Lim" itemValue="Dr. Lim"/>
                                             <f:selectItem itemLabel="Dr. Ali" itemValue="Dr. Ali"/>
                                             <f:selectItem itemLabel="Dr. Wilson" itemValue="Dr. Wilson"/>
+                                       --> 
+                                       
                                         </b:selectOneMenu>
                            
                                     </b:column>

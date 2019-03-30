@@ -1,8 +1,13 @@
 package managedBeans;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
+import org.aspgroup1.crud.DoctorCrud;
+import org.aspgroup1.entity.Doctor;
 
 /**
  *
@@ -17,6 +22,9 @@ public class scheduleBean {
     private String reasonForVisit="";
     private String doctorSeen="";
     private String dateTimeOfAppointment="";
+    List doctorsL;
+    
+    private EntityManager em;
  
 
     /**
@@ -41,6 +49,24 @@ public class scheduleBean {
        // System.out.println(firstName + "TEST--" + lastName + " " + dateTimeOfAppointment);
         System.out.println(firstName + " " + lastName + " " + reasonForVisit
                           + " " + doctorSeen + " " + dateTimeOfAppointment );
+    }
+    
+    
+     public List<Doctor> getDoctors()
+    {
+        
+        //return (List<Doctor>) em.createNamedQuery("findBYID").getResultList();
+         if(doctorsL == null){
+            doctorsL = new ArrayList(DoctorCrud.getDoctors());
+        }
+        
+        return doctorsL;
+    }
+    
+     public Doctor getDoctor(String doctorID)
+     {
+        Doctor requestedTax = em.find(Doctor.class, doctorID);
+        return requestedTax;
     }
     
     //Getters and Setters
