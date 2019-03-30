@@ -7,9 +7,8 @@
    xmlns:ui="http://java.sun.com/jsf/facelets"
    xmlns:cc = "http://java.sun.com/jsf/composite">
 
-    <cc:interface componentType="doctorComponent">
-        <cc:attribute name="value" type="java.util.List" />
-    </cc:interface>
+    <cc:interface/>
+    
     <cc:implementation>
             <ui:repeat value="#{viewDoctorBean.doctors}" var="doc">
                 <div style="float: left;">
