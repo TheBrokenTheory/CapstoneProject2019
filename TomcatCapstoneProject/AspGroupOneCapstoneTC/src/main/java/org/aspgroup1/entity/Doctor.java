@@ -16,7 +16,7 @@ public class Doctor implements Serializable {
     
     @Id
     @Column(name="doctorID")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long doctorID;
     
     @Column(name="doctorFirstName")
@@ -34,6 +34,8 @@ public class Doctor implements Serializable {
     @Column(name="doctorPhoneNum")
     private String doctorPhoneNum;
 
+    public Doctor() {
+    }
     
     public long getDoctorID() {
         return doctorID;

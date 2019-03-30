@@ -41,16 +41,40 @@
                     
                     <!-- START HERE -->
                     <b:form>
+                        
+                        <b:column col-md="5">
+                                    <b:inputText value="#{docBean.doctorIDB}" colMd="2" label="Enter doctor id:" labelColMd="10" />
+                                    <b:inputText value="#{docBean.doctorFN}" colMd="2" label="Enter doctor first name:" labelColMd="10" />
+                        </b:column>
+                        
+                        <b:column col-md="5">
+                                    <b:inputText value="#{docBean.doctorLN}" colMd="2" label="Enter doctor last name:" labelColMd="10" />
+                                    <b:inputText value="#{docBean.doctorS}" colMd="2" label="Enter specialty:" labelColMd="10" />
+                        </b:column>
+                        
+                        <b:column col-md="5">
+                                    <b:inputText value="#{docBean.doctorPN}" colMd="2" label="Enter doctor phone num:" labelColMd="10" />
+                                    
+                        </b:column>
+                                
+                        
+                        
+                        
                         <!--Change this to add the values from db query Link for help -->
                         <!-- https://showcase.bootsfaces.net/forms/DataTable.jsf;jsessionid=MVCkGvoidu4GTGDZq7ZAP0EgLbOMTkpFHQR_kl5D.showcase04 -->
-                        <b:dataTable value="#{docBean.doctors}" var="item">           
+                        <b:dataTable value="#{docBean.doctorsL}" var="item">           
                             <b:dataTableColumn value="#{item.doctorID}"
                                      label="Doctor ID"/>
                             <b:dataTableColumn value="#{item.doctorFirstName}" />
-                            <b:dataTableColumn value="#{item.doctorLastName}" />                   
+                            <b:dataTableColumn value="#{item.doctorLastName}" /> 
+                            <b:dataTableColumn value="#{item.doctorSpecialty}" />
+                            <b:dataTableColumn value="#{item.doctorPhoneNum}" /> 
                         </b:dataTable>
                         
-                        <b:commandButton value="Read Info In" update="@form"  action="#{docBean.getDoctors()}"/>
+                        <b:commandButton value="Create Doctor" update="@form"  action="#{docBean.createDoc()}"/>
+                        <b:commandButton value="Delete Doctor" update="@form"  action="#{docBean.deleteDoc()}"/>
+                        <b:commandButton value="Update Doctor" update="@form"  action="#{docBean.updateDoc()}"/>
+                        
                     </b:form>
                    <!-- END HERE -->
                    

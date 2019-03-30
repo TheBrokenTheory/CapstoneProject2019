@@ -9,7 +9,9 @@
 <hibernate-configuration>
 
     <session-factory>
-
+        
+        
+        
         <!-- SQL Dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
  
@@ -22,7 +24,6 @@
  
         <!-- Specifying Session Context -->
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
-
 
         <mapping class="org.aspgroup1.entity.Doctor"/>
 
