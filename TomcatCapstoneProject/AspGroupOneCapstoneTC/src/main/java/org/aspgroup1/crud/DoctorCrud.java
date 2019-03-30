@@ -30,10 +30,40 @@ public class DoctorCrud {
         return sessionFactoryObj;
     }
     
-    public static void doctorStuff(){
-        System.out.println("Display method!");
-        System.out.println("Display method!");
-        System.out.println("Display method!");
+    public static void createDoctor(String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+        Doctor docObj;
+        
+        try {
+            // Getting Session Object From SessionFactory
+            sessionObj = buildSessionFactory().openSession();
+            // Getting Transaction Object From Session Object
+            sessionObj.beginTransaction();
+            
+            //Creating Doctor Object
+            docObj = new Doctor();
+            docObj.setDoctorFirstName(doctorFN);
+            docObj.setDoctorLastName(doctorLN);
+            docObj.setDoctorSpecialty(doctorS);
+            docObj.setDoctorDOB(doctorDOB);
+            docObj.setDoctorPhoneNum(doctorPN);
+            
+            //Saving object information
+            sessionObj.save(docObj);
+            
+            //Commit to DB
+            sessionObj.getTransaction().commit();
+            
+        } catch(Exception sqlException) {
+            if(sessionObj.getTransaction() != null) {
+                System.out.println("\n.......Transaction Is Being Rolled Back.......\n");
+                sessionObj.getTransaction().rollback();
+            }
+            sqlException.printStackTrace();
+        } finally {
+            if(sessionObj != null) {
+                sessionObj.close();
+            }
+        }
     }
     
     public static List getDoctors(){
@@ -61,27 +91,28 @@ public class DoctorCrud {
         return doctorList;
     }
     
-    public static void createDoctor(long doctorID, String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
-        Doctor docObj = null;
-        
+    public static void updateDoctor(long id, String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
         try {
             // Getting Session Object From SessionFactory
             sessionObj = buildSessionFactory().openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
+ 
+            // Creating Transaction Entity
+            Doctor docObj = (Doctor) sessionObj.get(Doctor.class, id);
             
-            //Creating Doctor Object
-            docObj = new Doctor(doctorID, doctorFN, doctorLN, doctorS, doctorDOB, doctorPN);
+            if(docObj.getDoctorFirstName() != doctorFN){ docObj.setDoctorFirstName(doctorFN); }
+            if(docObj.getDoctorLastName() != doctorLN){ docObj.setDoctorLastName(doctorLN); }
+            if(docObj.getDoctorSpecialty() != doctorS){ docObj.setDoctorSpecialty(doctorS); }
+            if(docObj.getDoctorDOB() != doctorDOB) { docObj.setDoctorDOB(doctorDOB); }
+            if(docObj.getDoctorPhoneNum() != doctorPN) { docObj.setDoctorPhoneNum(doctorPN); }
             
-            //Saving object information
-            sessionObj.save(docObj);
-            
-            //Commit to DB
+            // Committing The Transactions To The Database
             sessionObj.getTransaction().commit();
-            
+            System.out.print("\nStudent With Id?= " + docObj.getDoctorID() + " Is Successfully Updated In The Database!\n");
         } catch(Exception sqlException) {
-            if(sessionObj.getTransaction() != null) {
-                System.out.println("\n.......Transaction Is Being Rolled Back.......\n");
+            if(null != sessionObj.getTransaction()) {
+                System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
                 sessionObj.getTransaction().rollback();
             }
             sqlException.printStackTrace();
@@ -90,6 +121,51 @@ public class DoctorCrud {
                 sessionObj.close();
             }
         }
+    }
+    
+    public static void deleteDoctor(long id){
+        try {
+            // Getting Session Object From SessionFactory
+            sessionObj = buildSessionFactory().openSession();
+            // Getting Transaction Object From Session Object
+            sessionObj.beginTransaction();
+ 
+            Doctor docObj = findByID(id);
+            sessionObj.delete(docObj);
+ 
+            // Committing The Transactions To The Database
+            sessionObj.getTransaction().commit();
+            System.out.print("\nStudent With Id?= " + docObj.getDoctorID() + " Is Successfully Deleted From The Database!\n");
+        } catch(Exception sqlException) {
+            if(null != sessionObj.getTransaction()) {
+                System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
+                sessionObj.getTransaction().rollback();
+            }
+            sqlException.printStackTrace();
+        } finally {
+            if(sessionObj != null) {
+                sessionObj.close();
+            }
+        }
+    }
+    
+    public static Doctor findByID(long id){
+        Doctor docObj = null;
+        try {
+            // Getting Session Object From SessionFactory
+            sessionObj = buildSessionFactory().openSession();
+            // Getting Transaction Object From Session Object
+            sessionObj.beginTransaction();
+ 
+            docObj = (Doctor) sessionObj.load(Doctor.class, id);
+        } catch(Exception sqlException) {
+            if(null != sessionObj.getTransaction()) {
+                System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
+                sessionObj.getTransaction().rollback();
+            }
+            sqlException.printStackTrace();
+        } 
+        return docObj;
     }
     
 }

@@ -5,33 +5,35 @@
  */
 package org.aspgroup1.persistenceBeans;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+
 import org.aspgroup1.crud.DoctorCrud;
+import org.aspgroup1.entity.Doctor;
 
 
-/**
- *
- * @author tfran
- */
 @ManagedBean(name = "docBean")
-@RequestScoped
-public class doctorPersistBean {
+@Dependent
+public class doctorPersistBean implements Serializable {
 
     List doctorsL;
-    private long doctorID;
+    Doctor docObj;
+    private long doctorIDB;
     private String doctorFN;
     private String doctorLN;
     private String doctorS;
     private Date doctorDOB;
     private String doctorPN;
     
-    
-    public doctorPersistBean() {
+    public String createDoc(){
         
+        DoctorCrud.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
+        
+        return "databaseTestPage";
     }
     
     public List getDoctorsL(){
@@ -42,19 +44,36 @@ public class doctorPersistBean {
         return doctorsL;
     }
     
-    public String createDoc(){
+    public Doctor getDoctor(){
+       
+        docObj = DoctorCrud.findByID(doctorIDB);
         
-        DoctorCrud.createDoctor(doctorID, doctorFN, doctorLN, doctorS, doctorDOB, doctorPN);
+        return docObj;
+    }
+    
+    public String deleteDoc(){
+        
+        DoctorCrud.deleteDoctor(this.doctorIDB);
         
         return "databaseTestPage";
     }
+    
+    public String updateDoc(){
+        
+        DoctorCrud.updateDoctor(this.doctorIDB, this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
+        
+        return "databaseTestPage";
+    }
+    
+    
 
-    public long getDoctorID() {
-        return doctorID;
+    public long getDoctorIDB() {
+        return doctorIDB;
     }
-    public void setDoctorID(long doctorID) {
-        this.doctorID = doctorID;
+    public void setDoctorIDB(long doctorIDB) {
+        this.doctorIDB = doctorIDB;
     }
+
     public String getDoctorFN() {
         return doctorFN;
     }
