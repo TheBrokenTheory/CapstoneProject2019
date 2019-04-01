@@ -24,7 +24,9 @@ import org.aspgroup1.entity.Doctor;
 @RequestScoped
 public class viewDoctorBean {
     
-    private List<Doctor> doctors = DoctorCrud.getDoctors();
+    DoctorCrud dc = new DoctorCrud();
+    
+    private List<Doctor> doctors = dc.getDoctors();
     private int numDoc;
     
     //Grabs list of doctors from DataBase
