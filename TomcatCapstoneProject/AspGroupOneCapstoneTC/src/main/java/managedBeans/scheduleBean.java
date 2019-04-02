@@ -27,16 +27,14 @@ public class scheduleBean {
     FullCalendarEventList df = new FullCalendarEventList();
     //Year, Month, Day
     StringBuilder test = new StringBuilder("[{title:'test', start:'2019-04-04'}, {title:'test', start:'2019-04-05'}]");
-    private String[] testEvent  = new String[100];
+
    
     /**
      * Creates a new instance of scheduleBean
      */
     public scheduleBean()
     {
-        testEvent[0] = "[{title:'test', start:'2019-04-04'},";
-        testEvent[1] = "{title:'test', start:'2019-04-05'},";
-        testEvent[3] = "{title:'test', start:'2019-04-06'}]";
+
     }
     
     public void createAppts(){
@@ -45,6 +43,5 @@ public class scheduleBean {
         System.out.println(d.toString());
     }
 
-    public String[] getTestEvent(){return testEvent;}
     public StringBuilder getTest(){return test;}
 }
