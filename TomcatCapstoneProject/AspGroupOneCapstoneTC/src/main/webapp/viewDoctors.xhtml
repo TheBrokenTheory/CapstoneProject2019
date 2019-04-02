@@ -5,18 +5,18 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c = "http://java.sun.com/jsf/composite/uicomponents">
+      xmlns:cc = "http://java.sun.com/jsf/composite/uicomponents">
     <h:head>
         <title>Health Care System Project</title>
     </h:head>
     <h:body>
         <!--Top Menu Bar-->
-        <c:topNavMenu/>
+        <cc:topNavMenu/>
         
         <b:container fluid="true">
             <b:row>
                 <!--Side Menu Bar-->   
-                <c:sideNavMenu/>
+                <cc:sideNavMenu/>
                 
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <hr/>
@@ -24,34 +24,16 @@
                     <h1>View Doctors</h1>
                     <hr/>
                     
-                    <!--Doctor Boxes. These should be created dynamically from DB-->
-                    <b:row>
-                        <c:doctorComponent/>
-                        <c:doctorComponent/>
-                    </b:row>
+                    <!--Creates a box for each doctor in the DB-->
+                    <cc:doctorComponent/>
+
                 </b:column>
             </b:row>  
         </b:container>
                       
         
         <style type="text/css">
-            .navbar-fixed-top {background-color: #30373E;}
-            .sidebar {
-            background-color: #F3F3F3;
-            border-right: 1px solid #eee;
-            bottom: 0;
-            display: block;
-            left: 0;
-            overflow-x: hidden;
-            overflow-y: auto;
-            padding: 20px;
-            position: fixed;
-            top: 51px;
-            z-index: 1000; }
-            
-            .navLinkHeaders {
-                font-size: 15px;
-            }
+
         </style>
     </h:body>
 </html>

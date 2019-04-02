@@ -22,6 +22,7 @@ public class doctorPersistBean implements Serializable {
 
     List doctorsL;
     Doctor docObj;
+    DoctorCrud dc;
     private long doctorIDB;
     private String doctorFN;
     private String doctorLN;
@@ -29,16 +30,20 @@ public class doctorPersistBean implements Serializable {
     private Date doctorDOB;
     private String doctorPN;
     
+    public doctorPersistBean(){
+        dc = new DoctorCrud();
+    }
+    
+    
     public String createDoc(){
-        
-        DoctorCrud.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
+        dc.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
         
         return "databaseTestPage";
     }
     
     public List getDoctorsL(){
         if(doctorsL == null){
-            doctorsL = new ArrayList(DoctorCrud.getDoctors());
+            doctorsL = new ArrayList(dc.getDoctors());
         }
         
         return doctorsL;
@@ -46,21 +51,21 @@ public class doctorPersistBean implements Serializable {
     
     public Doctor getDoctor(){
        
-        docObj = DoctorCrud.findByID(doctorIDB);
+        docObj = dc.findByID(doctorIDB);
         
         return docObj;
     }
     
     public String deleteDoc(){
         
-        DoctorCrud.deleteDoctor(this.doctorIDB);
+        dc.deleteDoctor(this.doctorIDB);
         
         return "databaseTestPage";
     }
     
     public String updateDoc(){
         
-        DoctorCrud.updateDoctor(this.doctorIDB, this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
+        dc.updateDoctor(this.doctorIDB, this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
         
         return "databaseTestPage";
     }

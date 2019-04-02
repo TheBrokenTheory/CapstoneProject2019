@@ -30,34 +30,38 @@
                     <!--Info Boxes-->
                     <!--This should grab data from database and schedule' events-->
                     <b:row>
-                        <b:column class="infoBoxRow">
+                        <b:container class="infoBoxRow">
+                  
                             <!-- Patients -->
                             <b:well class="infoBox" col-sm="3">
-                                <h5>Patients</h5>
-                                <b:column col-sm="4">
-                                <h:form><b:iconAwesome name="ambulance" size="3x"/></h:form>
-                                </b:column>
-                                <p>107</p>
+                                <h:form><b:iconAwesome class="icons" name="ambulance" size="3x"/></h:form>
+                                <h:outputText class="text" value="Patients On File"/>
+                                <br/>
+                                <br/>
+                                <h:outputText class="dbText" value="106" />
                             </b:well>
+                            
                             <!-- Appointments -->
                             <b:well class="infoBox" col-sm="3">
-                                <h5>Today's Appointments</h5>
-                                <b:column col-sm="4">
-                                <h:form><b:iconAwesome name="calendar" size="3x"/></h:form>
-                                </b:column>  
-                                <p>3</p>
+                                <h:form><b:iconAwesome class="icons" name="calendar" size="3x"/></h:form>
+                                <h:outputText class="text" value="Today's Appointments"/>
+                                <br/>
+                                <br/>
+                                <h:outputText class="dbText" value="4" />
                             </b:well>
+                            
                             <!-- Doctors -->
                             <b:well class="infoBox" col-sm="3">
-                                <h5>Doctors</h5>
-                                <b:column col-sm="4">
-                                <h:form><b:iconAwesome name="user" size="3x"/></h:form>
-                                </b:column>  
-                                <p>12</p>
+                                <h:form><b:iconAwesome class="icons" name="user-md" size="3x"/></h:form>
+                                <h:outputText class="text" value="Doctors On Staff"/>
+                                <br/>
+                                <br/>
+                                <h:outputText class="dbText" value="6" />
                             </b:well>
-                        </b:column>
+                            
+                        </b:container>
                     </b:row>
-
+                    
                     <b:row>
                         <!-- calendar quick view -->
                         <b:column>
@@ -72,49 +76,30 @@
                       
         
         <style type="text/css">
-            .navbar-fixed-top {
-                background-color: #30373E;
-            }
-            
-            .sidebar {
-                background-color: #F3F3F3;
-                border-right: 1px solid #eee;
-                bottom: 0;
-                display: block;
-                left: 0;
-                overflow-x: hidden;
-                overflow-y: auto;
-                padding: 20px;
-                position: fixed;
-                top: 51px;
-                z-index: 1000;
-            }
-            
-            .navLinks{
-                border-color: #EEEEEE;
-                border: 2px;
-                margin-bottom: 3px;
-            }
-            
-            .navLinkHeaders {
-                font-size: 15px;
-            }
             .infoBox{
                 background-color: #F3F3F3;
-                margin: 5px;
-            }
-            
-            .imageBox{
-                width: 200px;
-                height: 110px;
+                margin: 15px;
+                border: 1px solid;
+                width: 250px;
+                height: 100px;
             }
             .infoBoxRow
             {
-                margin: -5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
             }
-            
-            .quickLinks{
-                
+            .icons{
+                float: right;
+                padding-top: 5px;
+            }
+            .text{
+                font-size: 15px;
+            }
+            .dbText{
+                padding-left: 50px;
+                font-size: 15px;
             }
         </style>
     </h:body>

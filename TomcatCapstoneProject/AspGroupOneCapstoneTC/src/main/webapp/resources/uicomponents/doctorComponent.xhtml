@@ -4,26 +4,89 @@
    xmlns:h = "http://java.sun.com/jsf/html"
    xmlns:f = "http://java.sun.com/jsf/core"
    xmlns:b="http://bootsfaces.net/ui"
-   xmlns:composite = "http://java.sun.com/jsf/composite">
- 
-    <composite:interface>
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:cc = "http://java.sun.com/jsf/composite">
 
-    </composite:interface>
+    <cc:interface/>
     
-    <composite:implementation>
-        <b:column col-sm="2">
-            <b:well class="doctorBox">                           
-                <h:form><b:iconAwesome name="user" size="5x"/></h:form>
-                <h4>Dr. Jonathan Anders</h4>
-                <p>
-                    Specialty: Amateur Neurosurgeon
-                    <br />
-                    <b:navLink outcome="schedule" value="View Doctor Schedule"/>   
-                </p>
-            </b:well>                   
-        </b:column>       
-   </composite:implementation>
-    
-    
+    <cc:implementation>
+            <ui:repeat value="#{viewDoctorBean.doctors}" var="doc">
+                <div style="float: left;">
+                        <b:well class="doctorBox"> 
+                        <h:form><b:iconAwesome class="icon" name="user-md" size="5x"/></h:form>
+                        
+                        <div class="center">
+                            <p>
+                                <h:column><h:outputText class="docName" value="Dr. #{doc.doctorFirstName}"/></h:column>
+                                <h:column><h:outputText class="docName" value=" #{doc.doctorLastName}"/></h:column>
+                            </p>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="center">
+                            <p>
+                                <h:outputText class="text" value="Specialty" />
+                                <br/>
+                                <h:outputText class="docSpec" value="#{doc.doctorSpecialty}"/>
+                            </p>
+                        </div>
+                        
+                        <div class="center">
+                            <p>
+                                <h:outputText class="text" value="Doctor Info" />
+                                <br/>
+                                <h:outputText class="docInfo" value="Phone Number: #{doc.doctorPhoneNum}"/>
+                                <br/>
+                                <h:outputText class="docInfo" value="Date of Birth: #{doc.doctorDOB}"/>
+                            </p>
+                        </div>
+                        
+                        <div class="center">
+                            <h:form>
+                                <b:commandLink class="scheduleButton" look="default" value="Doctor Schedule"/>
+                            </h:form>
+                        </div>
+                    </b:well>   
+                </div>
+            </ui:repeat>
+        
+        <style type="text/css">
+            .doctorBox {
+                background-color: #F3F3F3;
+                border: 1px solid;
+                margin-right: 35px;
+                width: 250px;
+                height: 350px;
+            }
+            .docName{
+                font-size: 20px;
+                font-weight: bold;
+            }
+            .docSpec{
+                font-size: 18px;
+                font-weight: lighter;
+            }
+            .docInfo{
+                font-size: 15px;
+                font-weight: lighter;
+            }
+            .icon{
+                padding-top: 12px;
+                padding-left: 80px;
+                padding-bottom: 10px;
+            }
+            .center {
+                text-align: center;
+                
+            }
+            .text{
+                font-size: 15px;
+                text-decoration: underline;
+            }
+
+
+        </style>      
+   </cc:implementation>
     
 </html>
