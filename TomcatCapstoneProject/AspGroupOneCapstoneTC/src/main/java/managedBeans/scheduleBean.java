@@ -1,16 +1,13 @@
 package managedBeans;
 
 
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import net.bootsfaces.component.fullCalendar.FullCalendarEventList;
+import org.aspgroup1.crud.DoctorCrud;
+import org.aspgroup1.entity.Doctor;
 
 /**
  *
@@ -20,28 +17,67 @@ import net.bootsfaces.component.fullCalendar.FullCalendarEventList;
 @Named(value = "scheduleBean")
 @RequestScoped
 public class scheduleBean {
-    
-    String inputDate = "03-03-2019";
-    Calendar cal = new GregorianCalendar(2019, Calendar.MARCH, 03, 5,45);
-    Date d = cal.getTime();
-    FullCalendarEventList df = new FullCalendarEventList();
     //Year, Month, Day
-    StringBuilder test = new StringBuilder("[{title:'test', start:'2019-04-04'}, {title:'test', start:'2019-04-05'}]");
-
+    private StringBuilder test = new StringBuilder();
+    private String firstName;
+    private String lastName;
+    private String reasonForVisit;
+    private String doctorSeen;
+    private String dateTimeOfAppointment;
+    List<String> eventList = new ArrayList();
    
     /**
      * Creates a new instance of scheduleBean
      */
     public scheduleBean()
     {
-
+        //For some reason the calendar won't display
+        //Unless there is an event already
+        //This event is scheduled for 2016 so it
+        //won't affect anything were doing
+        eventList.add("{title:'test', start:'2016-04-04T02:30'}");
+        test = createCalString();
     }
     
-    public void createAppts(){
-        Event test = new Event("Test", d);
-        //df.toJson();
-        System.out.println(d.toString());
+    //Creates Event Class & Adds to the eventList
+    public void createAppointment()
+    {   
+        //Creates new Event obj and stores it in ArrayList
+        Event newEvent = new Event(firstName, lastName, dateTimeOfAppointment, reasonForVisit, doctorSeen);
+        eventList.add(newEvent.jsonString());
+        test = createCalString();
     }
+    
+    //Creates the string required for the fullCalendar component
+    public StringBuilder createCalString()
+    {
+        StringBuilder calString = new StringBuilder();
+        
+        calString.append("[");
+        for(int i = 0; i < eventList.size(); i++)
+        {
+            calString.append(eventList.get(i));
+            if(i < eventList.size())
+            {
+                calString.append(",");
+            }
+        }
+        calString.append("]");
+        
+        return calString;
+    }
+
+    //Getters and Setters
+    public String getFirstName(){return firstName;}
+    public void setFirstName(String fName){this.firstName = fName;}
+    public String getLastName() {return lastName;}
+    public void setLastName(String lName){this.lastName = lName;}
+    public String getReasonForVisit() {return reasonForVisit;}
+    public void setReasonForVisit(String reason) {this.reasonForVisit = reason;}
+    public String getDoctorSeen(){return doctorSeen;}
+    public void setDoctorSeen(String doctorSeen){this.doctorSeen = doctorSeen;}
+    public String getDateTimeOfAppointment(){return dateTimeOfAppointment;}
+    public void setDateTimeOfAppointment(String dateTime) {this.dateTimeOfAppointment = dateTime;}
 
     public StringBuilder getTest(){return test;}
 }
