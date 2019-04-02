@@ -58,14 +58,10 @@
                                     <!--The user will select which doctor they are seeing here -->                                
                               
                                     <b:selectOneMenu id="seeingDoc" value="#{scheduleBean.doctorSeen}" colMd="4" required="true" label="Select Doctor:">
-                                      
-                                        <f:selectItems value="#{scheduleBean.doctors}" var="item"
+                                        <f:selectItems value="#{viewDoctorBean.doctors}" var="item"
                                                        itemLabel="#{item.doctorFirstName}"
                                                        itemValue="#{item.doctorLastName}"/>
-                                        
-                                
-                                       
-                                        </b:selectOneMenu>
+                                    </b:selectOneMenu>
                            
                                     </b:column>
                                    

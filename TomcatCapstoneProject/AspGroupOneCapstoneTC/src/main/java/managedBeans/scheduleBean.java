@@ -62,7 +62,8 @@ public class scheduleBean {
         this.dateTimeOfAppointment = dateTime;
     }
     
-     public List<Doctor> getDoctors()
+    /*
+    public List<Doctor> getDoctors()
     {
                
          if(doctorsL == null){
@@ -71,6 +72,7 @@ public class scheduleBean {
         
         return doctorsL;
     }
+    */
     
      public Doctor getDoctor(String doctorID)
      {
