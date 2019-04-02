@@ -5,22 +5,22 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c = "http://java.sun.com/jsf/composite/uicomponents">
+      xmlns:cc = "http://java.sun.com/jsf/composite/uicomponents">
     <h:head>
         <title>Health Care System Project</title>
     </h:head>
     <h:body>
         <!--Top Menu Bar-->
-        <c:topNavMenu/>
+        <cc:topNavMenu/>
         
         <b:container fluid="true">
             <b:row>
                 <!--Side Menu Bar-->   
-                <c:sideNavMenu/>
+                <cc:sideNavMenu/>
                 
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-                    <hr/>
-                    <hr/>
+                    <br/>
+                    <br/>
                     <h1>Schedule</h1>
                     <hr/>
                     <h:form id="newApptForm">
@@ -62,6 +62,7 @@
                                     
                                 </b:column>
                             </b:row>
+                           
                             <b:row>
                                 <!--
                                     SUBMIT BUTTON. This button will gather all the info
@@ -69,8 +70,8 @@
                                     create a event object
                                 -->
                                 <b:column>
-                                    <b:commandButton class="searchBtn" value="Create New appointment" 
-                                    ajax="true" update="@form"/>
+                                    <b:commandButton class="searchBtn" value="Create New appointment"
+                                            action="#{scheduleBean.createAppts()}" ajax="true" update="@form"/>
                                 </b:column>
                             </b:row>
                         </b:container>
@@ -82,7 +83,8 @@
                         Adds the full calendar to the page.
                         Add the events to this main calendar.
                     -->
-                    <b:fullCalendar weekends="false"/>
+                    <b:fullCalendar weekends="false" day-click="function(calEvent, jsEvent, view){ $(this).css('background','#F3F3F3');}" 
+                            editable="false" events="#{scheduleBean.test}" transient="true"/>
                     <br/>
                 </b:column>
             </b:row>  
