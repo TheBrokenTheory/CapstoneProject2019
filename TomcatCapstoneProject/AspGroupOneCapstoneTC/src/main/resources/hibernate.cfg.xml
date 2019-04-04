@@ -10,8 +10,6 @@
 
     <session-factory>
         
-        
-        
         <!-- SQL Dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
  
