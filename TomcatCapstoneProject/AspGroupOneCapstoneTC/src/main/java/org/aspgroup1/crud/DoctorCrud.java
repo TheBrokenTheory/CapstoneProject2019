@@ -9,33 +9,37 @@ import org.aspgroup1.entity.Doctor;
 //Hibernate Imports
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 /**
  *
  * @author tfran
  */
 public class DoctorCrud {
-    Session session = null;
-
-    static Session sessionObj;
     static SessionFactory sessionFactoryObj;
 
-     // This Method Is Used To Create The Hibernate's SessionFactory Object
+    
+    public DoctorCrud(){
+        
+        sessionFactoryObj = buildSessionFactory();
+    }
+    
+    
     private static SessionFactory buildSessionFactory() {
         // Creating Hibernate SessionFactory Instance
         sessionFactoryObj = new Configuration().configure().buildSessionFactory();
         return sessionFactoryObj;
     }
     
-    public static void createDoctor(String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+    
+    
+    public void createDoctor(String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
         Doctor docObj;
+        Session sessionObj = null;
         
         try {
-            // Getting Session Object From SessionFactory
-            sessionObj = buildSessionFactory().openSession();
+            //Create Session
+            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
             
@@ -66,16 +70,16 @@ public class DoctorCrud {
         }
     }
     
-    public static List getDoctors(){
+    public List getDoctors(){
         List<Doctor> doctorList = new ArrayList();
+        Session sessionObj = null;
         
         try {
-            // Getting Session Object From SessionFactory
-            sessionObj = buildSessionFactory().openSession();
+            //Create Session
+            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
-            
-            
+
             doctorList = sessionObj.createQuery("FROM Doctor").list();
         } catch(Exception sqlException) {
             if(sessionObj.getTransaction() != null) {
@@ -91,10 +95,12 @@ public class DoctorCrud {
         return doctorList;
     }
     
-    public static void updateDoctor(long id, String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+    public void updateDoctor(long id, String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+        Session sessionObj = null;
+        
         try {
-            // Getting Session Object From SessionFactory
-            sessionObj = buildSessionFactory().openSession();
+            //Create Session
+            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -123,10 +129,12 @@ public class DoctorCrud {
         }
     }
     
-    public static void deleteDoctor(long id){
+    public void deleteDoctor(long id){
+        Session sessionObj = null;
+        
         try {
-            // Getting Session Object From SessionFactory
-            sessionObj = buildSessionFactory().openSession();
+            //Create Session
+            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -149,11 +157,12 @@ public class DoctorCrud {
         }
     }
     
-    public static Doctor findByID(long id){
+    public Doctor findByID(long id){
         Doctor docObj = null;
+        Session sessionObj = null;
         try {
-            // Getting Session Object From SessionFactory
-            sessionObj = buildSessionFactory().openSession();
+            //Create Session
+            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -164,7 +173,11 @@ public class DoctorCrud {
                 sessionObj.getTransaction().rollback();
             }
             sqlException.printStackTrace();
-        } 
+        } finally {
+            if(sessionObj != null) {
+                sessionObj.close();
+            }
+        }
         return docObj;
     }
     

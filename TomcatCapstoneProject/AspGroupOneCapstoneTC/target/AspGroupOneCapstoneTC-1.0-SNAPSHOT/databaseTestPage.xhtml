@@ -62,7 +62,7 @@
                         
                         <!--Change this to add the values from db query Link for help -->
                         <!-- https://showcase.bootsfaces.net/forms/DataTable.jsf;jsessionid=MVCkGvoidu4GTGDZq7ZAP0EgLbOMTkpFHQR_kl5D.showcase04 -->
-                        <b:dataTable value="#{docBean.doctorsL}" var="item">           
+                        <b:dataTable value="#{docBean.doctorsL}" var="item" auto-update="true">           
                             <b:dataTableColumn value="#{item.doctorID}"
                                      label="Doctor ID"/>
                             <b:dataTableColumn value="#{item.doctorFirstName}" />

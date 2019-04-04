@@ -21,17 +21,19 @@ import org.aspgroup1.entity.Doctor;
  * @author Jonathan Anders
  */
 @ManagedBean(name = "viewDoctorBean")
-@ViewScoped
+@RequestScoped
 public class viewDoctorBean {
     
-    private List<Doctor> doctors;
+    DoctorCrud dc = new DoctorCrud();
+    
+    private List<Doctor> doctors = dc.getDoctors();
     private int numDoc;
     
     //Grabs list of doctors from DataBase
     public viewDoctorBean() throws SQLException
     {
-        doctors = DoctorCrud.getDoctors();  
-        numDoc = doctors.size();
+        //doctors = DoctorCrud.getDoctors();  
+        //numDoc = doctors.size();
     }
     
     //Getter for list

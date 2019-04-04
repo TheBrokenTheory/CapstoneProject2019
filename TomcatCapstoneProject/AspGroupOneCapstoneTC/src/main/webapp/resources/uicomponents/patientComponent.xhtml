@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+   xmlns:h = "http://java.sun.com/jsf/html"
+   xmlns:f = "http://java.sun.com/jsf/core"
+   xmlns:b="http://bootsfaces.net/ui"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:cc = "http://java.sun.com/jsf/composite">
+
+    <cc:interface/>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <ui:repeat value="#{viewDoctorBean.doctors}" var="doc">
+            <div style="float: left;">
+                    <b:well class="patientBox"> 
+                        <div class="topbox">
+                            <h:outputText class="patientTag" value="Patient Information"/>
+                           
+                        </div> 
+                    <div class="center">
+                        <p>
+                            <h:column><h:outputText class="patientName" value="Test"/></h:column>
+                            <h:column><h:outputText class="patientName" value="teest"/></h:column>
+                        </p>
+                    </div>
+
+                    <br/>
+
+                    <div class="center">
+                        <h:form>
+                            <b:commandLink class="scheduleButton" look="default" value="Schedule Appointment"/>
+                        </h:form>
+                    </div>
+                </b:well>   
+            </div>
+    </ui:repeat>    
+        
+        
+        
+        
+        <style type="text/css">
+            .patientBox {
+                background-color: #F3F3F3;
+                border: 1px solid;
+                margin-right: 8px;
+                width: 280px;
+                height: 150px;
+            }
+            .topbox{
+                padding-bottom: 10px;
+                text-align: center;
+            }
+            .patientTag{
+                font-size: 12px;
+                font-weight: bold;
+                text-decoration: underline;
+                
+            }
+            .docSpec{
+                font-size: 18px;
+                font-weight: lighter;
+            }
+            .docInfo{
+                font-size: 15px;
+                font-weight: lighter;
+            }
+            .icon{
+                
+            }
+            .center {
+                text-align: center;
+
+            }
+            .text{
+                font-size: 15px;
+                text-decoration: underline;
+            }
+        </style>    
+
+    </cc:implementation>
+</html>
