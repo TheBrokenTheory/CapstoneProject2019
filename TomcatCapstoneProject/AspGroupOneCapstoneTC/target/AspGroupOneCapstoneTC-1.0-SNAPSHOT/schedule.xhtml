@@ -5,22 +5,22 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c = "http://java.sun.com/jsf/composite/uicomponents">
+      xmlns:cc = "http://java.sun.com/jsf/composite/uicomponents">
     <h:head>
         <title>Health Care System Project</title>
     </h:head>
     <h:body>
         <!--Top Menu Bar-->
-        <c:topNavMenu/>
+        <cc:topNavMenu/>
         
         <b:container fluid="true">
             <b:row>
                 <!--Side Menu Bar-->   
-                <c:sideNavMenu/>
+                <cc:sideNavMenu/>
                 
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-                    <hr/>
-                    <hr/>
+                    <br/>
+                    <br/>
                     <h1>Schedule</h1>
                     <hr/>
                     <h:form id="newApptForm">
@@ -28,21 +28,21 @@
                             <b:row>
                                 <!--This is where the user will select the date and time for the appointment-->
                                 <b:column col-sm="7" style-class="newApptFormStyle">
-                                    <b:dateTimePicker id="aptDateAndTime" value="" mode="inline" label="Time and date for new appointment"/>
+                                    <b:dateTimePicker id="aptDateAndTime" value="#{scheduleBean.dateTimeOfAppointment}" mode="inline" label="Time and date for new appointment"  max-date="2019-12-31"/>
                                 </b:column>
                                 
                                 <b:column col-md="8" class="newApptFormStyle">
                                     <!--The user will enter the first name of the patient here -->
                                     <b:column>
-                                        <b:inputText id="firstName" value="" ajax="true" required="true" col-md="4" label="Enter patient's first name:"/>
+                                        <b:inputText id="firstName" value="#{scheduleBean.firstName}" ajax="true" required="false" col-md="4" label="Enter patient's first name:"/>
                                     
                                     <!--The user will enter the last name of the patient here -->
-                                        <b:inputText id="lsatName" value="" ajax="true" required="true" col-md="4" label="Enter patient's last name:"/>
+                                        <b:inputText id="lsatName" value="#{scheduleBean.lastName}" ajax="true" required="false" col-md="4" label="Enter patient's last name:"/>
                                     </b:column>
                                     
                                     <!--The user will select the reason for their visit here-->
                                     <b:column>
-                                        <b:selectOneMenu id="reasonForVisit" value="" colMd="4" required="true" label="Reason for visit:">
+                                        <b:selectOneMenu id="reasonForVisit" value="#{scheduleBean.reasonForVisit}" colMd="4" required="false" label="Reason for visit:">
                                             <f:selectItem itemLabel="(Please select)" itemValue="" />
                                             <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
                                             <f:selectItem itemLabel="More Reasons"/>
@@ -51,7 +51,7 @@
                                         </b:selectOneMenu>                    
                                         
                                     <!--The user will select which doctor they are seeing here -->
-                                        <b:selectOneMenu id="seeingDoc" value="" colMd="4" required="true" label="Select Doctor:">
+                                    <b:selectOneMenu id="seeingDoc" value="#{scheduleBean.doctorSeen}" colMd="4" required="false" label="Select Doctor:">
                                             <f:selectItem itemLabel="(Please select)" itemValue="" />
                                             <f:selectItem itemLabel="Dr. Anders" itemValue="Dr. Anders"/>
                                             <f:selectItem itemLabel="Enter More Docs here"/>
@@ -62,6 +62,7 @@
                                     
                                 </b:column>
                             </b:row>
+                           
                             <b:row>
                                 <!--
                                     SUBMIT BUTTON. This button will gather all the info
@@ -69,8 +70,8 @@
                                     create a event object
                                 -->
                                 <b:column>
-                                    <b:commandButton class="searchBtn" value="Create New appointment" 
-                                    ajax="true" update="@form"/>
+                                    <b:commandButton class="searchBtn" value="Create New appointment"
+                                            action="#{scheduleBean.createAppointment()}" ajax="true" update="@form"/>
                                 </b:column>
                             </b:row>
                         </b:container>
@@ -78,11 +79,11 @@
                     
                     <hr/>
                     
-                    <!--
-                        Adds the full calendar to the page.
-                        Add the events to this main calendar.
-                    -->
-                    <b:fullCalendar weekends="false"/>
+                    <!-- Adds the full calendar to the page.
+                        Add the events to this main calendar. -->
+                    <b:fullCalendar weekends="false" editable="false" events="#{scheduleBean.test}" autoUpdate="true"
+                            event-click="function(calEvent, jsEvent, view){ $(this).css('background', '##3A87AD');}"
+                            day-click="function(calEvent, jsEvent, view){ $(this).css('background','#F3F3F3');}" />
                     <br/>
                 </b:column>
             </b:row>  
