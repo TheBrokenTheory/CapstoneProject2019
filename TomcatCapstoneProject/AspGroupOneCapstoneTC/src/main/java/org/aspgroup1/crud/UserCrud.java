@@ -73,7 +73,7 @@ public class UserCrud {
         }
     }
     
-    public List getDoctors(){
+    public List getUsers(){
         List<User> userList = new ArrayList();
         Session sessionObj = null;
         

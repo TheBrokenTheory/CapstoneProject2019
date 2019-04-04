@@ -1,16 +1,12 @@
 package managedBeans;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.aspgroup1.crud.UserCrud;
+import org.aspgroup1.entity.User;
+
 
 /**
  *
@@ -23,100 +19,55 @@ public class loginBean implements Serializable {
     private String username = "";
     private String loginErrorMsg= "";
     private String password = "";
-    private static final long serialVersionUID = 1L;
     private String page="";
+    
+    private UserCrud ud;
+    private List<User> users;
     
     /**
      * Creates a new instance of loginBean
-     * @throws java.sql.SQLException
      */
-    public loginBean(){}
-    
-    //Gets connection to the database
-    private static Connection getRemoteConnection() throws ClassNotFoundException, SQLException
+    public loginBean()
     {
-        Connection conn = null;
-        
-        try {
-            //System.out.println("Loading driver...");
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            //System.out.println("Driver loaded!");
-          } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Cannot find the driver in the classpath!", e);
-          }
-        conn = DriverManager.getConnection("jdbc:mysql://aspgroup1@finalaspgroup1.chxan6yoffks.us-east-2.rds.amazonaws.com:3306/aspgroup1?user=aspgroup1&password=finalaspgroup1");
-        return conn;
+        ud = new UserCrud();
+        users = ud.getUsers();
     }
     
-    //Checks the credentials of the login form and either returns error message
-    //or redirects to proper page based on account type
-    public String login() throws SQLException, ClassNotFoundException, IOException
+    //Verify user credentials against DataBase
+    public String login()
     {
-    
-        Statement readStatement = null;
-        ResultSet resultSet = null;
-        String results = "";
+        boolean accountMatch = false;
         
-        Connection con = getRemoteConnection();
-        
-        try {
-            readStatement = con.createStatement();
-            resultSet = readStatement.executeQuery("SELECT * FROM Users;");
-            
-            ResultSetMetaData metadata = resultSet.getMetaData();
-            boolean accountMatch = false;
-            
-            while (resultSet.next() || accountMatch==true)
+        for (int i = 0; i < users.size(); i++)
+        {
+            if(username.equals(users.get(i).getUsername()))
             {
-                results = resultSet.getString("username");
-                
-                //Account Type: 1 for admin, 2 for general user
-                String accountTypeString = resultSet.getString("accountType");
-                int accountType = Integer.parseInt(accountTypeString);
-                
-                String dbPassword = resultSet.getString("password");
-                
-                if(username.equals(results))
+                if(password.equals(users.get(i).getPassword()))
                 {
-                    if(dbPassword.equals(password))
+                    if (users.get(i).getAccountType() == 1)
                     {
-                        if (accountType == 1)
-                        {
-                           page = "index"; 
-                        }
-                        else if(accountType == 2)
-                        {
-                            page = "genUserDashboard";
-                        }
-                        accountMatch = true;
+                       page = "index"; 
                     }
-                    else
+                    else if(users.get(i).getAccountType() == 2)
                     {
-                        loginErrorMsg = "Invalid Username or Password";
+                        page = "genUserDashboard";
                     }
+                    
+                    accountMatch = true;
+                    //Breaks out of for loop if it finds account match
+                    break;
                 }
                 else
                 {
                     loginErrorMsg = "Invalid Username or Password";
                 }
             }
-            
-            //Close DB Connection
-            resultSet.close();
-            readStatement.close();
-            con.close();
+            else
+            {
+                loginErrorMsg = "Invalid Username or Password";
+            } 
+        }
 
-          } catch (SQLException ex) {
-            // Handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
-          } finally {
-                System.out.println("Closing the connection.");
-                if (con != null) try { con.close(); } catch (SQLException ignore) {}
-          }
-        
-        //Return page to be be displayed base on account type
         return page;
     }
 
