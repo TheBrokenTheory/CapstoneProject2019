@@ -31,6 +31,7 @@
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
 
         <mapping class="org.aspgroup1.entity.Doctor"/>
+        <mapping class="org.aspgroup1.entity.User"/>
 
     </session-factory>
 

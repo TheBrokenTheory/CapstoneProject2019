@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import org.aspgroup1.crud.DoctorCrud;
 import org.aspgroup1.entity.Doctor;
 
 
 @ManagedBean(name = "docBean")
-@Dependent
+@SessionScoped
 public class doctorPersistBean implements Serializable {
 
     List doctorsL;
