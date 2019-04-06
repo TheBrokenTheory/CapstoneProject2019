@@ -5,18 +5,18 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c = "http://java.sun.com/jsf/composite/uicomponents">
+      xmlns:cc = "http://java.sun.com/jsf/composite/uicomponents">
     <h:head>
         <title>Health Care System Project</title>
     </h:head>
     <body>
         <!--Top Menu Bar-->
-        <c:topNavMenu/>
+        <cc:topNavMenu/>
         
         <b:container fluid="true">
             <b:row>
                 <!--Side Menu Bar-->   
-                <c:sideNavMenu/>
+                <cc:sideNavMenu/>
                 
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <hr/>
@@ -28,17 +28,17 @@
                         <b:column>
                             <b:form>
                                 <b:column col-md="5">
-                                    <b:inputText value="#{manageUsersBean.firstName}" colMd="2" label="Enter First Name:" labelColMd="10" />
-                                    <b:inputText value="#{manageUsersBean.lastName}" colMd="2" label="Enter Last Name:" labelColMd="10" />
+                                    <b:inputText placeholder="First Name" value="#{userBean.userFN}" colMd="2" label="Enter First Name:" labelColMd="10"/>
+                                    <b:inputText placeholder="Last Name" value="#{userBean.userLN}" colMd="2" label="Enter Last Name:" labelColMd="10"/>
                                 </b:column>
                                 
                                 <b:column col-md="5">
-                                    <b:inputText value="#{manageUsersBean.username}" colMd="2" label="Enter Username:" labelColMd="10" />
-                                    <b:inputText value="#{manageUsersBean.password}" colMd="2" label="Enter Password:" type="password" labelColMd="10" />
+                                    <b:inputText placeholder="Username" value="#{userBean.userUN}" colMd="2" label="Enter Username:" labelColMd="10"/>
+                                    <b:inputText placeholder="Password" value="#{userBean.userPass}" colMd="2" label="Enter Password:" type="password" labelColMd="10"/>
                                 </b:column>
                                 
                                 <b:column class="selectMenu">
-                                    <b:selectOneMenu value="#{manageUsersBean.accountTypeString}" colMd="5" label="User Type:" labelColMd="10" >
+                                    <b:selectOneMenu value="#{userBean.accountTypeString}" colMd="5" label="User Type:" labelColMd="10" >
                                         <f:selectItem itemLabel="(Please select)" itemValue="" />
                                         <f:selectItem itemLabel="Admin" itemValue="1"/>
                                         <f:selectItem itemLabel="General" itemValue="2"/>
@@ -46,19 +46,19 @@
                                 </b:column>
                                 
                                 <b:column>
-                                    <b:commandButton action="#{manageUsersBean.createNewUser()}" value="Create New User" 
+                                    <b:commandButton action="#{userBean.createUser()}" value="Create New User" 
                                             update="dataTable"/>
                                     <hr/>
                                 </b:column>
                             </b:form> 
                             
                             <!--View all current users. Updates when new user is added -->
-                            <b:dataTable  value="#{manageUsersBean.accounts}" var="account" id="dataTable" ajax="false">           
+                            <b:dataTable  value="#{userBean.usersL}" var="account" id="dataTable" ajax="false" autoUpdate="true">           
                                 <b:dataTableColumn label="Username" value="#{account.username}"/>
                                 <b:dataTableColumn label="Password" value="#{account.password}"/>
                                 <b:dataTableColumn label="Account Type" value="#{account.accountType}"/>
-                                <b:dataTableColumn label="First Name" value="#{account.firstName}"/>
-                                <b:dataTableColumn label="Last Name" value="#{account.lastName}"/>
+                                <b:dataTableColumn label="First Name" value="#{account.fname}"/>
+                                <b:dataTableColumn label="Last Name" value="#{account.lname}"/>
                             </b:dataTable>
                             
                         </b:column>
