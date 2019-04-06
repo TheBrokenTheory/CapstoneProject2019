@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+ <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body styleClass="body">
+        <br/>
+        <h2 class="centered">Healthcare Administration Software Demo</h2>
+        <br/>
+        <br/>
+        <br/>
+        <b:container>
+            <h:form styleClass="form-signin" prependId="false">
+                <h3 class="form-signin-heading">Please sign in</h3>
+                
+                <!--Enter Username-->
+                <b:inputText id="username" value="#{userBean.userUN}" placeholder="Username"> 
+                    <f:facet name="prepend">
+                        <b:icon name="user" />
+                    </f:facet>
+                </b:inputText>
+
+                <!--Enter Password-->
+                <b:inputText id="password" type="password" value="#{userBean.userPass}" placeholder="Password">
+                    <f:facet name="prepend">
+                        <b:icon name="pencil" />
+                    </f:facet>
+                </b:inputText>
+                
+                <!--Error Message for Username -->
+                <h:outputText styleClass="ErrorMsg" value="#{userBean.loginErrorMsg}"/>
+                <!--Submit login-->
+                <b:commandLink look="default"  value="Sign In" icon="log-in" 
+                        action="#{userBean.login()}" outcome="#{userBean.page}"/>
+            </h:form>
+        </b:container>
+        
+    <style type="text/css">
+        .body{
+            background-color: #F3F3F3;
+        }
+        .form-signin {
+            margin: 0 auto;
+            max-width: 330px;
+            padding: 15px;
+            background-color: #DADADA;
+            
+        }
+        .ErrorMsg{
+            color: red;
+        }
+       .centered {
+            font-size: 25px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</h:body>
+</html>

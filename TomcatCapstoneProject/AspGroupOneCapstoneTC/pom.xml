@@ -8,6 +8,8 @@
     <packaging>war</packaging>
 
     <name>AspGroupOneCapstoneTC</name>
+    
+    
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -22,8 +24,14 @@
       <type>pom</type>
       <scope>import</scope>
     </dependency>
+      <dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-java-sdk</artifactId>
+    <version>1.11.327</version>
+  </dependency>
   </dependencies>
 </dependencyManagement>
+
     
     <dependencies>
         <dependency>
@@ -43,9 +51,30 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.13</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.3.9.Final</version>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>5.3.9.Final</version>
+        </dependency>
     </dependencies>
 
     <build>
+        
+        
         
         <plugins>
              <plugin>

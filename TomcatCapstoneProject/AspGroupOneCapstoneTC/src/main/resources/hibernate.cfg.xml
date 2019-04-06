@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--~ Hibernate, Relational Persistence for Idiomatic Java~~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>. -->
+
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+        
+        
+        
+        <!-- SQL Dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+ 
+        <!-- Database Connection Settings -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://aspgroup1@finalaspgroup1.chxan6yoffks.us-east-2.rds.amazonaws.com:3306/aspgroup1</property>
+        <property name="hibernate.connection.username">aspgroup1</property>
+        <property name="hibernate.connection.password">finalaspgroup1</property>
+        <property name="show_sql">true</property>
+        
+        <property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
+        <property name="hibernate.c3p0.min_size">1</property>
+        <property name="hibernate.c3p0.max_size">50</property>
+        <property name="hibernate.c3p0.timeout">60</property>
+ 
+        <!-- Specifying Session Context -->
+        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+
+        <mapping class="org.aspgroup1.entity.Doctor"/>
+        <mapping class="org.aspgroup1.entity.User"/>
+
+    </session-factory>
+
+</hibernate-configuration>
