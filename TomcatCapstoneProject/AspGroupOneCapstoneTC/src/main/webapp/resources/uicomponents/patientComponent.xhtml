@@ -15,23 +15,41 @@
             <div style="float: left;">
                     <b:well class="patientBox"> 
                         <div class="topbox">
-                            <h:outputText class="patientTag" value="Patient Information"/>
-                           
+                            <h:outputText class="patientTag" value="Patient Information:"/>
+                            <h:column><h:outputText class="patientName" value=" Jonathan "/></h:column>
+                            <h:column><h:outputText class="patientName" value="Anders"/></h:column>
                         </div> 
-                    <div class="center">
+                    <div>
                         <p>
-                            <h:column><h:outputText class="patientName" value="Test"/></h:column>
-                            <h:column><h:outputText class="patientName" value="teest"/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="Patient ID: "/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="100002"/></h:column>
+                        </p>
+                    </div>                        
+                    <div>
+                        <p>
+                            <h:column><h:outputText class="patientInfo" value="Date of Birth: "/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="10/18/1970"/></h:column>
                         </p>
                     </div>
-
-                    <br/>
-
-                    <div class="center">
-                        <h:form>
-                            <b:commandLink class="scheduleButton" look="default" value="Schedule Appointment"/>
-                        </h:form>
+                    <div>
+                        <p>
+                            <h:column><h:outputText class="patientInfo" value="Phone Number: "/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="770-867-5309"/></h:column>
+                        </p>
+                    </div>                      
+                    <div>
+                        <p>
+                            <h:column><h:outputText class="patientInfo" value="Address: "/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="123 Testing Dr. Suwanee, GA 30024"/></h:column>
+                        </p>
                     </div>
+                    <div>
+                        <p>
+                            <h:column><h:outputText class="patientInfo" value="Insurance: "/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="Blue Cross"/></h:column>
+                        </p>
+                    </div>
+                    <br/>  
                 </b:well>   
             </div>
     </ui:repeat>    
@@ -45,36 +63,19 @@
                 border: 1px solid;
                 margin-right: 8px;
                 width: 280px;
-                height: 150px;
-            }
-            .topbox{
-                padding-bottom: 10px;
-                text-align: center;
+                height: 210px;
             }
             .patientTag{
                 font-size: 12px;
                 font-weight: bold;
-                text-decoration: underline;
-                
-            }
-            .docSpec{
-                font-size: 18px;
-                font-weight: lighter;
-            }
-            .docInfo{
-                font-size: 15px;
-                font-weight: lighter;
-            }
-            .icon{
-                
+                text-decoration: underline; 
             }
             .center {
                 text-align: center;
 
             }
-            .text{
-                font-size: 15px;
-                text-decoration: underline;
+            .patientInfo{
+                font-size: 14px;
             }
         </style>    
 

@@ -28,21 +28,25 @@
                             <b:row>
                                 <!--This is where the user will select the date and time for the appointment-->
                                 <b:column col-sm="7" style-class="newApptFormStyle">
-                                    <b:dateTimePicker id="aptDateAndTime" value="#{scheduleBean.dateTimeOfAppointment}" mode="inline" label="Time and date for new appointment"  max-date="2019-12-31"/>
+                                    <b:dateTimePicker id="aptDateAndTime" value="#{scheduleBean.dateTimeOfAppointment}" mode="inline" 
+                                            label="Time and date for new appointment"  max-date="2019-12-31" required="true"/>
                                 </b:column>
                                 
                                 <b:column col-md="8" class="newApptFormStyle">
                                     <!--The user will enter the first name of the patient here -->
                                     <b:column>
-                                        <b:inputText id="firstName" value="#{scheduleBean.firstName}" ajax="true" required="false" col-md="4" label="Enter patient's first name:"/>
+                                        <b:inputText id="firstName" value="#{scheduleBean.firstName}" ajax="true" required="true" 
+                                                    col-md="4" label="Enter patient's first name:"/>
                                     
                                     <!--The user will enter the last name of the patient here -->
-                                        <b:inputText id="lsatName" value="#{scheduleBean.lastName}" ajax="true" required="false" col-md="4" label="Enter patient's last name:"/>
+                                        <b:inputText id="lsatName" value="#{scheduleBean.lastName}" ajax="true" required="true" 
+                                                    col-md="4" label="Enter patient's last name:"/>
                                     </b:column>
                                     
                                     <!--The user will select the reason for their visit here-->
                                     <b:column>
-                                        <b:selectOneMenu id="reasonForVisit" value="#{scheduleBean.reasonForVisit}" colMd="4" required="false" label="Reason for visit:">
+                                        <b:selectOneMenu id="reasonForVisit" value="#{scheduleBean.reasonForVisit}" colMd="4" 
+                                                        required="true" label="Reason for visit:">
                                             <f:selectItem itemLabel="(Please select)" itemValue="" />
                                             <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
                                             <f:selectItem itemLabel="More Reasons"/>
@@ -50,13 +54,11 @@
                                             <f:selectItem itemLabel="More Reasons"/>
                                         </b:selectOneMenu>                    
                                         
-                                    <!--The user will select which doctor they are seeing here -->
-                                    <b:selectOneMenu id="seeingDoc" value="#{scheduleBean.doctorSeen}" colMd="4" required="false" label="Select Doctor:">
-                                            <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                            <f:selectItem itemLabel="Dr. Anders" itemValue="Dr. Anders"/>
-                                            <f:selectItem itemLabel="Enter More Docs here"/>
-                                            <f:selectItem itemLabel="Enter More Docs here"/>
-                                            <f:selectItem itemLabel="Enter More Docs here"/>
+                                        <!--The user will select which doctor they are seeing here -->
+                                        <b:selectOneMenu id="seeingDoc" value="#{scheduleBean.doctorSeen}" colMd="4" label="Select Doctor:" 
+                                                        required="true">
+                                            <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
+                                                        itemValue="#{doc.doctorID}" itemLabel="Dr. #{doc.doctorLastName}"/>
                                         </b:selectOneMenu>
                                     </b:column>
                                     
@@ -81,9 +83,8 @@
                     
                     <!-- Adds the full calendar to the page.
                         Add the events to this main calendar. -->
-                    <b:fullCalendar weekends="false" editable="false" events="#{scheduleBean.test}" autoUpdate="true"
-                            event-click="function(calEvent, jsEvent, view){ $(this).css('background', '##3A87AD');}"
-                            day-click="function(calEvent, jsEvent, view){ $(this).css('background','#F3F3F3');}" />
+                    <cc:calendarComponent/>
+                    
                     <br/>
                 </b:column>
             </b:row>  
@@ -96,7 +97,7 @@
             }
             
             .newApptFormStyle{
-                padding: 10px;
+                padding: 1px;
                 
             }
         </style>
