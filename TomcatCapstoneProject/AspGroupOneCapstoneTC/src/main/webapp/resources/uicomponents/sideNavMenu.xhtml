@@ -11,22 +11,46 @@
     <composite:implementation>
         <b:column col-sm="3" col-md="2" styleClass="sidebar">
             <b:listLinks>
+                
                 <b:navLink class="navLinkHeaders" header="Doctors"/>
-                <b:navLink class="navLinks" outcome="" value="Register Doctor"/>
-                <b:navLink class="navLinks" outcome="viewDoctors"  value="View Doctors"/>
-                <b:navLink class="navLinks" outcome="" value="Remove Doctor"/>
+                <b:navLink class="navLinks" outcome="registerDoctor">
+                    <p class="navLinks">Register Doctor</p>
+                </b:navLink>
+                <b:navLink class="navLinks" outcome="viewDoctors">
+                    <p class="navLinks">View Doctors</p>
+                </b:navLink>
+                <b:navLink class="navLinks" outcome="">
+                    <p class="navLinks">Remove Doctor</p>
+                </b:navLink>
+                
                 <hr/>
+                
                 <b:navLink class="navLinkHeaders" header="Patients"/>
-                <b:navLink class="navLinks" outcome="" value="Register Patient"/>
-                <b:navLink class="navLinks" outcome="viewPatients" value="View Patients"/>
-                <b:navLink class="navLinks" outcome="viewMedicalHistory" value="View Medical History"/>
-                <b:navLink class="navLinks" outcome="" value="Remove Patient"/>
+                <b:navLink class="navLinks" outcome="">
+                    <p class="navLinks">Register Patient</p>
+                </b:navLink>
+                <b:navLink class="navLinks" outcome="viewPatients">
+                    <p class="navLinks">View Patients</p>
+                </b:navLink>
+                <b:navLink class="navLinks" outcome="viewMedicalHistory">
+                    <p class="navLinks">View Medical History</p>
+                </b:navLink>
+                <b:navLink class="navLinks" outcome="">
+                    <p class="navLinks">Remove Patient</p>
+                </b:navLink>
+                
                 <hr/>
+                
                 <b:navLink class="navLinkHeaders" header="Schedule"/>
-                <b:navLink class="navLinks" outcome="schedule" value="Schedule"/>
+                <b:navLink class="navLinks" outcome="schedule">
+                    <p class="navLinks">Schedule</p>
+                </b:navLink>
+                
                 <hr/>
+                
                 <b:navLink class="navLinkHeaders" header="Data Base Test Page"/>
                 <b:navLink outcome="databaseTestPage" value="Test Page"/>
+                
             </b:listLinks>
         </b:column>
         
@@ -44,15 +68,11 @@
                 top: 51px;
                 z-index: 1000;
             }
-            
             .navLinks{
-                border-color: #EEEEEE;
-                border: 2px;
-                margin-bottom: 3px;
+                margin-bottom: 5px;
             }
-            
             .navLinkHeaders {
-                font-size: 15px;
+                font-size: 20px;
             }
         </style>
     </composite:implementation>

@@ -26,8 +26,7 @@ public class viewDoctorBean {
         dc = new DoctorCrud();
         doctors = dc.getDoctors();
         
-        //doctors = DoctorCrud.getDoctors();  
-        //numDoc = doctors.size();
+        numDoc = doctors.size();
     }
     
     //Getter for list

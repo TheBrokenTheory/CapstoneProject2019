@@ -5,20 +5,20 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c = "http://java.sun.com/jsf/composite/uicomponents">
+      xmlns:cc = "http://java.sun.com/jsf/composite/uicomponents">
     
     <h:head>
         <title>Health Care System Project</title>
     </h:head>
     <h:body>
         <!--Top Menu Bar-->
-        <c:topNavMenu/>
+        <cc:topNavMenu/>
         
         <b:container fluid="true">
             <b:row>
                 
                 <!--Side Menu Bar-->   
-                <c:sideNavMenu/>
+                <cc:sideNavMenu/>
                 
                 <!--Main Display area-->
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">                  
@@ -56,17 +56,18 @@
                                 <h:outputText class="text" value="Doctors On Staff"/>
                                 <br/>
                                 <br/>
-                                <h:outputText class="dbText" value="6" />
+                                <h:outputText class="dbText" value="#{viewDoctorBean.numDoc}" />
                             </b:well>
                             
                         </b:container>
                     </b:row>
                     
                     <b:row>
+                        
                         <!-- calendar quick view -->
                         <b:column>
                             <hr/>
-                            <b:fullCalendar weekends="false"/>
+                            <cc:calendarComponent/>
                         </b:column>
                         
                     </b:row>                    
