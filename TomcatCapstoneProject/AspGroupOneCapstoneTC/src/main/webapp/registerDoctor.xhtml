@@ -23,57 +23,71 @@
                     <hr/>
                     <h1>Register doctors</h1>
                     <hr/>
-                    
                     <h:form prependId="false">
-                        <h3>Enter basic information</h3>
+                        <h3>Enter doctor information</h3>
+                        
+                        <b:column>
+                            <!--Enter first name-->
+                            <b:inputText id="firstname" value="#{docBean.doctorFN}" required="true"
+                                        label="First Name" placeholder="First Name" col-md="4">
+                                <f:facet name="prepend">
+                                    <b:icon name="user" />
+                                </f:facet>
+                            </b:inputText>
 
-                        <!--Enter first name-->
-                        <b:inputText id="firstname" value="" 
-                                     label="First Name" placeholder="First Name">
-                            <f:facet name="prepend">
-                                <b:icon name="user" />
-                            </f:facet>
-                        </b:inputText>
-
-                        <!--Enter last name-->
-                        <b:inputText id="lastname" value="" 
-                                     label="Last Name" placeholder="Last Name"> 
-                            <f:facet name="prepend">
-                                <b:icon name="user" />
-                            </f:facet>
-                        </b:inputText>
-
-                        <!--Enter specialty-->
-                        <b:inputText id="specialty" value="" 
-                                     label="Specialty" placeholder="Specialty"> 
-                            <f:facet name="prepend">
-                                <b:icon name="star" />
-                            </f:facet>
-                        </b:inputText>
-
-                        <!--Enter date of birth-->
-                        <b:inputText id="dob" value="" 
-                                     label="Date of Birth" placeholder="Date of Birth"> 
-                            <f:facet name="prepend">
-                                <b:icon name="calendar" />
-                            </f:facet>
-                        </b:inputText>
-
-                        <!--Enter phone number-->
-                        <b:inputText id="phone" value="" 
-                                     label="Phone Number" placeholder="Phone Number"> 
-                            <f:facet name="prepend">
-                                <b:icon name="phone" />
-                            </f:facet>
-                        </b:inputText>
+                            <!--Enter last name-->
+                            <b:inputText id="lastname" value="#{docBean.doctorLN}" required="true"
+                                        label="Last Name" placeholder="Last Name" col-md="4"> 
+                                <f:facet name="prepend">
+                                    <b:icon name="user" />
+                                </f:facet>
+                            </b:inputText>
+                        </b:column>
+                        
+                        <b:column>
+                            <!--Enter specialty-->
+                            <b:selectOneMenu id="specialty" value="#{docBean.doctorS}"
+                                        required="true" label="Specialty" col-md="4">
+                                <f:facet name="prepend">
+                                    <b:icon name="star" />
+                                </f:facet>
+                                <f:selectItem itemLabel="(Please select)"/>
+                                <f:selectItem itemLabel="Dentist" itemValue="Dentist"/>
+                                <f:selectItem itemLabel="Dermatology" itemValue="Dermatologist"/>
+                                <f:selectItem itemLabel="Neurology" itemValue="Neurologist"/>
+                                <f:selectItem itemLabel="Psychiatry" itemValue="Psychiatrist"/>
+                            </b:selectOneMenu>    
+                            
+                            <!-- Doctor DOB -->
+                            <b:dateTimePicker value="" icon-position="left" mode="popup" show-time="false"
+                                format="YYYY/MM/DD" required="true" col-md="4" label="Date of Birth"
+                                placeholder="Date of Birth"/>
+                        </b:column>
+                        
+                        <b:column>
+                            <!--Enter phone number-->
+                            <b:inputText id="phone" value="" required="true"
+                                         label="Phone Number" placeholder="Phone Number" col-md="4"> 
+                                <f:facet name="prepend">
+                                    <b:icon name="phone" />
+                                </f:facet>
+                            </b:inputText>
+                        </b:column>
                         
                         <!--Submit button-->
-                        <b:commandButton class="searchBtn" value="Register" 
-                                         
-                                         look="default" update="@form" />
+                        <b:commandButton class="searchBtn" value="Register" look="default" 
+                                         action="#{docBean.createDoc()}" update="@form" />
+                        
                     </h:form>
                 </b:column>
             </b:row>  
         </b:container>
+         <style type="text/css">
+            .searchBtn{
+                background-color: #E0E0E0;
+                margin-left: 30px;
+            }
+            
+        </style>
     </h:body>
 </html>
