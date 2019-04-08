@@ -4,26 +4,19 @@ package org.aspgroup1.crud;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import org.aspgroup1.entity.Doctor;
+import org.aspgroup1.entity.Appointment;
 
 //Hibernate Imports
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-/**
- *
- * @author tfran
- */
-public class DoctorCrud {
+public class AppointmentCrud {
     static SessionFactory sessionFactoryObj;
-
     
-    public DoctorCrud(){
-        
+    public AppointmentCrud(){
         sessionFactoryObj = buildSessionFactory();
     }
-    
     
     private static SessionFactory buildSessionFactory() {
         // Creating Hibernate SessionFactory Instance
@@ -31,10 +24,8 @@ public class DoctorCrud {
         return sessionFactoryObj;
     }
     
-    
-    
-    public void createDoctor(String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
-        Doctor docObj;
+    public void createAppointment(String firstName, String lastName, String appDate, String appTime, String reasonForVisit, String doctorSeen){
+        Appointment appObj;
         Session sessionObj = null;
         
         try {
@@ -44,15 +35,16 @@ public class DoctorCrud {
             sessionObj.beginTransaction();
             
             //Creating Doctor Object
-            docObj = new Doctor();
-            docObj.setDoctorFirstName(doctorFN);
-            docObj.setDoctorLastName(doctorLN);
-            docObj.setDoctorSpecialty(doctorS);
-            docObj.setDoctorDOB(doctorDOB);
-            docObj.setDoctorPhoneNum(doctorPN);
+            appObj = new Appointment();
+            appObj.setFirstName(firstName);
+            appObj.setLastName(lastName);
+            appObj.setAppDate(appDate);
+            appObj.setAppTime(appTime);
+            appObj.setReasonForVisit(reasonForVisit);
+            appObj.setDoctorSeen(doctorSeen);
             
             //Saving object information
-            sessionObj.save(docObj);
+            sessionObj.save(appObj);
             
             //Commit to DB
             sessionObj.getTransaction().commit();
@@ -70,8 +62,8 @@ public class DoctorCrud {
         }
     }
     
-    public List getDoctors(){
-        List<Doctor> doctorList = new ArrayList();
+    public List getAppointments(){
+        List<Appointment> appointmentList = new ArrayList();
         Session sessionObj = null;
         
         try {
@@ -80,7 +72,7 @@ public class DoctorCrud {
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
 
-            doctorList = sessionObj.createQuery("FROM Doctor").list();
+            appointmentList = sessionObj.createQuery("FROM Appointment").list();
         } catch(Exception sqlException) {
             if(sessionObj.getTransaction() != null) {
                 System.out.println("\n.......Transaction Is Being Rolled Back.......\n");
@@ -92,10 +84,10 @@ public class DoctorCrud {
                 sessionObj.close();
             }
         }
-        return doctorList;
+        return appointmentList;
     }
     
-    public void updateDoctor(long id, String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+    public void updateAppointment(long id, String firstName, String lastName, String appDate, String appTime, String reasonForVisit, String doctorSeen){
         Session sessionObj = null;
         
         try {
@@ -105,17 +97,18 @@ public class DoctorCrud {
             sessionObj.beginTransaction();
  
             // Creating Transaction Entity
-            Doctor docObj = (Doctor) sessionObj.get(Doctor.class, id);
+            Appointment appObj = (Appointment) sessionObj.get(Appointment.class, id);
             
-            if(docObj.getDoctorFirstName() != doctorFN){ docObj.setDoctorFirstName(doctorFN); }
-            if(docObj.getDoctorLastName() != doctorLN){ docObj.setDoctorLastName(doctorLN); }
-            if(docObj.getDoctorSpecialty() != doctorS){ docObj.setDoctorSpecialty(doctorS); }
-            if(docObj.getDoctorDOB() != doctorDOB) { docObj.setDoctorDOB(doctorDOB); }
-            if(docObj.getDoctorPhoneNum() != doctorPN) { docObj.setDoctorPhoneNum(doctorPN); }
+            if(appObj.getFirstName() != firstName){ appObj.setFirstName(firstName); }
+            if(appObj.getLastName() != lastName){ appObj.setLastName(lastName); }
+            if(appObj.getAppDate() != appDate){ appObj.setAppDate(appDate); }
+            if(appObj.getAppTime() != appTime) { appObj.setAppTime(appTime); }
+            if(appObj.getReasonForVisit() != reasonForVisit) { appObj.setReasonForVisit(reasonForVisit); }
+            if(appObj.getDoctorSeen() != doctorSeen) { appObj.setDoctorSeen(doctorSeen); }
             
             // Committing The Transactions To The Database
             sessionObj.getTransaction().commit();
-            System.out.print("\nDoctor With Id?= " + docObj.getDoctorID() + " Is Successfully Updated In The Database!\n");
+            System.out.print("\nAppointment With Id?= " + appObj.getAppID()+ " Is Successfully Updated In The Database!\n");
         } catch(Exception sqlException) {
             if(null != sessionObj.getTransaction()) {
                 System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
@@ -129,7 +122,7 @@ public class DoctorCrud {
         }
     }
     
-    public void deleteDoctor(long id){
+    public void deleteAppointment(long id){
         Session sessionObj = null;
         
         try {
@@ -138,12 +131,12 @@ public class DoctorCrud {
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
-            Doctor docObj = findByID(id);
-            sessionObj.delete(docObj);
+            Appointment appObj = findByID(id);
+            sessionObj.delete(appObj);
  
             // Committing The Transactions To The Database
             sessionObj.getTransaction().commit();
-            System.out.print("\nDoctor With Id?= " + docObj.getDoctorID() + " Is Successfully Deleted From The Database!\n");
+            System.out.print("\nAppointment With Id?= " + appObj.getAppID() + " Is Successfully Deleted From The Database!\n");
         } catch(Exception sqlException) {
             if(null != sessionObj.getTransaction()) {
                 System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
@@ -157,8 +150,8 @@ public class DoctorCrud {
         }
     }
     
-    public Doctor findByID(long id){
-        Doctor docObj = null;
+    public Appointment findByID(long id){
+        Appointment appObj = null;
         Session sessionObj = null;
         try {
             //Create Session
@@ -166,7 +159,7 @@ public class DoctorCrud {
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
-            docObj = (Doctor) sessionObj.load(Doctor.class, id);
+            appObj = (Appointment) sessionObj.load(Appointment.class, id);
         } catch(Exception sqlException) {
             if(null != sessionObj.getTransaction()) {
                 System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
@@ -178,7 +171,6 @@ public class DoctorCrud {
                 sessionObj.close();
             }
         }
-        return docObj;
+        return appObj;
     }
-    
 }
