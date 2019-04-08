@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:cc="http://java.sun.com/jsf/composite/uicomponents">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body>
+        <!--Top Menu Bar-->
+        <cc:topNavMenu/>
+        
+        <b:container fluid="true">
+            <b:row>
+                <!--Side Menu Bar-->   
+                <cc:sideNavMenu/>
+                
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <hr/>
+                    <hr/>
+                    <h1>Register doctors</h1>
+                    <hr/>
+                    
+                    <h:form prependId="false">
+                        <h3>Enter basic information</h3>
+
+                        <!--Enter first name-->
+                        <b:inputText id="firstname" value="" 
+                                     label="First Name" placeholder="First Name">
+                            <f:facet name="prepend">
+                                <b:icon name="user" />
+                            </f:facet>
+                        </b:inputText>
+
+                        <!--Enter last name-->
+                        <b:inputText id="lastname" value="" 
+                                     label="Last Name" placeholder="Last Name"> 
+                            <f:facet name="prepend">
+                                <b:icon name="user" />
+                            </f:facet>
+                        </b:inputText>
+
+                        <!--Enter specialty-->
+                        <b:inputText id="specialty" value="" 
+                                     label="Specialty" placeholder="Specialty"> 
+                            <f:facet name="prepend">
+                                <b:icon name="star" />
+                            </f:facet>
+                        </b:inputText>
+
+                        <!--Enter date of birth-->
+                        <b:inputText id="dob" value="" 
+                                     label="Date of Birth" placeholder="Date of Birth"> 
+                            <f:facet name="prepend">
+                                <b:icon name="calendar" />
+                            </f:facet>
+                        </b:inputText>
+
+                        <!--Enter phone number-->
+                        <b:inputText id="phone" value="" 
+                                     label="Phone Number" placeholder="Phone Number"> 
+                            <f:facet name="prepend">
+                                <b:icon name="phone" />
+                            </f:facet>
+                        </b:inputText>
+                        
+                        <!--Submit button-->
+                        <b:commandButton class="searchBtn" value="Register" 
+                                         
+                                         look="default" update="@form" />
+                    </h:form>
+                </b:column>
+            </b:row>  
+        </b:container>
+    </h:body>
+</html>
