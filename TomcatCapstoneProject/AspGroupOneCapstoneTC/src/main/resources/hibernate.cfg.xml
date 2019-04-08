@@ -10,8 +10,6 @@
 
     <session-factory>
         
-        
-        
         <!-- SQL Dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
  
@@ -30,8 +28,10 @@
         <!-- Specifying Session Context -->
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
 
+        <!-- Mapping Classes -->
         <mapping class="org.aspgroup1.entity.Doctor"/>
         <mapping class="org.aspgroup1.entity.User"/>
+        <mapping class="org.aspgroup1.entity.Appointment"/>
 
     </session-factory>
 
