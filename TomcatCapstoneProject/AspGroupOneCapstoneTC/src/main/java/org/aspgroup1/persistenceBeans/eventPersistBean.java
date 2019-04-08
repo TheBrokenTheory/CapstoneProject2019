@@ -6,6 +6,8 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import managedBeans.Event;
+import org.aspgroup1.crud.AppointmentCrud;
+import org.aspgroup1.entity.Appointment;
 
 /**
  *
@@ -17,6 +19,9 @@ public class eventPersistBean {
     
     //Year, Month, Day
     private StringBuilder eventString = new StringBuilder();
+    List eventL;
+    Appointment apptObj;
+    AppointmentCrud ac;
     
     private String firstName;
     private String lastName;
@@ -33,14 +38,28 @@ public class eventPersistBean {
      */
     public eventPersistBean()
     {
+        //For some reason the calendar won't display
+        //Unless there is an event already
+        //This event is scheduled for 2016 so it
+        //won't affect anything were doing
+        eventList.add("{title:'test', start:'2016-04-04T02:30'}");
+        eventString = createCalString();
+        
+        ac = new AppointmentCrud();
+        //ac.createAppointment("test", "test", "2016-04-04", "11:30", "reasonForVisit", "doctorSeen");
     }
     
     //Creates Event Class & Adds to the eventList
-    public void createAppointment()
+    public void createAppt()
     {   
+        eventDate = convertDate(dateTimeOfAppointment);
+        eventTime = convertTime(dateTimeOfAppointment);
+        
         //Creates new Event obj and stores it in ArrayList
-        Event newEvent = new Event(firstName, lastName, dateTimeOfAppointment, reasonForVisit, doctorSeen);
-        eventList.add(newEvent.jsonString());
+        //ac.createAppointment(this.firstName, this.lastName, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
+        ac.createAppointment("test", "test", "2016-04-04", "11:30", "reasonForVisit", "doctorSeen");
+        eventTitle = generateTitle();
+        eventList.add(jsonString());
         eventString = createCalString();
     }
     
@@ -62,6 +81,7 @@ public class eventPersistBean {
         
         return calString;
     }
+    
     //Generates Title of Event
     private String generateTitle()
     {
