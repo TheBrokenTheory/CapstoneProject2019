@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import org.aspgroup1.crud.DoctorCrud;
@@ -18,7 +19,7 @@ import org.aspgroup1.entity.Doctor;
 
 
 @ManagedBean(name = "docBean")
-@SessionScoped
+@RequestScoped
 public class doctorPersistBean implements Serializable {
 
     List doctorsL;
@@ -36,32 +37,26 @@ public class doctorPersistBean implements Serializable {
     }
     
     
-    public String createDoc(){
+    public void createDoc(){
         dc.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
-        
-        return "databaseTestPage";
+        doctorsL = getDoctorsL();
     }
     
     public List getDoctorsL(){
-        if(doctorsL == null){
-            doctorsL = new ArrayList(dc.getDoctors());
-        }
-        
+        doctorsL = new ArrayList(dc.getDoctors());
+
         return doctorsL;
     }
     
     public Doctor getDoctor(){
-       
         docObj = dc.findByID(doctorIDB);
         
         return docObj;
     }
     
-    public String deleteDoc(){
-        
+    public void deleteDoc(){
         dc.deleteDoctor(this.doctorIDB);
-        
-        return "databaseTestPage";
+        doctorsL = getDoctorsL();
     }
     
     public String updateDoc(){

@@ -44,7 +44,6 @@ public class eventPersistBean {
         //won't affect anything were doing
         //eventList.add("{title:'test', start:'2016-04-04T02:30'}");
         
-        
         ac = new AppointmentCrud();
         fetchExistingApts();
         eventString = createCalString();
