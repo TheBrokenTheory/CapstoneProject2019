@@ -83,9 +83,7 @@
                     
                     <!-- Adds the full calendar to the page.
                         Add the events to this main calendar. -->
-                            <b:fullCalendar weekends="false" editable="false" events="#{eventBean.eventString}" autoUpdate="true"
-                    event-click="function(calEvent, jsEvent, view){ $(this).css('background', '##3A87AD');}"
-                    day-click="function(calEvent, jsEvent, view){ $(this).css('background','##FFFFFF');}" />
+                    <cc:calendarComponent/>
                     
                     <br/>
                 </b:column>

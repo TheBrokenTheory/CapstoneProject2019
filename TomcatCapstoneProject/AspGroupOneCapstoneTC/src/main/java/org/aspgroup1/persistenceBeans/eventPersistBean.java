@@ -42,10 +42,12 @@ public class eventPersistBean {
         //Unless there is an event already
         //This event is scheduled for 2016 so it
         //won't affect anything were doing
-        eventList.add("{title:'test', start:'2016-04-04T02:30'}");
-        eventString = createCalString();
+        //eventList.add("{title:'test', start:'2016-04-04T02:30'}");
+        
         
         ac = new AppointmentCrud();
+        fetchExistingApts();
+        eventString = createCalString();
         //ac.createAppointment("test", "test", "2016-04-04", "11:30", "reasonForVisit", "doctorSeen");
     }
     
@@ -56,11 +58,39 @@ public class eventPersistBean {
         eventTime = convertTime(dateTimeOfAppointment);
         
         //Creates new Event obj and stores it in ArrayList
-        //ac.createAppointment(this.firstName, this.lastName, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
-        ac.createAppointment("test", "test", "2016-04-04", "11:30", "reasonForVisit", "doctorSeen");
-        eventTitle = generateTitle();
-        eventList.add(jsonString());
+        ac.createAppointment(this.firstName, this.lastName, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
+        
+        //ac.createAppointment("test", "test", "2016-04-04", "11:30", "reasonForVisit", "doctorSeen");
+        
+        eventTitle = generateTitle(this.firstName, this.lastName);
+        eventList.add(jsonString(eventTitle, eventDate, eventTime));
         eventString = createCalString();
+    }
+    
+    public void fetchExistingApts()
+    {
+        List<Appointment> appointmentList = new ArrayList();
+        appointmentList= ac.getAppointments();
+        
+        for(int i=0; i < appointmentList.size(); i++)
+        {
+            String firstName;
+            String lastName;
+            String eventTitle;
+            String eventDate;
+            String eventTime;
+            String reasonForVisit;
+            String doctorSeen;
+            
+            firstName = appointmentList.get(i).getFirstName();
+            lastName = appointmentList.get(i).getLastName();
+            eventTitle = generateTitle(firstName, lastName);
+            eventDate = appointmentList.get(i).getAppDate();
+            eventTime = appointmentList.get(i).getAppTime();
+            eventList.add(jsonString(eventTitle, eventDate, eventTime));
+        }
+        
+        
     }
     
     //Creates the string required for the fullCalendar component
@@ -83,9 +113,9 @@ public class eventPersistBean {
     }
     
     //Generates Title of Event
-    private String generateTitle()
+    private String generateTitle(String fName, String lName)
     {
-        String title = firstName + " " + lastName;
+        String title = fName + " " + lName;
         return title;
     }
     
@@ -165,9 +195,9 @@ public class eventPersistBean {
     
     //Returns string for this event. 
     //String is in proper format for fullCalendar component
-    public String jsonString()
+    public String jsonString(String title, String date, String time)
     {
-        String jsonStr = "{title:'" + eventTitle + "', start:'" + eventDate + "T" + eventTime + "'}";
+        String jsonStr = "{title:'" + title + "', start:'" + date + "T" + time + "'}";
         return jsonStr;
     }
     
