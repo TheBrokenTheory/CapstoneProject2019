@@ -4,43 +4,26 @@ package org.aspgroup1.crud;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import org.aspgroup1.HibernateUtilities.HibernateUtil;
 import org.aspgroup1.entity.User;
 
 //Hibernate Imports
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 /**
  *
  * @author tfran
  */
 public class UserCrud {
-    
-    static SessionFactory sessionFactoryObj;
 
-    
-    public UserCrud(){
-        
-        sessionFactoryObj = buildSessionFactory();
-    }
-    
-    
-    private static SessionFactory buildSessionFactory() {
-        // Creating Hibernate SessionFactory Instance
-        sessionFactoryObj = new Configuration().configure().buildSessionFactory();
-        return sessionFactoryObj;
-    }
-    
-    
-    
+    public UserCrud(){}
+
     public void createUser(String uName, String pWord, int accType, String uFName, String uLName){
         User userObj;
-        Session sessionObj = null;
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
             
@@ -75,11 +58,10 @@ public class UserCrud {
     
     public List getUsers(){
         List<User> userList = new ArrayList();
-        Session sessionObj = null;
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
 
@@ -99,11 +81,10 @@ public class UserCrud {
     }
     
     public void updateUser(String uName, String pWord, int accType, String uFName, String uLName){
-        Session sessionObj = null;
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -133,11 +114,10 @@ public class UserCrud {
     }
     
     public void deleteUser(String uName){
-        Session sessionObj = null;
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -162,10 +142,9 @@ public class UserCrud {
     
     public User findByUserName(String uName){
         User userObj = null;
-        Session sessionObj = null;
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  

@@ -29,7 +29,7 @@ public class doctorPersistBean implements Serializable {
     private String doctorFN;
     private String doctorLN;
     private String doctorS;
-    private Date doctorDOB;
+    private String doctorDOB;
     private String doctorPN;
     
     public doctorPersistBean(){
@@ -93,10 +93,10 @@ public class doctorPersistBean implements Serializable {
     public void setDoctorS(String doctorS) {
         this.doctorS = doctorS;
     }
-    public Date getDoctorDOB() {
+    public String getDoctorDOB() {
         return doctorDOB;
     }
-    public void setDoctorDOB(Date doctorDOB) {
+    public void setDoctorDOB(String doctorDOB) {
         this.doctorDOB = doctorDOB;
     }
     public String getDoctorPN() {

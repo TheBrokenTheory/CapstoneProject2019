@@ -59,14 +59,14 @@
                             </b:selectOneMenu>    
                             
                             <!-- Doctor DOB -->
-                            <b:dateTimePicker value="" icon-position="left" mode="popup" show-time="false"
+                            <b:dateTimePicker value="#{docBean.doctorDOB}" icon-position="left" mode="popup" show-time="false"
                                 format="YYYY/MM/DD" required="true" col-md="4" label="Date of Birth"
                                 placeholder="Date of Birth"/>
                         </b:column>
                         
                         <b:column>
                             <!--Enter phone number-->
-                            <b:inputText id="phone" value="" required="true"
+                            <b:inputText id="phone" value="#{docBean.doctorPN}" required="true"
                                          label="Phone Number" placeholder="Phone Number" col-md="4"> 
                                 <f:facet name="prepend">
                                     <b:icon name="phone" />

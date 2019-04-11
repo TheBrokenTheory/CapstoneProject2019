@@ -4,42 +4,27 @@ package org.aspgroup1.crud;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import org.aspgroup1.HibernateUtilities.HibernateUtil;
 import org.aspgroup1.entity.Doctor;
 
 //Hibernate Imports
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 /**
  *
  * @author tfran
  */
 public class DoctorCrud {
-    static SessionFactory sessionFactoryObj;
+    
+    public DoctorCrud(){}
 
     
-    public DoctorCrud(){
-        
-        sessionFactoryObj = buildSessionFactory();
-    }
-    
-    
-    private static SessionFactory buildSessionFactory() {
-        // Creating Hibernate SessionFactory Instance
-        sessionFactoryObj = new Configuration().configure().buildSessionFactory();
-        return sessionFactoryObj;
-    }
-    
-    
-    
-    public void createDoctor(String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+    public void createDoctor(String doctorFN, String doctorLN, String doctorS, String doctorDOB, String doctorPN){
         Doctor docObj;
-        Session sessionObj = null;
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
             
@@ -57,9 +42,10 @@ public class DoctorCrud {
             //Commit to DB
             sessionObj.getTransaction().commit();
             
+            
         } catch(Exception sqlException) {
-            if(sessionObj.getTransaction() != null) {
-                System.out.println("\n.......Transaction Is Being Rolled Back.......\n");
+            if(null != sessionObj.getTransaction()) {
+                System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
                 sessionObj.getTransaction().rollback();
             }
             sqlException.printStackTrace();
@@ -71,19 +57,21 @@ public class DoctorCrud {
     }
     
     public List getDoctors(){
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         List<Doctor> doctorList = new ArrayList();
-        Session sessionObj = null;
         
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
+           
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
 
             doctorList = sessionObj.createQuery("FROM Doctor").list();
+            
+            
         } catch(Exception sqlException) {
-            if(sessionObj.getTransaction() != null) {
-                System.out.println("\n.......Transaction Is Being Rolled Back.......\n");
+            if(null != sessionObj.getTransaction()) {
+                System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
                 sessionObj.getTransaction().rollback();
             }
             sqlException.printStackTrace();
@@ -92,15 +80,17 @@ public class DoctorCrud {
                 sessionObj.close();
             }
         }
+        
+    
         return doctorList;
     }
     
-    public void updateDoctor(long id, String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
-        Session sessionObj = null;
-        
+    public void updateDoctor(long id, String doctorFN, String doctorLN, String doctorS, String doctorDOB, String doctorPN){
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
+
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
+            
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -115,6 +105,7 @@ public class DoctorCrud {
             
             // Committing The Transactions To The Database
             sessionObj.getTransaction().commit();
+            
             System.out.print("\nDoctor With Id?= " + docObj.getDoctorID() + " Is Successfully Updated In The Database!\n");
         } catch(Exception sqlException) {
             if(null != sessionObj.getTransaction()) {
@@ -130,11 +121,10 @@ public class DoctorCrud {
     }
     
     public void deleteDoctor(long id){
-        Session sessionObj = null;
-        
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
+         
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -143,8 +133,10 @@ public class DoctorCrud {
  
             // Committing The Transactions To The Database
             sessionObj.getTransaction().commit();
+            
+
             System.out.print("\nDoctor With Id?= " + docObj.getDoctorID() + " Is Successfully Deleted From The Database!\n");
-        } catch(Exception sqlException) {
+        }catch(Exception sqlException) {
             if(null != sessionObj.getTransaction()) {
                 System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
                 sessionObj.getTransaction().rollback();
@@ -158,15 +150,19 @@ public class DoctorCrud {
     }
     
     public Doctor findByID(long id){
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
+        
         Doctor docObj = null;
-        Session sessionObj = null;
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
+            
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
             docObj = (Doctor) sessionObj.load(Doctor.class, id);
+            
+            sessionObj.close();
+            
         } catch(Exception sqlException) {
             if(null != sessionObj.getTransaction()) {
                 System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
@@ -180,5 +176,6 @@ public class DoctorCrud {
         }
         return docObj;
     }
+    
     
 }

@@ -4,33 +4,23 @@ package org.aspgroup1.crud;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import org.aspgroup1.HibernateUtilities.HibernateUtil;
 import org.aspgroup1.entity.Appointment;
 
 //Hibernate Imports
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+
 
 public class AppointmentCrud {
-    static SessionFactory sessionFactoryObj;
     
-    public AppointmentCrud(){
-        sessionFactoryObj = buildSessionFactory();
-    }
-    
-    private static SessionFactory buildSessionFactory() {
-        // Creating Hibernate SessionFactory Instance
-        sessionFactoryObj = new Configuration().configure().buildSessionFactory();
-        return sessionFactoryObj;
-    }
+    public AppointmentCrud(){}
     
     public void createAppointment(String firstName, String lastName, String appDate, String appTime, String reasonForVisit, String doctorSeen){
         Appointment appObj;
-        Session sessionObj = null;
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
             
@@ -64,11 +54,11 @@ public class AppointmentCrud {
     
     public List getAppointments(){
         List<Appointment> appointmentList = new ArrayList();
-        Session sessionObj = null;
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
+
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
 
@@ -88,11 +78,10 @@ public class AppointmentCrud {
     }
     
     public void updateAppointment(long id, String firstName, String lastName, String appDate, String appTime, String reasonForVisit, String doctorSeen){
-        Session sessionObj = null;
+         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -123,11 +112,10 @@ public class AppointmentCrud {
     }
     
     public void deleteAppointment(long id){
-        Session sessionObj = null;
+         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -152,10 +140,9 @@ public class AppointmentCrud {
     
     public Appointment findByID(long id){
         Appointment appObj = null;
-        Session sessionObj = null;
+         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         try {
             //Create Session
-            sessionObj = sessionFactoryObj.openSession();
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -173,4 +160,5 @@ public class AppointmentCrud {
         }
         return appObj;
     }
+
 }
