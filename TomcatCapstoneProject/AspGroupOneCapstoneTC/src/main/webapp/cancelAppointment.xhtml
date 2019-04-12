@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:cc = "http://java.sun.com/jsf/composite/uicomponents">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body>
+        <!--Top Menu Bar-->
+        <cc:topNavMenu/>
+        
+        <b:container fluid="true">
+            <b:row>
+                <!--Side Menu Bar-->   
+                <cc:sideNavMenu/>
+                
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <br/>
+                    <br/>
+                    <h1>Cancel Appointment</h1>
+                    <hr/>
+                    <h:form id="newApptForm">
+                        <b:container fluid="true">
+                            <b:row>
+                                <!--This is where the user will select the date and time for the appointment-->
+                                <b:column col-sm="7" style-class="newApptFormStyle">
+                                    <b:selectOneMenu value="#{eventBean.appID}" colMd="6" label="Select Appointment:" 
+                                                required="true">
+                                        <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                         <f:selectItems value="#{eventBean.getEventsL()}" var="apt" 
+                                            itemValue="#{apt.appID}" itemLabel="#{apt.appDate} #{apt.firstName} #{apt.lastName}"/>
+                                    </b:selectOneMenu>
+                                </b:column>
+                                
+                            </b:row>
+                           
+                            <b:row>
+                                <!--
+                                    SUBMIT BUTTON. This button will gather all the info
+                                    from above and send it to the schedule bean. Where it will
+                                    create a event object
+                                -->
+                                <b:column>
+                                    <b:commandButton class="cancelBtn" value="Cancel appointment"
+                                                    action="#{eventBean.cancelAppointment()}" ajax="true" update="@form"/>
+                                </b:column>
+                            </b:row>
+                        </b:container>
+                    </h:form>
+                    
+                    <hr/>
+                    
+                    <!-- Adds the full calendar to the page.
+                        Add the events to this main calendar. -->
+                    <cc:calendarComponent/>
+                    
+                    <br/>
+                </b:column>
+            </b:row>  
+        </b:container>
+                      
+        
+        <style type="text/css">
+            .cancelBtn{
+                background-color: #E0E0E0;
+            }
+            
+            .newApptFormStyle{
+                padding: 1px;
+                
+            }
+        </style>
+    </h:body>
+</html>

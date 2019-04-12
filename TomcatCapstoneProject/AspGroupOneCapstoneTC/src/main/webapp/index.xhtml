@@ -38,7 +38,7 @@
                                 <h:outputText class="text" value="Patients On File"/>
                                 <br/>
                                 <br/>
-                                <h:outputText class="dbText" value="106" />
+                                <h:outputText class="dbText" value="" />
                             </b:well>
                             
                             <!-- Appointments -->
@@ -47,7 +47,7 @@
                                 <h:outputText class="text" value="Today's Appointments"/>
                                 <br/>
                                 <br/>
-                                <h:outputText class="dbText" value="4" />
+                                <h:outputText class="dbText" value="" />
                             </b:well>
                             
                             <!-- Doctors -->
@@ -55,8 +55,7 @@
                                 <h:form><b:iconAwesome class="icons" name="user-md" size="3x"/></h:form>
                                 <h:outputText class="text" value="Doctors On Staff"/>
                                 <br/>
-                                <br/>
-                                <h:outputText class="dbText" value="" />
+                                <h:outputText class="dbText" value="#{docBean.numDoc}"/>
                             </b:well>
                             
                         </b:container>
@@ -100,7 +99,8 @@
             }
             .dbText{
                 padding-left: 50px;
-                font-size: 15px;
+                font-size: 25px;
+                font-weight: bold;
             }
         </style>
     </h:body>

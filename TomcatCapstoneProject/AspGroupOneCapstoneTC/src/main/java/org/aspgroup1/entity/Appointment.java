@@ -15,7 +15,7 @@ public class Appointment {
     @Id
     @Column(name="appID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int appID;
+    private long appID;
     
     @Column(name="firstName")
     private String firstName;
@@ -40,10 +40,10 @@ public class Appointment {
         
     }
 
-    public int getAppID() {
+    public long getAppID() {
         return appID;
     }
-    public void setAppID(int appID) {
+    public void setAppID(long appID) {
         this.appID = appID;
     }
     public String getFirstName() {

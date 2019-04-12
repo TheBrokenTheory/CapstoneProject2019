@@ -23,6 +23,7 @@ public class eventPersistBean {
     Appointment apptObj;
     AppointmentCrud ac;
     
+    private long appID;
     private String firstName;
     private String lastName;
     private String eventTitle;
@@ -38,16 +39,9 @@ public class eventPersistBean {
      */
     public eventPersistBean()
     {
-        //For some reason the calendar won't display
-        //Unless there is an event already
-        //This event is scheduled for 2016 so it
-        //won't affect anything were doing
-        //eventList.add("{title:'test', start:'2016-04-04T02:30'}");
-        
         ac = new AppointmentCrud();
         fetchExistingApts();
         eventString = createCalString();
-        //ac.createAppointment("test", "test", "2016-04-04", "11:30", "reasonForVisit", "doctorSeen");
     }
     
     //Creates Event Class & Adds to the eventList
@@ -59,18 +53,33 @@ public class eventPersistBean {
         //Creates new Event obj and stores it in ArrayList
         ac.createAppointment(this.firstName, this.lastName, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
         
-        //ac.createAppointment("test", "test", "2016-04-04", "11:30", "reasonForVisit", "doctorSeen");
-        
         eventTitle = generateTitle(this.firstName, this.lastName);
         eventList.add(jsonString(eventTitle, eventDate, eventTime));
         eventString = createCalString();
     }
     
-    public void fetchExistingApts()
+    public void cancelAppointment()
+    {
+        ac.deleteAppointment(this.appID);
+        
+        eventL.clear();
+        eventList.clear();
+        updateEventList();
+        eventString = createCalString();
+    }
+    
+    public List getEventsL()
+    {
+        eventL = new ArrayList(ac.getAppointments());
+        return eventL;
+    }
+    
+    public void updateEventList()
     {
         List<Appointment> appointmentList = new ArrayList();
         appointmentList= ac.getAppointments();
         
+        //Adds the appointments to JSON string
         for(int i=0; i < appointmentList.size(); i++)
         {
             String firstName;
@@ -88,8 +97,31 @@ public class eventPersistBean {
             eventTime = appointmentList.get(i).getAppTime();
             eventList.add(jsonString(eventTitle, eventDate, eventTime));
         }
+    }
+    
+    public void fetchExistingApts()
+    {
+        List<Appointment> appointmentList = new ArrayList();
+        appointmentList= ac.getAppointments();
         
-        
+        //Adds the appointments to JSON string
+        for(int i=0; i < appointmentList.size(); i++)
+        {
+            String firstName;
+            String lastName;
+            String eventTitle;
+            String eventDate;
+            String eventTime;
+            String reasonForVisit;
+            String doctorSeen;
+            
+            firstName = appointmentList.get(i).getFirstName();
+            lastName = appointmentList.get(i).getLastName();
+            eventTitle = generateTitle(firstName, lastName);
+            eventDate = appointmentList.get(i).getAppDate();
+            eventTime = appointmentList.get(i).getAppTime();
+            eventList.add(jsonString(eventTitle, eventDate, eventTime));
+        }
     }
     
     //Creates the string required for the fullCalendar component
@@ -202,6 +234,8 @@ public class eventPersistBean {
     
     
     //Getters and Setters
+    public long getAppID(){return this.appID;}
+    public void setAppID(long id){this.appID = id;}
     public String getFirstName(){return firstName;}
     public void setFirstName(String fName){this.firstName = fName;}
     public String getLastName() {return lastName;}

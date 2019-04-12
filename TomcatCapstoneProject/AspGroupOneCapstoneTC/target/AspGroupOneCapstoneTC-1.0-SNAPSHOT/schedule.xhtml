@@ -21,15 +21,15 @@
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <br/>
                     <br/>
-                    <h1>Schedule</h1>
+                    <h1>Create Appointment</h1>
                     <hr/>
                     <h:form id="newApptForm">
                         <b:container fluid="true">
                             <b:row>
                                 <!--This is where the user will select the date and time for the appointment-->
                                 <b:column col-sm="7" style-class="newApptFormStyle">
-                                    <b:dateTimePicker id="aptDateAndTime" value="#{eventBean.dateTimeOfAppointment}" mode="inline" 
-                                            label="Time and date for new appointment"  max-date="2019-12-31" required="true"/>
+                                    <b:dateTimePicker id="aptDateAndTime" value="#{eventBean.dateTimeOfAppointment}" mode="inline" required="true"
+                                            label="Time and date for new appointment" max-date="2019-12-31" min-date="2019-04-01"/>
                                 </b:column>
                                 
                                 <b:column col-md="8" class="newApptFormStyle">

@@ -42,10 +42,11 @@
                         <b:dataTable value="#{docBean.doctorsL}" var="doc" auto-update="true">           
                             <b:dataTableColumn value="#{doc.doctorID}"
                                      label="Doctor ID"/>
-                            <b:dataTableColumn value="#{doc.doctorFirstName}" />
-                            <b:dataTableColumn value="#{doc.doctorLastName}" /> 
-                            <b:dataTableColumn value="#{doc.doctorSpecialty}" />
-                            <b:dataTableColumn value="#{doc.doctorPhoneNum}" /> 
+                            <b:dataTableColumn value="#{doc.doctorFirstName}" label="First Name"/>
+                            <b:dataTableColumn value="#{doc.doctorLastName}" label="Last Name"/> 
+                            <b:dataTableColumn value="#{doc.doctorSpecialty}" label="Specialty"/>
+                            <b:dataTableColumn value="#{doc.doctorPhoneNum}" label="Phone Number"/> 
+                            <b:dataTableColumn value="#{doc.doctorDOB}" label="Date of Birth"/> 
                         </b:dataTable>
 
                     </h:form>
