@@ -29,7 +29,7 @@ public class Doctor implements Serializable {
     private String doctorSpecialty;
     
     @Column(name="doctorDOB")
-    private Date doctorDOB;
+    private String doctorDOB;
     
     @Column(name="doctorPhoneNum")
     private String doctorPhoneNum;
@@ -61,10 +61,10 @@ public class Doctor implements Serializable {
     public void setDoctorSpecialty(String doctorSpecialty) {
         this.doctorSpecialty = doctorSpecialty;
     }
-    public Date getDoctorDOB() {
+    public String getDoctorDOB() {
         return doctorDOB;
     }
-    public void setDoctorDOB(Date doctorDOB) {
+    public void setDoctorDOB(String doctorDOB) {
         this.doctorDOB = doctorDOB;
     }
     public String getDoctorPhoneNum() {

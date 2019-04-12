@@ -11,12 +11,12 @@
     </h:head>
     <h:body>
         <!--Top Menu Bar-->
-        <cc:topNavMenu/>
+        <cc:genUserTopNav/>
         
         <b:container fluid="true">
             <b:row>
                 <!--Side Menu Bar-->   
-                <cc:sideNavMenu/>
+                <cc:genUserSideNav/>
                 
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <br/>
@@ -27,13 +27,12 @@
                         <b:container fluid="true">
                             <b:row>
                                 <!--This is where the user will select the date and time for the appointment-->
-                                
                                 <b:column col-sm="7" style-class="newApptFormStyle">
                                     <b:dateTimePicker id="aptDateAndTime" value="#{eventBean.dateTimeOfAppointment}" mode="inline" required="true"
                                             label="Time and date for new appointment" max-date="2019-12-31" min-date="2019-04-01"/>
                                 </b:column>
                                 
-                                <b:column col-md="8" style-class="newApptFormStyle">
+                                <b:column col-md="8" class="newApptFormStyle">
                                     <!--The user will enter the first name of the patient here -->
                                     <b:column>
                                         <b:inputText id="firstName" value="#{eventBean.firstName}" ajax="true" required="true" 
@@ -43,20 +42,13 @@
                                         <b:inputText id="lsatName" value="#{eventBean.lastName}" ajax="true" required="true" 
                                                     col-md="4" label="Enter patient's last name:"/>
                                     </b:column>
-                                   
+                                    
                                     <!--The user will select the reason for their visit here-->
-                               
                                     <b:column>
                                         <b:selectOneMenu id="reasonForVisit" value="#{eventBean.reasonForVisit}" colMd="4" 
                                                         required="true" label="Reason for visit:">
                                             <f:selectItem itemLabel="(Please select)" itemValue="" />
                                             <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
-                                            <f:selectItem itemLabel="High blood pressure" itemValue ="High blood pressure"/>
-                                            <f:selectItem itemLabel="Headaches and migraines" itemValue="Headaches and migraines"/>
-                                            <f:selectItem itemLabel="Diabetes" itemValue="Diabetes"/>
-                                            <f:selectItem itemLabel="Chronic neurologic disorders" itemValue="Chronic neurologic disorders"/>
-                                            <f:selectItem itemLabel="Cholesterol problems" itemValue="Cholesterol problems"/>
-                                                                                     
                                             <f:selectItem itemLabel="More Reasons"/>
                                             <f:selectItem itemLabel="More Reasons"/>
                                             <f:selectItem itemLabel="More Reasons"/>
@@ -68,17 +60,8 @@
                                             <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
                                                         itemValue="#{doc.doctorLastName}" itemLabel="Dr. #{doc.doctorLastName}"/>
                                         </b:selectOneMenu>
-                              
-                                    <!--The user will select which doctor they are seeing here -->                                
-                              
-                                    <b:selectOneMenu id="seeingDoc" value="#{scheduleBean.doctorSeen}" colMd="4" required="true" label="Select Doctor:">
-                                        <f:selectItems value="#{viewDoctorBean.doctors}" var="item"
-                                                       itemLabel="#{item.doctorFirstName}"
-                                                       itemValue="#{item.doctorLastName}"/>
-                                    </b:selectOneMenu>
-                           
                                     </b:column>
-                                   
+                                    
                                 </b:column>
                             </b:row>
                            
@@ -112,6 +95,7 @@
             .searchBtn{
                 background-color: #E0E0E0;
             }
+            
             .newApptFormStyle{
                 padding: 1px;
                 

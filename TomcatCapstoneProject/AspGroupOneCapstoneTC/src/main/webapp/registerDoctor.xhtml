@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:cc="http://java.sun.com/jsf/composite/uicomponents">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body>
+        <!--Top Menu Bar-->
+        <cc:topNavMenu/>
+        
+        <b:container fluid="true">
+            <b:row>
+                <!--Side Menu Bar-->   
+                <cc:sideNavMenu/>
+                
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <hr/>
+                    <hr/>
+                    <h1>Register doctors</h1>
+                    <hr/>
+                    <h:form prependId="false">
+                        <h3>Enter doctor information</h3>
+                          
+                        <b:container class="test">
+                            <b:column>
+                                <!--Enter first name-->
+                                <b:inputText id="firstname" value="#{docBean.doctorFN}" required="true"
+                                            label="First Name" placeholder="First Name" col-md="4">
+                                    <f:facet name="prepend">
+                                        <b:icon name="user" />
+                                    </f:facet>
+                                </b:inputText>
+
+                                <!--Enter last name-->
+                                <b:inputText id="lastname" value="#{docBean.doctorLN}" required="true"
+                                            label="Last Name" placeholder="Last Name" col-md="4"> 
+                                    <f:facet name="prepend">
+                                        <b:icon name="user" />
+                                    </f:facet>
+                                </b:inputText>
+                            </b:column>
+                        </b:container>
+                        <b:column>
+                            <!--Enter specialty-->
+                            <b:selectOneMenu id="specialty" value="#{docBean.doctorS}"
+                                        required="true" label="Specialty" col-md="4">
+                                <f:facet name="prepend">
+                                    <b:icon name="star" />
+                                </f:facet>
+                                <f:selectItem itemLabel="(Please select)"/>
+                                <f:selectItem itemLabel="Dentist" itemValue="Dentist"/>
+                                <f:selectItem itemLabel="Dermatology" itemValue="Dermatologist"/>
+                                <f:selectItem itemLabel="Neurology" itemValue="Neurologist"/>
+                                <f:selectItem itemLabel="Psychiatry" itemValue="Psychiatrist"/>
+                            </b:selectOneMenu>    
+                            
+                            <!-- Doctor DOB -->
+                            <b:dateTimePicker value="#{docBean.doctorDOB}" icon-position="left" mode="popup" show-time="false"
+                                format="YYYY/MM/DD" required="true" col-md="4" label="Date of Birth"
+                                placeholder="Date of Birth"/>
+                        </b:column>
+                        
+                        <b:column>
+                            <!--Enter phone number-->
+                            <b:inputText id="phone" value="#{docBean.doctorPN}" required="true"
+                                         label="Phone Number" placeholder="Phone Number" col-md="4"> 
+                                <f:facet name="prepend">
+                                    <b:icon name="phone" />
+                                </f:facet>
+                            </b:inputText>
+                        </b:column>
+                        
+                        <!--Submit button-->
+                        <b:commandButton class="searchBtn" value="Register" look="default" 
+                                         action="#{docBean.createDoc()}" update="@form" />
+                        
+                    </h:form>
+                </b:column>
+            </b:row>  
+        </b:container>
+         <style type="text/css">
+            .searchBtn{
+                background-color: #E0E0E0;
+                margin-left: 30px;
+            }
+            .test{
+                position: relative;
+                margin-right: 10px;
+                border: 2px solid red;
+            }
+        </style>
+    </h:body>
+</html>

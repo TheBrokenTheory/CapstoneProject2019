@@ -21,7 +21,7 @@
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <br/>
                     <br/>
-                    <h1>Schedule</h1>
+                    <h1>Create Appointment</h1>
                     <hr/>
                     <h:form id="newApptForm">
                         <b:container fluid="true">
@@ -29,22 +29,26 @@
                                 <!--This is where the user will select the date and time for the appointment-->
                                 
                                 <b:column col-sm="7" style-class="newApptFormStyle">
-                                    <b:dateTimePicker id="aptDateAndTime" value="#{scheduleBean.dateTimeOfAppointment}" mode="inline" label="Time and date for new appointment"  max-date="2019-12-31"/>
+                                    <b:dateTimePicker id="aptDateAndTime" value="#{eventBean.dateTimeOfAppointment}" mode="inline" required="true"
+                                            label="Time and date for new appointment" max-date="2019-12-31" min-date="2019-04-01"/>
                                 </b:column>
                                 
                                 <b:column col-md="8" style-class="newApptFormStyle">
                                     <!--The user will enter the first name of the patient here -->
                                     <b:column>
-                                        <b:inputText id="firstName" value="#{scheduleBean.firstName}" ajax="true" required="false" col-md="4" label="Enter patient's first name:"/>
+                                        <b:inputText id="firstName" value="#{eventBean.firstName}" ajax="true" required="true" 
+                                                    col-md="4" label="Enter patient's first name:"/>
                                     
                                     <!--The user will enter the last name of the patient here -->
-                                        <b:inputText id="lsatName" value="#{scheduleBean.lastName}" ajax="true" required="false" col-md="4" label="Enter patient's last name:"/>
+                                        <b:inputText id="lsatName" value="#{eventBean.lastName}" ajax="true" required="true" 
+                                                    col-md="4" label="Enter patient's last name:"/>
                                     </b:column>
                                    
                                     <!--The user will select the reason for their visit here-->
                                
                                     <b:column>
-                                        <b:selectOneMenu id="reasonForVisit" value="#{scheduleBean.reasonForVisit}" colMd="4" required="false" label="Reason for visit:">
+                                        <b:selectOneMenu id="reasonForVisit" value="#{eventBean.reasonForVisit}" colMd="4" 
+                                                        required="true" label="Reason for visit:">
                                             <f:selectItem itemLabel="(Please select)" itemValue="" />
                                             <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
                                             <f:selectItem itemLabel="High blood pressure" itemValue ="High blood pressure"/>
@@ -53,6 +57,16 @@
                                             <f:selectItem itemLabel="Chronic neurologic disorders" itemValue="Chronic neurologic disorders"/>
                                             <f:selectItem itemLabel="Cholesterol problems" itemValue="Cholesterol problems"/>
                                                                                      
+                                            <f:selectItem itemLabel="More Reasons"/>
+                                            <f:selectItem itemLabel="More Reasons"/>
+                                            <f:selectItem itemLabel="More Reasons"/>
+                                        </b:selectOneMenu>                    
+                                        
+                                        <!--The user will select which doctor they are seeing here -->
+                                        <b:selectOneMenu id="seeingDoc" value="#{eventBean.doctorSeen}" colMd="4" label="Select Doctor:" 
+                                                        required="true">
+                                            <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
+                                                        itemValue="#{doc.doctorLastName}" itemLabel="Dr. #{doc.doctorLastName}"/>
                                         </b:selectOneMenu>
                               
                                     <!--The user will select which doctor they are seeing here -->                                
@@ -76,7 +90,7 @@
                                 -->
                                 <b:column>
                                     <b:commandButton class="searchBtn" value="Create New appointment"
-                                            action="#{scheduleBean.createAppointment()}" ajax="true" update="@form"/>
+                                            action="#{eventBean.createAppt()}" ajax="true" update="@form"/>
                                 </b:column>
                             </b:row>
                         </b:container>
@@ -86,9 +100,8 @@
                     
                     <!-- Adds the full calendar to the page.
                         Add the events to this main calendar. -->
-                    <b:fullCalendar weekends="false" editable="false" events="#{scheduleBean.test}" autoUpdate="true"
-                            event-click="function(calEvent, jsEvent, view){ $(this).css('background', '##3A87AD');}"
-                            day-click="function(calEvent, jsEvent, view){ $(this).css('background','#F3F3F3');}" />
+                    <cc:calendarComponent/>
+                    
                     <br/>
                 </b:column>
             </b:row>  
@@ -100,7 +113,8 @@
                 background-color: #E0E0E0;
             }
             .newApptFormStyle{
-                padding: 10px;    
+                padding: 1px;
+                
             }
         </style>
     </h:body>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+   xmlns:h = "http://java.sun.com/jsf/html"
+   xmlns:f = "http://java.sun.com/jsf/core"
+   xmlns:b="http://bootsfaces.net/ui"
+   xmlns:cc = "http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface/>
+    
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <b:column col-sm="3" col-md="2" styleClass="sidebar">
+            <b:listLinks>
+                <b:navLink class="navLinkHeaders" header="Appointment"/>
+                <hr/>
+                <b:navLink class="navLinks" outcome="genUserCreateAppointment">
+                    <p class="navLinks">Create Appointment</p>
+                </b:navLink>
+                <b:navLink class="navLinks" outcome="genUserCancelAppointment">
+                    <p class="navLinks">Cancel Appointment</p>
+                </b:navLink>
+            </b:listLinks>
+        </b:column>
+        
+        <style type="text/css">
+            .sidebar {
+                background-color: #F3F3F3;
+                border-right: 1px solid #eee;
+                bottom: 0;
+                display: block;
+                left: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                padding: 20px;
+                position: fixed;
+                top: 51px;
+                z-index: 1000; 
+            }
+            .navLinks{
+                margin-bottom: 5px;
+            }
+            .navLinkHeaders {
+                font-size: 20px;
+                text-align: center;
+            }
+        </style>
+    </cc:implementation>
+</html>
