@@ -2,12 +2,12 @@ package org.aspgroup1.persistenceBeans;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import managedBeans.Event;
 import org.aspgroup1.crud.AppointmentCrud;
 import org.aspgroup1.entity.Appointment;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -64,7 +64,7 @@ public class eventPersistBean {
         
         eventL.clear();
         eventList.clear();
-        updateEventList();
+        fetchExistingApts();
         eventString = createCalString();
     }
     
@@ -72,31 +72,6 @@ public class eventPersistBean {
     {
         eventL = new ArrayList(ac.getAppointments());
         return eventL;
-    }
-    
-    public void updateEventList()
-    {
-        List<Appointment> appointmentList = new ArrayList();
-        appointmentList= ac.getAppointments();
-        
-        //Adds the appointments to JSON string
-        for(int i=0; i < appointmentList.size(); i++)
-        {
-            String firstName;
-            String lastName;
-            String eventTitle;
-            String eventDate;
-            String eventTime;
-            String reasonForVisit;
-            String doctorSeen;
-            
-            firstName = appointmentList.get(i).getFirstName();
-            lastName = appointmentList.get(i).getLastName();
-            eventTitle = generateTitle(firstName, lastName);
-            eventDate = appointmentList.get(i).getAppDate();
-            eventTime = appointmentList.get(i).getAppTime();
-            eventList.add(jsonString(eventTitle, eventDate, eventTime));
-        }
     }
     
     public void fetchExistingApts()
@@ -142,6 +117,33 @@ public class eventPersistBean {
         
         return calString;
     }
+    
+    //Returns number of appointmets for today's date
+    public int getTodaysAppointments()
+    {
+        int todaysAppointments = 0;
+        String DATE_FORMAT_NOW = "yyyy-MM-dd";
+        //Get todays date in proper format
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+        String todaysDate = sdf.format(cal.getTime());
+        
+        List<Appointment> appointmentList = new ArrayList();
+        appointmentList= ac.getAppointments();
+        
+        //Compares Dates with events in DB
+        for(int i=0; i < appointmentList.size(); i++)
+        {
+            String eventDate = appointmentList.get(i).getAppDate();
+            if(todaysDate.equals(eventDate))
+            {
+                todaysAppointments++;
+            }
+        }
+        
+        return todaysAppointments;
+    }
+    
     
     //Generates Title of Event
     private String generateTitle(String fName, String lName)

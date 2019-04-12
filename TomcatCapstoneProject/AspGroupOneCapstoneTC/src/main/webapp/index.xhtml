@@ -37,7 +37,6 @@
                                 <h:form><b:iconAwesome class="icons" name="ambulance" size="3x"/></h:form>
                                 <h:outputText class="text" value="Patients On File"/>
                                 <br/>
-                                <br/>
                                 <h:outputText class="dbText" value="" />
                             </b:well>
                             
@@ -46,8 +45,7 @@
                                 <h:form><b:iconAwesome class="icons" name="calendar" size="3x"/></h:form>
                                 <h:outputText class="text" value="Today's Appointments"/>
                                 <br/>
-                                <br/>
-                                <h:outputText class="dbText" value="" />
+                                <h:outputText class="dbText" value="#{eventBean.getTodaysAppointments()}" />
                             </b:well>
                             
                             <!-- Doctors -->

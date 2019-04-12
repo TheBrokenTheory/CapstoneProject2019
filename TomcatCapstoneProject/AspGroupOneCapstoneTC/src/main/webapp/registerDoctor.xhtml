@@ -25,25 +25,26 @@
                     <hr/>
                     <h:form prependId="false">
                         <h3>Enter doctor information</h3>
-                        
-                        <b:column>
-                            <!--Enter first name-->
-                            <b:inputText id="firstname" value="#{docBean.doctorFN}" required="true"
-                                        label="First Name" placeholder="First Name" col-md="4">
-                                <f:facet name="prepend">
-                                    <b:icon name="user" />
-                                </f:facet>
-                            </b:inputText>
+                          
+                        <b:container class="test">
+                            <b:column>
+                                <!--Enter first name-->
+                                <b:inputText id="firstname" value="#{docBean.doctorFN}" required="true"
+                                            label="First Name" placeholder="First Name" col-md="4">
+                                    <f:facet name="prepend">
+                                        <b:icon name="user" />
+                                    </f:facet>
+                                </b:inputText>
 
-                            <!--Enter last name-->
-                            <b:inputText id="lastname" value="#{docBean.doctorLN}" required="true"
-                                        label="Last Name" placeholder="Last Name" col-md="4"> 
-                                <f:facet name="prepend">
-                                    <b:icon name="user" />
-                                </f:facet>
-                            </b:inputText>
-                        </b:column>
-                        
+                                <!--Enter last name-->
+                                <b:inputText id="lastname" value="#{docBean.doctorLN}" required="true"
+                                            label="Last Name" placeholder="Last Name" col-md="4"> 
+                                    <f:facet name="prepend">
+                                        <b:icon name="user" />
+                                    </f:facet>
+                                </b:inputText>
+                            </b:column>
+                        </b:container>
                         <b:column>
                             <!--Enter specialty-->
                             <b:selectOneMenu id="specialty" value="#{docBean.doctorS}"
@@ -87,7 +88,11 @@
                 background-color: #E0E0E0;
                 margin-left: 30px;
             }
-            
+            .test{
+                position: relative;
+                margin-right: 10px;
+                border: 2px solid red;
+            }
         </style>
     </h:body>
 </html>

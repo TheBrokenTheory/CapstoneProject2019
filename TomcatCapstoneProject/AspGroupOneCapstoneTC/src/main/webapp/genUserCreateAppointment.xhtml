@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:cc = "http://java.sun.com/jsf/composite/uicomponents">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body>
+        <!--Top Menu Bar-->
+        <cc:genUserTopNav/>
+        
+        <b:container fluid="true">
+            <b:row>
+                <!--Side Menu Bar-->   
+                <cc:genUserSideNav/>
+                
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <br/>
+                    <br/>
+                    <h1>Create Appointment</h1>
+                    <hr/>
+                    <h:form id="newApptForm">
+                        <b:container fluid="true">
+                            <b:row>
+                                <!--This is where the user will select the date and time for the appointment-->
+                                <b:column col-sm="7" style-class="newApptFormStyle">
+                                    <b:dateTimePicker id="aptDateAndTime" value="#{eventBean.dateTimeOfAppointment}" mode="inline" required="true"
+                                            label="Time and date for new appointment" max-date="2019-12-31" min-date="2019-04-01"/>
+                                </b:column>
+                                
+                                <b:column col-md="8" class="newApptFormStyle">
+                                    <!--The user will enter the first name of the patient here -->
+                                    <b:column>
+                                        <b:inputText id="firstName" value="#{eventBean.firstName}" ajax="true" required="true" 
+                                                    col-md="4" label="Enter patient's first name:"/>
+                                    
+                                    <!--The user will enter the last name of the patient here -->
+                                        <b:inputText id="lsatName" value="#{eventBean.lastName}" ajax="true" required="true" 
+                                                    col-md="4" label="Enter patient's last name:"/>
+                                    </b:column>
+                                    
+                                    <!--The user will select the reason for their visit here-->
+                                    <b:column>
+                                        <b:selectOneMenu id="reasonForVisit" value="#{eventBean.reasonForVisit}" colMd="4" 
+                                                        required="true" label="Reason for visit:">
+                                            <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                            <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
+                                            <f:selectItem itemLabel="More Reasons"/>
+                                            <f:selectItem itemLabel="More Reasons"/>
+                                            <f:selectItem itemLabel="More Reasons"/>
+                                        </b:selectOneMenu>                    
+                                        
+                                        <!--The user will select which doctor they are seeing here -->
+                                        <b:selectOneMenu id="seeingDoc" value="#{eventBean.doctorSeen}" colMd="4" label="Select Doctor:" 
+                                                        required="true">
+                                            <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
+                                                        itemValue="#{doc.doctorLastName}" itemLabel="Dr. #{doc.doctorLastName}"/>
+                                        </b:selectOneMenu>
+                                    </b:column>
+                                    
+                                </b:column>
+                            </b:row>
+                           
+                            <b:row>
+                                <!--
+                                    SUBMIT BUTTON. This button will gather all the info
+                                    from above and send it to the schedule bean. Where it will
+                                    create a event object
+                                -->
+                                <b:column>
+                                    <b:commandButton class="searchBtn" value="Create New appointment"
+                                            action="#{eventBean.createAppt()}" ajax="true" update="@form"/>
+                                </b:column>
+                            </b:row>
+                        </b:container>
+                    </h:form>
+                    
+                    <hr/>
+                    
+                    <!-- Adds the full calendar to the page.
+                        Add the events to this main calendar. -->
+                    <cc:calendarComponent/>
+                    
+                    <br/>
+                </b:column>
+            </b:row>  
+        </b:container>
+                      
+        
+        <style type="text/css">
+            .searchBtn{
+                background-color: #E0E0E0;
+            }
+            
+            .newApptFormStyle{
+                padding: 1px;
+                
+            }
+        </style>
+    </h:body>
+</html>
+
