@@ -21,34 +21,24 @@
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <hr/>
                     <hr/>
-                    <h1>Remove Doctors</h1>
+                    <h1>Remove Patients</h1>
                     <hr/>
                     <h:form prependId="false">           
                         <b:column>
-                            <b:selectOneMenu value="#{docBean.doctorIDB}" colMd="4" label="Select Doctor:" 
-                                            required="true">
+                            <b:selectOneMenu value="" colMd="4" label="Select Patient:" required="true">
                                 <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
-                                            itemValue="#{doc.doctorID}" itemLabel="Dr. #{doc.doctorFirstName} #{doc.doctorLastName} ID #{doc.doctorID}"/>
+                                <f:selectItems value="" var="doc" 
+                                            itemValue="" itemLabel=""/>
                             </b:selectOneMenu>
                         </b:column>
 
                         <!--Submit button-->
-                        <b:commandButton class="removeBtn" value="Remove Doctor" look="default" 
-                                         action="#{docBean.deleteDoc()}" update="@form" />
+                        <b:commandButton class="removeBtn" value="Remove Patient" look="default" 
+                                          update="@form" />
                         
                         <hr/>
                         
-                        <b:dataTable value="#{docBean.doctorsL}" var="doc" auto-update="true">           
-                            <b:dataTableColumn value="#{doc.doctorID}"
-                                     label="Doctor ID"/>
-                            <b:dataTableColumn value="#{doc.doctorFirstName}" label="First Name"/>
-                            <b:dataTableColumn value="#{doc.doctorLastName}" label="Last Name"/> 
-                            <b:dataTableColumn value="#{doc.doctorSpecialty}" label="Specialty"/>
-                            <b:dataTableColumn value="#{doc.doctorPhoneNum}" label="Phone Number"/> 
-                            <b:dataTableColumn value="#{doc.doctorDOB}" label="Date of Birth"/> 
-                        </b:dataTable>
-
+           
                     </h:form>
                 </b:column>
             </b:row>  
