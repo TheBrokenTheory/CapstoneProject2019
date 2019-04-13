@@ -13,7 +13,7 @@
         <!--Top Menu Bar-->
         <cc:topNavMenu/>
         
-        <b:container fluid="true">
+        <b:container fluid="true"> 
             <b:row>
                 <!--Side Menu Bar-->   
                 <cc:sideNavMenu/>
@@ -26,25 +26,31 @@
                     <h:form prependId="false">
                         <h3>Enter doctor information</h3>
                           
-                        <b:container class="test">
+                        <b:container class="test"> 
                             <b:column>
                                 <!--Enter first name-->
-                                <b:inputText id="firstname" value="#{docBean.doctorFN}" required="true"
-                                            label="First Name" placeholder="First Name" col-md="4">
-                                    <f:facet name="prepend">
+                                <b:inputText id="firstname" value="#{docBean.doctorFN}" required="true"                            
+                                            label="First Name" placeholder="First Name" col-md="4"
+                                            validatorMessage="Name must be greater than 5 character and fewer than 30 characters.">                                           
+                                    <f:validateLength minimum = "5" maximum = "30" />
+                                                                       
+                                    <f:facet name="prepend" >
                                         <b:icon name="user" />
                                     </f:facet>
+                                    - 
                                 </b:inputText>
-
+                              
                                 <!--Enter last name-->
                                 <b:inputText id="lastname" value="#{docBean.doctorLN}" required="true"
-                                            label="Last Name" placeholder="Last Name" col-md="4"> 
+                                            label="Last Name" placeholder="Last Name" col-md="4"
+                                            validatorMessage="Name must be greater than 5 character and fewer than 30 characters.">                                            
+                                    <f:validateLength minimum = "5" maximum = "30" />
                                     <f:facet name="prepend">
                                         <b:icon name="user" />
                                     </f:facet>
                                 </b:inputText>
-                            </b:column>
-                        </b:container>
+                            </b:column> 
+                        </b:container> 
                         <b:column>
                             <!--Enter specialty-->
                             <b:selectOneMenu id="specialty" value="#{docBean.doctorS}"
@@ -68,7 +74,10 @@
                         <b:column>
                             <!--Enter phone number-->
                             <b:inputText id="phone" value="#{docBean.doctorPN}" required="true"
-                                         label="Phone Number" placeholder="Phone Number" col-md="4"> 
+                                         label="Phone Number" placeholder="Phone Number" col-md="4"
+                                         validatorMessage="Invalid phone number format">                  
+                    <f:validateRegex pattern=
+                                     "((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"/>
                                 <f:facet name="prepend">
                                     <b:icon name="phone" />
                                 </f:facet>
