@@ -8,6 +8,7 @@ import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import org.aspgroup1.HibernateUtilities.HibernateUtil;
 
 import org.aspgroup1.crud.UserCrud;
 import org.aspgroup1.entity.User;
@@ -99,6 +100,11 @@ public class userPersistBean implements Serializable {
         }
 
         return page;
+    }
+    
+    public void logout()
+    {
+        HibernateUtil.closeSessionFactory();
     }
     
     

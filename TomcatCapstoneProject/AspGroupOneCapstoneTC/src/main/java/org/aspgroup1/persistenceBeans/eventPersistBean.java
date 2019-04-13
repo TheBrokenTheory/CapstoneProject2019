@@ -19,6 +19,8 @@ public class eventPersistBean {
     
     //Year, Month, Day
     private StringBuilder eventString = new StringBuilder();
+    private StringBuilder doctorPersonalSchedule = new StringBuilder();
+    
     List eventL;
     Appointment apptObj;
     AppointmentCrud ac;
@@ -143,7 +145,52 @@ public class eventPersistBean {
         
         return todaysAppointments;
     }
-    
+    /*
+    //Populates a calendar for each Doc upon request
+    public String getDoctorsSchedule(String lastName)
+    {
+        System.out.println("Test");
+        
+        doctorPersonalSchedule.append("[");
+        for(int i = 0; i < eventList.size(); i++)
+        {
+            List<Appointment> appointmentList = new ArrayList();
+            appointmentList= ac.getAppointments();
+        
+        //Adds the appointments to JSON string
+        for(int i=0; i < appointmentList.size(); i++)
+        {
+            String firstName;
+            String lastName;
+            String eventTitle;
+            String eventDate;
+            String eventTime;
+            String reasonForVisit;
+            String doctorSeen;
+            
+            firstName = appointmentList.get(i).getFirstName();
+            lastName = appointmentList.get(i).getLastName();
+            eventTitle = generateTitle(firstName, lastName);
+            eventDate = appointmentList.get(i).getAppDate();
+            eventTime = appointmentList.get(i).getAppTime();
+            eventList.add(jsonString(eventTitle, eventDate, eventTime));
+        }
+            
+   
+            
+            doctorPersonalSchedule.append(eventList.get(i));
+            if(i < eventList.size())
+            {
+                doctorPersonalSchedule.append(",");
+            }
+        }
+        doctorPersonalSchedule.append("]");
+        
+        
+        
+        return "doctorSchedule";
+    }
+    */
     
     //Generates Title of Event
     private String generateTitle(String fName, String lName)
@@ -250,4 +297,5 @@ public class eventPersistBean {
     public void setDateTimeOfAppointment(String dateTime) {this.dateTimeOfAppointment = dateTime;}
 
     public StringBuilder getEventString(){return eventString;}
+    public StringBuilder getDoctorPersonalSchedule(){return doctorPersonalSchedule;}
 }

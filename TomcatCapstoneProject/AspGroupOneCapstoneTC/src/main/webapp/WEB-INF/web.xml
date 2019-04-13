@@ -33,6 +33,6 @@ net.bootsfaces.decorator.BootsFacesTagDecorator
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/registerDoctor.xhtml</welcome-file>
+        <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>
