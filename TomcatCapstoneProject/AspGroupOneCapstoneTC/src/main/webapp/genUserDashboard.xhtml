@@ -26,7 +26,7 @@
                     <hr/>
                     
                     <!-- Appointment Alert Populate from schedule's events.-->
-                    <b:alert severity="info" closable="true" title="Heads up!" value="You have __ appointments today!" />
+                    <b:alert severity="info" closable="false" title="Heads up!" value="You have #{eventBean.getTodaysAppointments()} appointment(s) today!" />
 
                     <b:row>
                         <!-- calendar quick view -->

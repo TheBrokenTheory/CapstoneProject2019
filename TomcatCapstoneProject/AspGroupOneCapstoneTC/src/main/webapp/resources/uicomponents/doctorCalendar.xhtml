@@ -10,11 +10,14 @@
     <!-- INTERFACE -->
     <cc:interface/>
 
-
     <!-- IMPLEMENTATION -->
     <cc:implementation>
-        <b:fullCalendar weekends="false" editable="false" events="#{eventBean.eventString}" autoUpdate="true"
+        <b:fullCalendar weekends="false" editable="false" events="#{eventBean.doctorPersonalSchedule}" autoUpdate="true" 
+                    defaultView="agendaWeek"
                     event-click="function(calEvent, jsEvent, view){ $(this).css('background', '##3A87AD');}"
                     day-click="function(calEvent, jsEvent, view){ $(this).css('background','##FFFFFF');}" />
     </cc:implementation>
+    
+    
+    
 </html>

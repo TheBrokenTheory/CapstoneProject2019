@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:cc = "http://java.sun.com/jsf/composite/uicomponents">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body>
+        <!--Top Menu Bar-->
+        <cc:topNavMenu/>
+        
+        <b:container fluid="true">
+            <b:row>
+                <!--Side Menu Bar-->   
+                <cc:sideNavMenu/>
+                
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <br/>
+                    <br/>
+                    <h1>Doctor Schedule</h1>
+                    <hr/>
+                    
+                    
+                    <!-- Adds the full calendar to the page. -->
+                    <cc:doctorCalendar/>
+                    
+                    <br/>
+                </b:column>
+            </b:row>  
+        </b:container>
+                      
+        
+        <style type="text/css">
+            .searchBtn{
+                background-color: #E0E0E0;
+            }
+            
+            .newApptFormStyle{
+                padding: 1px;
+                
+            }
+        </style>
+    </h:body>
+</html>
+
