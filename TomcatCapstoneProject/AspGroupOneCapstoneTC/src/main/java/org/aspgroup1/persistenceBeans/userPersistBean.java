@@ -43,6 +43,7 @@ public class userPersistBean implements Serializable {
         
         //Update list
         getUsersL();
+        clearValues();
     }
     
     public List getUsersL()
@@ -62,6 +63,15 @@ public class userPersistBean implements Serializable {
     public void deleteUser()
     {
         uc.deleteUser(this.userUN);
+    }
+    
+    public void clearValues()
+    {
+        this.userUN = "";
+        this.userPass = "";
+        this.userFN = "";
+        this.userLN = "";
+        this.acctTypeString = "";
     }
     
     //Verify user credentials against DataBase

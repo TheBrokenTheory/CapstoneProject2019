@@ -40,6 +40,7 @@ public class patientPersistBean {
         pc.createPatient(this.patientFN, this.patientLN,
                 this.patientDOB, this.patientAddress, this.patientPN, this.patientInsur);
         patientL = getPatientsL();  
+        clearValues();
     }
     
     public List getPatientsL(){

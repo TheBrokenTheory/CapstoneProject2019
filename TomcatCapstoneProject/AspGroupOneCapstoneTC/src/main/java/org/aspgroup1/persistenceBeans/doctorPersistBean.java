@@ -42,6 +42,7 @@ public class doctorPersistBean implements Serializable {
         doctorDOB = UtilityMethods.convertDate(doctorDOB);
         dc.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
         doctorsL = getDoctorsL();
+        clearValues();
     }
     
     public List getDoctorsL(){
