@@ -33,7 +33,7 @@ public class DoctorCrud {
     
     
     
-    public void createDoctor(String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+    public void createDoctor(String doctorFN, String doctorLN, String doctorS, String doctorDOB, String doctorPN){
         Doctor docObj;
         Session sessionObj = null;
         
@@ -95,7 +95,7 @@ public class DoctorCrud {
         return doctorList;
     }
     
-    public void updateDoctor(long id, String doctorFN, String doctorLN, String doctorS, Date doctorDOB, String doctorPN){
+    public void updateDoctor(long id, String doctorFN, String doctorLN, String doctorS, String doctorDOB, String doctorPN){
         Session sessionObj = null;
         
         try {
