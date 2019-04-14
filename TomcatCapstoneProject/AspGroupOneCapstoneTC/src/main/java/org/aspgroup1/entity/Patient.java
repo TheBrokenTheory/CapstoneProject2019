@@ -34,7 +34,7 @@ public class Patient implements Serializable {
     private String patientPhoneNum;
        
     @Column(name="patientInsurance")
-    private String patintInsurance;
+    private String patientInsurance;
 
     public Patient(){
         
@@ -76,11 +76,11 @@ public class Patient implements Serializable {
     public void setPatientPhoneNum(String patientPhoneNum) {
         this.patientPhoneNum = patientPhoneNum;
     }
-    public String getPatintInsurance() {
-        return patintInsurance;
+    public String getPatientInsurance() {
+        return patientInsurance;
     }
-    public void setPatintInsurance(String patintInsurance) {
-        this.patintInsurance = patintInsurance;
+    public void setPatientInsurance(String patintInsurance) {
+        this.patientInsurance = patintInsurance;
     }
        
     
