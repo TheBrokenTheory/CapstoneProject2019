@@ -28,7 +28,7 @@
                           
                         <b:column>
                             <!--Enter first name-->
-                            <b:inputText value="" required="true"
+                            <b:inputText id="firstName" value="#{patientBean.patientFN}" required="true"
                                         label="First Name" placeholder="First Name" col-md="4">
                                 <f:facet name="prepend">
                                     <b:icon value="user" />
@@ -36,7 +36,7 @@
                             </b:inputText>
 
                             <!--Enter last name-->
-                            <b:inputText id="lastname" value="" required="true"
+                            <b:inputText id="lastname" value="#{patientBean.patientLN}" required="true"
                                         label="Last Name" placeholder="Last Name" col-md="4"> 
                                 <f:facet name="prepend">
                                     <b:icon value="user" />
@@ -45,7 +45,7 @@
                         </b:column>
                         
                         <b:column>
-                            <b:inputText value="" required="true"
+                            <b:inputText id="address" value="#{patientBean.patientAddress}" required="true"
                                         label="Address" placeholder="Enter Address" col-md="8"> 
                                 <f:facet name="prepend">
                                     <b:icon value="home" />
@@ -55,7 +55,7 @@
                         
                         <b:column>
                             <!--Enter insurance-->
-                            <b:selectOneMenu value=""
+                            <b:selectOneMenu id="insur" value="#{patientBean.patientInsur}"
                                         required="true" label="Insurance" col-md="4">
                                 <f:facet name="prepend">
                                     <b:icon value="heart" />
@@ -69,14 +69,14 @@
                             </b:selectOneMenu>    
 
                             <!-- Patient DOB -->
-                            <b:dateTimePicker value="#{docBean.doctorDOB}" icon-position="left" mode="popup" show-time="false"
+                            <b:dateTimePicker value="#{patientBean.patientDOB}" icon-position="left" mode="popup" show-time="false"
                                 format="YYYY/MM/DD" required="true" col-md="4" label="Date of Birth"
                                 placeholder="Date of Birth"/>
                         </b:column>
                         
                         <b:column>
                             <!--Enter phone number-->
-                            <b:inputText id="phone" value="#{docBean.doctorPN}" required="true"
+                            <b:inputText id="phone" value="#{patientBean.patientPN}" required="true"
                                          label="Phone Number" placeholder="Phone Number" col-md="4"> 
                                 <f:facet name="prepend">
                                     <b:icon value="earphone" />
@@ -86,7 +86,9 @@
                         
                         <!--Submit button-->
                         <b:commandButton class="searchBtn" value="Register" look="default" 
-                                         action="#{docBean.createDoc()}" update="@form" />
+                                         action="#{patientBean.createPatient()}" update="@form" />
+                        <b:commandButton class="searchBtn" value="Clear Values" look="default" 
+                                         action="#{patientBean.clearValues()}" update="@form" />
                         
                     </h:form>
                 </b:column>

@@ -25,19 +25,29 @@
                     <hr/>
                     <h:form prependId="false">           
                         <b:column>
-                            <b:selectOneMenu value="" colMd="4" label="Select Patient:" required="true">
+                            <b:selectOneMenu value="#{patientBean.patientID}" colMd="4" label="Select Patient:" 
+                                             required="true">
                                 <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                <f:selectItems value="" var="doc" 
-                                            itemValue="" itemLabel=""/>
+                                <f:selectItems value="#{patientBean.getPatientsL()}" var="patient" 
+                                            itemValue="#{patient.patientID}" itemLabel="#{patient.patientFirstName} 
+                                                #{patient.patientLastName} ID:#{patient.patientID}"/>
                             </b:selectOneMenu>
                         </b:column>
 
                         <!--Submit button-->
                         <b:commandButton class="removeBtn" value="Remove Patient" look="default" 
-                                          update="@form" />
+                                         action="#{patientBean.deletePatient()}"  update="@form" />
                         
                         <hr/>
-                        
+                        <b:dataTable value="#{patientBean.patientL}" var="patient" auto-update="true">           
+                            <b:dataTableColumn value="#{patient.patientID}" label="Patient ID"/>
+                            <b:dataTableColumn value="#{patient.patientFirstName}" label="First Name"/>
+                            <b:dataTableColumn value="#{patient.patientLastName}" label="Last Name"/> 
+                            <b:dataTableColumn value="#{patient.patientAddress}" label="Address"/>
+                            <b:dataTableColumn value="#{patient.patientInsurance}" label="Insurance"/> 
+                            <b:dataTableColumn value="#{patient.patientPhoneNum}" label="Phone Number"/> 
+                            <b:dataTableColumn value="#{patient.patientDOB}" label="Date of Birth"/> 
+                        </b:dataTable>
            
                     </h:form>
                 </b:column>

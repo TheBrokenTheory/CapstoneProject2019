@@ -76,6 +76,8 @@
                         <!--Submit button-->
                         <b:commandButton class="searchBtn" value="Register" look="default" 
                                          action="#{docBean.createDoc()}" update="@form" />
+                        <b:commandButton class="searchBtn" value="Clear Values" look="default" 
+                                         action="#{docBean.clearValues()}" update="@form" />
                         
                     </h:form>
                 </b:column>

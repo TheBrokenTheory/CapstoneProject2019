@@ -36,7 +36,7 @@
         <mapping class="org.aspgroup1.entity.Doctor"/>
         <mapping class="org.aspgroup1.entity.User"/>
         <mapping class="org.aspgroup1.entity.Appointment"/>
-
+        <mapping class="org.aspgroup1.entity.Patient"/>
     </session-factory>
 
 </hibernate-configuration>
