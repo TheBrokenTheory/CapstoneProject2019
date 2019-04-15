@@ -28,8 +28,12 @@
                         <b:column>
                             <b:form>
                                 <b:column col-md="5">
-                                    <b:inputText placeholder="First Name" value="#{userBean.userFN}" required="true"
-                                                colMd="2" label="Enter First Name:" labelColMd="10"/>
+                                    <b:inputText  placeholder="First Name" value="#{userBean.userFN}" required="true"
+                                                colMd="2" label="First Name:" labelColMd="10"
+                                                validatorMessage="Name must be greater than 5 character and fewer than 30 characters.">                                
+                                    <f:validateLength minimum = "5" maximum = "30" />
+                                    </b:inputText>
+                                   
                                     <b:inputText placeholder="Last Name" value="#{userBean.userLN}" required="true"
                                                 colMd="2" label="Enter Last Name:" labelColMd="10"/>
                                 </b:column>
@@ -55,6 +59,7 @@
                                             class="searchBtn" update="dataTable"/>
                                     <hr/>
                                 </b:column>
+                               
                             </b:form> 
                             
                             <!--View all current users. Updates when new user is added -->

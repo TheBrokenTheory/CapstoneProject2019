@@ -37,11 +37,26 @@
                                     <!--The user will enter the first name of the patient here -->
                                     <b:column>
                                         <b:inputText id="firstName" value="#{eventBean.firstName}" ajax="true" required="true" 
-                                                    col-md="4" label="Enter patient's first name:"/>
+                                                     requiredMessage="Please enter a valid first name."
+                                                    col-md="4" label="Enter patient's first name:"
+                                                    validatorMessage="Fist name size must be between 3 and 30.">
+                                                                        
+                                        <f:validateLength minimum = "3" maximum = "30" />
+                                      <!--  <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />  -->
+                                    </b:inputText>
                                     
                                     <!--The user will enter the last name of the patient here -->
                                         <b:inputText id="lsatName" value="#{eventBean.lastName}" ajax="true" required="true" 
-                                                    col-md="4" label="Enter patient's last name:"/>
+                                                     requiredMessage="Please enter a valid last name."
+                                                    col-md="4" label="Enter patient's last name:"
+                                                    validatorMessage="Last name size must be between 3 and 30.">
+                                     
+                                         <f:validateLength minimum = "3" maximum = "30" />
+                                      <!--   <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />  -->
+                                        </b:inputText>
+                                    
+                                    <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="lefttmessages"/>
+                                    
                                     </b:column>
                                    
                                     <!--The user will select the reason for their visit here-->
