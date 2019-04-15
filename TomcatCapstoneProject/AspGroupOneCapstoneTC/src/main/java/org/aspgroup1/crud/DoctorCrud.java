@@ -1,7 +1,6 @@
 package org.aspgroup1.crud;
 
 //Java Utility Imports
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import org.aspgroup1.HibernateUtilities.HibernateUtil;
@@ -24,7 +23,6 @@ public class DoctorCrud {
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
-            //Create Session
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
             
@@ -61,8 +59,6 @@ public class DoctorCrud {
         List<Doctor> doctorList = new ArrayList();
         
         try {
-            //Create Session
-           
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
 
@@ -88,8 +84,6 @@ public class DoctorCrud {
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
 
         try {
-            //Create Session
-            
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -122,8 +116,6 @@ public class DoctorCrud {
     public void deleteDoctor(long id){
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         try {
-            //Create Session
-         
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -153,8 +145,6 @@ public class DoctorCrud {
         
         Doctor docObj = null;
         try {
-            //Create Session
-            
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  

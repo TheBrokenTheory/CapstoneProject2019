@@ -9,13 +9,12 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 
 import org.aspgroup1.crud.DoctorCrud;
 import org.aspgroup1.entity.Doctor;
+import org.aspgroup1.utilities.UtilityMethods;
 
 
 @ManagedBean(name = "docBean")
@@ -40,10 +39,10 @@ public class doctorPersistBean implements Serializable {
     
     
     public void createDoc(){
-        doctorDOB = convertDate(doctorDOB);
+        doctorDOB = UtilityMethods.convertDate(doctorDOB);
         dc.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
-        System.out.println(doctorDOB);
         doctorsL = getDoctorsL();
+        clearValues();
     }
     
     public List getDoctorsL(){
@@ -75,73 +74,15 @@ public class doctorPersistBean implements Serializable {
         this.numDoc = doctorsL.size();
     }
     
-     //Converts date to proper format for fullCalendar
-    private String convertDate(String fullString)
-    {  
-        //Substring locations
-        //Mon 4-7 Day 8-10 Year 24 - 28
-        
-        //Gets substrings from the date/time input
-        String strMonth = fullString.substring(4, 7);
-        
-        //Converts month from 3 lttr abbriviation to number
-        String month = convertMonth(strMonth);
-        String day = fullString.substring(8, 10);
-        String year = fullString.substring(24, 28);
-        
-        //Date compatable with fullCal component
-        String date = year + "-" + month + "-" + day;
-        return date;
+    public void clearValues()
+    {
+        this.doctorFN = "";
+        this.doctorLN = "";
+        this.doctorS = "";
+        this.doctorDOB = "";
+        this.doctorPN = "";
     }
     
-    //Convert month from abbriviation to number
-    private String convertMonth(String abbrMonth)
-    {
-        String month = "";
-        
-        switch (abbrMonth)
-        {
-            case "Jan":
-                month = "01";
-                break;
-            case "Feb":
-                month = "02";
-                break;
-            case "Mar":
-                month = "03";
-                break;
-            case "Apr":
-                month = "04";
-                break;
-            case "May":
-                month = "05";
-                break;
-            case "Jun":
-                month = "06";
-                break;
-            case "Jul":
-                month = "07";
-                break;
-            case "Aug":
-                month = "08";
-                break;
-            case "Sep":
-                month = "09";
-                break;
-            case "Oct":
-                month = "10";
-                break;
-            case "Nov":
-                month = "11";
-                break;
-            case "Dec":
-                month = "12";
-                break;
-        }
-        
-        return month;
-    }
-
     public long getDoctorIDB() {
         return doctorIDB;
     }

@@ -23,7 +23,6 @@ public class UserCrud {
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
-            //Create Session
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
             
@@ -61,7 +60,6 @@ public class UserCrud {
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
-            //Create Session
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
 
@@ -84,7 +82,6 @@ public class UserCrud {
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
-            //Create Session
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -117,7 +114,6 @@ public class UserCrud {
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
-            //Create Session
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  
@@ -144,7 +140,6 @@ public class UserCrud {
         User userObj = null;
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         try {
-            //Create Session
             // Getting Transaction Object From Session Object
             sessionObj.beginTransaction();
  

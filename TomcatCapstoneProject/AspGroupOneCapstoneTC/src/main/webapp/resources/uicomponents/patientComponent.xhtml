@@ -11,42 +11,42 @@
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
-        <ui:repeat value="#{docBean.getDoctorsL()}" var="doc">
+        <ui:repeat value="#{patientBean.getPatientsL()}" var="patient">
             <div style="float: left;">
                     <b:well class="patientBox"> 
                         <div class="topbox">
                             <h:outputText class="patientTag" value="Patient Information:"/>
-                            <h:column><h:outputText class="patientName" value=" Jonathan "/></h:column>
-                            <h:column><h:outputText class="patientName" value="Anders"/></h:column>
+                            <h:column><h:outputText class="patientName" value=" #{patient.patientFirstName} "/></h:column>
+                            <h:column><h:outputText class="patientName" value="#{patient.patientLastName}"/></h:column>
                         </div> 
                     <div>
                         <p>
                             <h:column><h:outputText class="patientInfo" value="Patient ID: "/></h:column>
-                            <h:column><h:outputText class="patientInfo" value="100002"/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="#{patient.patientID}"/></h:column>
                         </p>
                     </div>                        
                     <div>
                         <p>
                             <h:column><h:outputText class="patientInfo" value="Date of Birth: "/></h:column>
-                            <h:column><h:outputText class="patientInfo" value="10/18/1970"/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="#{patient.patientDOB}"/></h:column>
                         </p>
                     </div>
                     <div>
                         <p>
                             <h:column><h:outputText class="patientInfo" value="Phone Number: "/></h:column>
-                            <h:column><h:outputText class="patientInfo" value="770-867-5309"/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="#{patient.patientPhoneNum}"/></h:column>
                         </p>
                     </div>                      
                     <div>
                         <p>
                             <h:column><h:outputText class="patientInfo" value="Address: "/></h:column>
-                            <h:column><h:outputText class="patientInfo" value="123 Testing Dr. Suwanee, GA 30024"/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="#{patient.patientAddress}"/></h:column>
                         </p>
                     </div>
                     <div>
                         <p>
                             <h:column><h:outputText class="patientInfo" value="Insurance: "/></h:column>
-                            <h:column><h:outputText class="patientInfo" value="Blue Cross"/></h:column>
+                            <h:column><h:outputText class="patientInfo" value="#{patient.patientInsurance}"/></h:column>
                         </p>
                     </div>
                     <br/>  

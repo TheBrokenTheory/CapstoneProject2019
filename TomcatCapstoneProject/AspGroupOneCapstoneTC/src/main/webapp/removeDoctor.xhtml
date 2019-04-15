@@ -21,7 +21,7 @@
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <hr/>
                     <hr/>
-                    <h1>Remove doctors</h1>
+                    <h1>Remove Doctors</h1>
                     <hr/>
                     <h:form prependId="false">           
                         <b:column>
@@ -34,14 +34,13 @@
                         </b:column>
 
                         <!--Submit button-->
-                        <b:commandButton class="searchBtn" value="Remove Doctor" look="default" 
+                        <b:commandButton class="removeBtn" value="Remove Doctor" look="default" 
                                          action="#{docBean.deleteDoc()}" update="@form" />
                         
                         <hr/>
                         
                         <b:dataTable value="#{docBean.doctorsL}" var="doc" auto-update="true">           
-                            <b:dataTableColumn value="#{doc.doctorID}"
-                                     label="Doctor ID"/>
+                            <b:dataTableColumn value="#{doc.doctorID}" label="Doctor ID"/>
                             <b:dataTableColumn value="#{doc.doctorFirstName}" label="First Name"/>
                             <b:dataTableColumn value="#{doc.doctorLastName}" label="Last Name"/> 
                             <b:dataTableColumn value="#{doc.doctorSpecialty}" label="Specialty"/>
@@ -54,7 +53,7 @@
             </b:row>  
         </b:container>
          <style type="text/css">
-            .searchBtn{
+            .removeBtn{
                 background-color: #E0E0E0;
                 margin-left: 30px;
             }

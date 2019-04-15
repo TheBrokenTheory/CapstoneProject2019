@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:cc="http://java.sun.com/jsf/composite/uicomponents">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body>
+        <!--Top Menu Bar-->
+        <cc:topNavMenu/>
+        
+        <b:container fluid="true">
+            <b:row>
+                <!--Side Menu Bar-->   
+                <cc:sideNavMenu/>
+                
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <hr/>
+                    <hr/>
+                    <h1>Register Patient</h1>
+                    <hr/>
+                    <h:form prependId="false">
+                        <h3>Enter patient information:</h3>
+                          
+                        <b:column>
+                            <!--Enter first name-->
+                            <b:inputText id="firstName" value="#{patientBean.patientFN}" required="true"
+                                        label="First Name" placeholder="First Name" col-md="4">
+                                <f:facet name="prepend">
+                                    <b:icon value="user" />
+                                </f:facet>
+                            </b:inputText>
+
+                            <!--Enter last name-->
+                            <b:inputText id="lastname" value="#{patientBean.patientLN}" required="true"
+                                        label="Last Name" placeholder="Last Name" col-md="4"> 
+                                <f:facet name="prepend">
+                                    <b:icon value="user" />
+                                </f:facet>
+                            </b:inputText>
+                        </b:column>
+                        
+                        <b:column>
+                            <b:inputText id="address" value="#{patientBean.patientAddress}" required="true"
+                                        label="Address" placeholder="Enter Address" col-md="8"> 
+                                <f:facet name="prepend">
+                                    <b:icon value="home" />
+                                </f:facet>
+                            </b:inputText>
+                        </b:column>
+                        
+                        <b:column>
+                            <!--Enter insurance-->
+                            <b:selectOneMenu id="insur" value="#{patientBean.patientInsur}"
+                                        required="true" label="Insurance" col-md="4">
+                                <f:facet name="prepend">
+                                    <b:icon value="heart" />
+                                </f:facet>
+                                <f:selectItem itemLabel="(Please select)"/>
+                                <f:selectItem itemLabel="Aetna" itemValue="Aetna"/>
+                                <f:selectItem itemLabel="Humana" itemValue="Humana"/>
+                                <f:selectItem itemLabel="Blue Cross Blue Shield" itemValue="Blue Cross Blue Shield"/>
+                                <f:selectItem itemLabel="United Health Group" itemValue="United Health Group"/>
+                                <f:selectItem itemLabel="Cash" itemValue="Cash"/>
+                            </b:selectOneMenu>    
+
+                            <!-- Patient DOB -->
+                            <b:dateTimePicker value="#{patientBean.patientDOB}" icon-position="left" mode="popup" show-time="false"
+                                format="YYYY/MM/DD" required="true" col-md="4" label="Date of Birth"
+                                placeholder="Date of Birth"/>
+                        </b:column>
+                        
+                        <b:column>
+                            <!--Enter phone number-->
+                            <b:inputText id="phone" value="#{patientBean.patientPN}" required="true"
+                                         label="Phone Number" placeholder="Phone Number" col-md="4"> 
+                                <f:facet name="prepend">
+                                    <b:icon value="earphone" />
+                                </f:facet>
+                            </b:inputText>
+                        </b:column>
+                        
+                        <!--Submit button-->
+                        <b:commandButton class="searchBtn" value="Register" look="default" 
+                                         action="#{patientBean.createPatient()}" update="@form" />
+                        <b:commandButton class="searchBtn" value="Clear Values" look="default" 
+                                         action="#{patientBean.clearValues()}" update="@form" />
+                        
+                    </h:form>
+                </b:column>
+            </b:row>  
+        </b:container>
+         <style type="text/css">
+            .searchBtn{
+                background-color: #E0E0E0;
+                margin-left: 30px;
+            }
+        </style>
+    </h:body>
+</html>

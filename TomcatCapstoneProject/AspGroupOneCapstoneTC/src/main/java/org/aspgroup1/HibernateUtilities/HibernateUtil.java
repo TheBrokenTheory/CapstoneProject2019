@@ -24,4 +24,11 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
+    public static void closeSessionFactory()
+    {
+        System.out.println("Closing Session");
+        sessionFactory.close();
+        System.out.println("Session closed");
+    }
+    
 }

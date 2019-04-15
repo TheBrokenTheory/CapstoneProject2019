@@ -8,6 +8,7 @@ import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import org.aspgroup1.HibernateUtilities.HibernateUtil;
 
 import org.aspgroup1.crud.UserCrud;
 import org.aspgroup1.entity.User;
@@ -42,6 +43,7 @@ public class userPersistBean implements Serializable {
         
         //Update list
         getUsersL();
+        clearValues();
     }
     
     public List getUsersL()
@@ -61,6 +63,15 @@ public class userPersistBean implements Serializable {
     public void deleteUser()
     {
         uc.deleteUser(this.userUN);
+    }
+    
+    public void clearValues()
+    {
+        this.userUN = "";
+        this.userPass = "";
+        this.userFN = "";
+        this.userLN = "";
+        this.acctTypeString = "";
     }
     
     //Verify user credentials against DataBase
@@ -99,6 +110,11 @@ public class userPersistBean implements Serializable {
         }
 
         return page;
+    }
+    
+    public void logout()
+    {
+        HibernateUtil.closeSessionFactory();
     }
     
     

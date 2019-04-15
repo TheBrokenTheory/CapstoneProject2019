@@ -18,7 +18,7 @@
                         <div class="center">
                             <p>
                                 <h:column><h:outputText class="docName" value="Dr. #{doc.doctorFirstName}"/></h:column>
-                                <h:column><h:outputText class="docName" value=" #{doc.doctorLastName}"/></h:column>
+                                <h:column><h:outputText id='docLastName' class="docName" value=" #{doc.doctorLastName}"/></h:column>
                             </p>
                         </div>
                         
@@ -44,13 +44,12 @@
                         
                         <div class="center">
                             <h:form>
-                                <b:commandLink class="scheduleButton" look="default" value="Doctor Schedule"/>
+                                <b:commandLink class="scheduleButton" look="default" value="Doctor Schedule" action='#{eventBean.getDoctorsSchedule(docLastName)}' outcome="doctorSchedule"/>
                             </h:form>
                         </div>
-                    </b:well>   
+                    </b:well>
                 </div>
             </ui:repeat>
-        
         <style type="text/css">
             .doctorBox {
                 background-color: #F3F3F3;
