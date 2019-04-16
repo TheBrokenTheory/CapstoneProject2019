@@ -31,34 +31,45 @@
                                     <b:inputText  placeholder="First Name" value="#{userBean.userFN}" required="true"
                                                   requiredMessage="Please enter a valid first name."
                                                 colMd="2" label="First Name:" labelColMd="10"
-                                                validatorMessage="Name length must be between 3 and 30 characters.">                                
+                                                validatorMessage="The length of the first name must be between 3 and 30 characters.">                                
                                          <f:validateLength minimum = "3" maximum = "30" />
                                     </b:inputText>
                                    
                                     <b:inputText placeholder="Last Name" value="#{userBean.userLN}" required="true"
                                                  requiredMessage="Please enter a valid last name."
                                                 colMd="2" label="Enter Last Name:" labelColMd="10"
-                                                validatorMessage="Name length must be between 3 and 30 characters.">
+                                                validatorMessage="The length of the last name must be between 3 and 30 characters.">
                                         <f:validateLength minimum = "3" maximum = "30" />
                                    </b:inputText>
+                                   <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="namemessages" only-most-severe="true" large-screen="full-width"/>
                                 </b:column>                                                              
                                 <b:column col-md="5">
                                     <b:inputText placeholder="Username" value="#{userBean.userUN}" required="true"
                                                  requiredMessage="Please enter a valid user name."
-                                                colMd="2" label="Enter Username:" labelColMd="10"/>
+                                                 colMd="2" label="Enter Username:" labelColMd="10">
+                                                                    
+                                    </b:inputText>
+                                    
                                     <b:inputText placeholder="Password" value="#{userBean.userPass}" required="true"
                                                  requiredMessage="Please enter a password."
-                                                colMd="2" label="Enter Password:" type="password" labelColMd="10"/>
+                                                 colMd="2" label="Enter Password:" type="password" labelColMd="10"
+                                                 validatorMessage="Password must be at least 8 characters.">
+                                                                                   
+                                                  <f:validateLength minimum = "8"/>
+                                    </b:inputText>
+                                    
+                                    <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="usernamepasswordmessages" only-most-severe="true" large-screen="full-width"/>
                                 </b:column>
                                 
                                 <b:column class="selectMenu">
                                     <b:selectOneMenu value="#{userBean.accountTypeString}" required="true"
-                                                     requiredMessage="Please select a account type."
+                                                     requiredMessage="Please select the account type."
                                                     colMd="5" label="User Type:" labelColMd="10" >
                                         <f:selectItem itemLabel="(Please select)" itemValue="" />
                                         <f:selectItem itemLabel="Admin" itemValue="1"/>
                                         <f:selectItem itemLabel="General" itemValue="2"/>
                                     </b:selectOneMenu>
+                                     <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="accountmessages" only-most-severe="true" large-screen="full-width"/>
                                 </b:column>
                                 
                                 <b:column>
@@ -66,7 +77,7 @@
                                                      class="searchBtn" update="@form"/>
                                     <hr/>
                                 </b:column>
-                               <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="lefttmessages" only-most-severe="true" large-screen="full-width"/>
+                              
                             </b:form> 
                             
                             <!--View all current users. Updates when new user is added -->

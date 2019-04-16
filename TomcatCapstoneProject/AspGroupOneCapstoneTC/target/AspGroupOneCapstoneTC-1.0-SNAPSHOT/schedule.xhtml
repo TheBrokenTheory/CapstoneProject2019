@@ -41,8 +41,7 @@
                                                     col-md="4" label="Enter patient's first name:"
                                                     validatorMessage="Fist name length must be between 3 and 30 chracters.">
                                                                         
-                                        <f:validateLength minimum = "3" maximum = "30" />
-                                      <!--  <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />  -->
+                                        <f:validateLength minimum = "3" maximum = "30" />                                    
                                     </b:inputText>
                                     
                                     <!--The user will enter the last name of the patient here -->
@@ -51,8 +50,7 @@
                                                     col-md="4" label="Enter patient's last name:"
                                                     validatorMessage="Last name length must be between 3 and 30 characters.">
                                      
-                                         <f:validateLength minimum = "3" maximum = "30" />
-                                      <!--   <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />  -->
+                                                <f:validateLength minimum = "3" maximum = "30" />                                   
                                         </b:inputText>
                                     
                                     <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="lefttmessages" only-most-severe="true" large-screen="full-width"/>
@@ -64,7 +62,7 @@
                                     <b:column>
                                         <b:selectOneMenu id="reasonForVisit" value="#{eventBean.reasonForVisit}" colMd="4" 
                                                         required="true" label="Reason for visit:"
-                                                        requiredMessage="Please choose a reason for visit">
+                                                        requiredMessage="Please choose a reason for visit.">
                                             <f:selectItem itemLabel="(Please select)" itemValue="" />
                                             <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
                                             <f:selectItem itemLabel="High blood pressure" itemValue ="High blood pressure"/>

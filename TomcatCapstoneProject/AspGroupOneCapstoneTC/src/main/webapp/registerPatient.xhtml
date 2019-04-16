@@ -23,7 +23,8 @@
                     <hr/>
                     <h1>Register Patient</h1>
                     <hr/>
-                    <h:form prependId="false">
+                <!--    <h:form prependId="false"> -->
+                <h:form>
                         <h3>Enter patient information:</h3>
                           
                         <b:column>
@@ -31,7 +32,7 @@
                             <b:inputText id="firstName" value="#{patientBean.patientFN}" required="true"
                                         requiredMessage="Please enter a valid first name."
                                         label="First Name" placeholder="First Name" col-md="4"
-                                        validatorMessage="Name length must be between 3 and 30 characters.">
+                                        validatorMessage="The lenght of first name must be between 3 and 30 characters.">
                                 <f:validateLength minimum = "3" maximum = "30" />
                                 <f:facet name="prepend">
                                     <b:icon value="user" />
@@ -42,28 +43,31 @@
                             <b:inputText id="lastname" value="#{patientBean.patientLN}" required="true"
                                          requiredMessage="Please enter a valid last name."
                                         label="Last Name" placeholder="Last Name" col-md="4"
-                                        validatorMessage="Name length must be between 3 and 30 characters.">
+                                        validatorMessage="The length of last name must be between 3 and 30 characters.">
                                  <f:validateLength minimum = "3" maximum = "30" />
                                 <f:facet name="prepend">
                                     <b:icon value="user" />
                                 </f:facet>
                             </b:inputText>
-                            <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="lefttmessages"/> 
+                            <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="leftmessages" only-most-severe="true" large-screen="full-width"/> 
                         </b:column>
                         
                         <b:column>
                             <b:inputText id="address" value="#{patientBean.patientAddress}" required="true"
+                                         requiredMessage="Please enter an address."
                                         label="Address" placeholder="Enter Address" col-md="8"> 
                                 <f:facet name="prepend">
                                     <b:icon value="home" />
                                 </f:facet>
                             </b:inputText>
+                            <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="addressmessages" only-most-severe="true" large-screen="full-width"/> 
                         </b:column>
                         
                         <b:column>
                             <!--Enter insurance-->
                             <b:selectOneMenu id="insur" value="#{patientBean.patientInsur}"
-                                        required="true" label="Insurance" col-md="4">
+                                        required="true" label="Insurance" col-md="4"
+                                        requiredMessage="Please select the insurance.">
                                 <f:facet name="prepend">
                                     <b:icon value="heart" />
                                 </f:facet>
@@ -78,17 +82,24 @@
                             <!-- Patient DOB -->
                             <b:dateTimePicker value="#{patientBean.patientDOB}" icon-position="left" mode="popup" show-time="false"
                                 format="YYYY/MM/DD" required="true" col-md="4" label="Date of Birth"
-                                placeholder="Date of Birth"/>
+                                placeholder="Date of Birth"
+                                requiredMessage="Date of Birth is required."/>
+                            <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="righttmessages" only-most-severe="true" large-screen="full-width"/> 
                         </b:column>
                         
                         <b:column>
                             <!--Enter phone number-->
                             <b:inputText id="phone" value="#{patientBean.patientPN}" required="true"
-                                         label="Phone Number" placeholder="Phone Number" col-md="4"> 
+                                         label="Phone Number" placeholder="Phone Number" col-md="4"
+                                         requiredMessage="Please enter a phone number."
+                                         validatorMessage="Invalid phone number format.Ex:770-000-0000."> 
+                                <f:validateRegex pattern=
+                                     "((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"/>
                                 <f:facet name="prepend">
                                     <b:icon value="earphone" />
                                 </f:facet>
                             </b:inputText>
+                            <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="phonenumbermessages" only-most-severe="true" large-screen="full-width"/> 
                         </b:column>
                         
                         <!--Submit button-->
