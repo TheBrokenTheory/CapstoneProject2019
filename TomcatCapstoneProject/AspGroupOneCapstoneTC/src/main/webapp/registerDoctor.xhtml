@@ -27,7 +27,7 @@
                  <h:form>
                         <h3>Enter doctor information</h3>
                           
-                        <b:container class="test"> 
+                 
                             <b:column>
                                 <!--Enter first name-->
                                 <b:inputText id="firstname" value="#{docBean.doctorFN}" required="true"  
@@ -38,8 +38,7 @@
                                                                   
                                     <f:facet name="prepend" >
                                         <b:icon name="user" />
-                                    </f:facet>
-                                    - 
+                                    </f:facet> 
                                 </b:inputText>
                                                 
                                 <!--Enter last name-->
@@ -56,7 +55,7 @@
                                 <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="rightmessages" only-most-severe="true" large-screen="full-width"/> 
                             </b:column> 
                             
-                        </b:container> 
+                   
                          
                         <b:column>
                             <!--Enter specialty-->
@@ -84,32 +83,46 @@
                         <b:column>
                             <!--Enter phone number-->
                             <b:inputText id="phone" value="#{docBean.doctorPN}" required="true"
-                                         requiredMessage="Please enter a phone number."
-                                         label="Phone Number" placeholder="Phone Number" col-md="4"
-                                         validatorMessage="Invalid phone number format.Ex:770-000-0000.">                  
+                                        requiredMessage="Please enter a phone number."
+                                        label="Phone Number" placeholder="Phone Number" col-md="4"
+                                        validatorMessage="Invalid phone number format.Ex:770-000-0000.">                  
                             <f:validateRegex pattern=
                                      "((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"/>
                                 <f:facet name="prepend">
                                     <b:icon value="earphone" />
                                 </f:facet>
                             </b:inputText>
-                      <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="lefttmessages" only-most-severe="true" large-screen="full-width"/>        
+                            <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="lefttmessages" only-most-severe="true" large-screen="full-width"/>
                         </b:column>
-               
+                        
+                        <b:column>    
+                            <h:outputLabel value="Select Available Days:" class="dayMenu"/>
+                            <br/>
+                            <b:selectBooleanCheckbox value="" caption="Monday"  colMd="1"/>
+                            <b:selectBooleanCheckbox value="" caption="Tuesday" colMd="1"/>
+                            <b:selectBooleanCheckbox value="" caption="Wednesday" colMd="1"/>
+                            <b:selectBooleanCheckbox value="" caption="Thursday" colMd="1"/>
+                            <b:selectBooleanCheckbox value="" caption="Friday" colMd="1"/>
+                         </b:column>
+                        
                         <!--Submit button-->
                         <b:commandButton class="searchBtn" value="Register" look="default" 
                                          action="#{docBean.createDoc()}" update="@form" />
                         <b:commandButton class="searchBtn" value="Clear Values" look="default" 
                                          action="#{docBean.clearValues()}" update="@form" />
-                        
                     </h:form>
                 </b:column>
             </b:row>  
         </b:container>
          <style type="text/css">
             .searchBtn{
+                margin-top: 10px;
                 background-color: #E0E0E0;
                 margin-left: 30px;
+            }
+            .dayMenu{
+                margin-top: 5px;
+                padding-left: 15px;
             }
         </style>
     </h:body>

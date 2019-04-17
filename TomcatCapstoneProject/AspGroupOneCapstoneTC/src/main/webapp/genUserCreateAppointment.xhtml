@@ -27,53 +27,59 @@
                         <b:container fluid="true">
                             <b:row>
                                 <!--This is where the user will select the date and time for the appointment-->
+                                
                                 <b:column col-sm="7" style-class="newApptFormStyle">
                                     <b:dateTimePicker id="aptDateAndTime" value="#{eventBean.dateTimeOfAppointment}" mode="inline" required="true"
                                             label="Time and date for new appointment" max-date="2019-12-31" min-date="2019-04-01"/>
                                 </b:column>
                                 
-                                <b:column col-md="8" class="newApptFormStyle">
+                                <b:column col-sm="8" style-class="newApptFormStyle">
                                     <!--The user will enter the first name of the patient here -->
-                                    <b:column>
-                                        <b:inputText id="firstName" value="#{eventBean.firstName}" ajax="true" required="true" 
-                                                    col-md="4" label="Enter patient's first name:"/>
+                                    <b:inputText id="firstName" value="#{eventBean.firstName}" ajax="true" required="true" 
+                                                 requiredMessage="Please enter a valid first name."
+                                                col-md="4" label="Enter patient's first name:"
+                                                validatorMessage="Fist name length must be between 3 and 30 chracters.">
+                                        <f:validateLength minimum = "3" maximum = "30" />                                    
+                                    </b:inputText>
                                     
                                     <!--The user will enter the last name of the patient here -->
-                                        <b:inputText id="lsatName" value="#{eventBean.lastName}" ajax="true" required="true" 
-                                                    col-md="4" label="Enter patient's last name:"/>
-                                    </b:column>
+                                    <b:inputText id="lsatName" value="#{eventBean.lastName}" ajax="true" required="true" 
+                                                 requiredMessage="Please enter a valid last name."
+                                                col-md="4" label="Enter patient's last name:"
+                                                validatorMessage="Last name length must be between 3 and 30 characters.">
+                                        <f:validateLength minimum = "3" maximum = "30" />                                   
+                                    </b:inputText>
+
+                                    <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="lefttmessages" only-most-severe="true" large-screen="full-width"/>
                                     
                                     <!--The user will select the reason for their visit here-->
-                                    <b:column>
-                                        <b:selectOneMenu id="reasonForVisit" value="#{eventBean.reasonForVisit}" colMd="4" 
-                                                        required="true" label="Reason for visit:">
-                                            <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                            <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
-                                            <f:selectItem itemLabel="More Reasons"/>
-                                            <f:selectItem itemLabel="More Reasons"/>
-                                            <f:selectItem itemLabel="More Reasons"/>
-                                        </b:selectOneMenu>                    
-                                        
-                                        <!--The user will select which doctor they are seeing here -->
-                                        <b:selectOneMenu id="seeingDoc" value="#{eventBean.doctorSeen}" colMd="4" label="Select Doctor:" 
-                                                        required="true">
-                                            <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
-                                                        itemValue="#{doc.doctorLastName}" itemLabel="Dr. #{doc.doctorLastName}"/>
-                                        </b:selectOneMenu>
-                                    </b:column>
+                                    <b:selectOneMenu id="reasonForVisit" value="#{eventBean.reasonForVisit}" colMd="4" 
+                                                    required="true" label="Reason for visit:"
+                                                    requiredMessage="Please choose a reason for visit.">
+                                        <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                        <f:selectItem itemLabel="General check up" itemValue="Check Up"/>
+                                        <f:selectItem itemLabel="High blood pressure" itemValue ="High blood pressure"/>
+                                        <f:selectItem itemLabel="Headaches and migraines" itemValue="Headaches and migraines"/>
+                                        <f:selectItem itemLabel="Chronic neurologic disorders" itemValue="Chronic neurologic disorders"/>
+                                        <f:selectItem itemLabel="Cholesterol problems" itemValue="Cholesterol problems"/>
+                                    </b:selectOneMenu>                                          
+
+                                    <!--The user will select which doctor they are seeing here -->
+                                    <b:selectOneMenu id="seeingDoc" value="#{eventBean.doctorSeen}" colMd="4" label="Select Doctor:" 
+                                                required="true">
+                                        <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
+                                                    itemValue="#{doc.doctorLastName}" itemLabel="Dr. #{doc.doctorLastName}"/>
+                                    </b:selectOneMenu>
                                     
+                                    <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="rightmessages" only-most-severe="true" large-screen="full-width"/>                              
                                 </b:column>
                             </b:row>
                            
                             <b:row>
-                                <!--
-                                    SUBMIT BUTTON. This button will gather all the info
-                                    from above and send it to the schedule bean. Where it will
-                                    create a event object
-                                -->
+                                <!-- SUBMIT BUTTON -->
                                 <b:column>
-                                    <b:commandButton class="searchBtn" value="Create New appointment"
-                                            action="#{eventBean.createAppt()}" ajax="true" update="@form"/>
+                                    <b:commandButton class="searchBtn" value="Create New Appointment"
+                                            action="#{eventBean.createAppt()}" update="@form"/>
                                 </b:column>
                             </b:row>
                         </b:container>
