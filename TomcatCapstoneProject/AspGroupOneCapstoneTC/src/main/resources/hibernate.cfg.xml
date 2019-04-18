@@ -37,6 +37,7 @@
         <mapping class="org.aspgroup1.entity.User"/>
         <mapping class="org.aspgroup1.entity.Appointment"/>
         <mapping class="org.aspgroup1.entity.Patient"/>
+        <mapping class="org.aspgroup1.entity.Schedule"/>
     </session-factory>
 
 </hibernate-configuration>
