@@ -36,7 +36,8 @@ public class eventPersistBean {
     private String doctorSeen;
     private String dateTimeOfAppointment;
     List<String> eventList = new ArrayList();
-
+    boolean testBool;
+    
     /**
      * Creates a new instance of eventPersistBean
      */
@@ -50,6 +51,7 @@ public class eventPersistBean {
     //Creates Event Class & Adds to the eventList
     public void createAppt()
     {   
+        testBool = false;
         eventDate = UtilityMethods.convertDate(dateTimeOfAppointment);
         eventTime = UtilityMethods.convertTime(dateTimeOfAppointment);
         
@@ -59,6 +61,13 @@ public class eventPersistBean {
         eventTitle = generateTitle(this.firstName, this.lastName);
         eventList.add(jsonString(eventTitle, eventDate, eventTime));
         eventString = createCalString();
+    }
+    
+    public boolean verifyAppointment()
+    {
+        boolean appointmentVerifies = false;
+        
+        return appointmentVerifies;
     }
     
     public void cancelAppointment()
@@ -223,4 +232,9 @@ public class eventPersistBean {
 
     public StringBuilder getEventString(){return eventString;}
     public StringBuilder getDoctorPersonalSchedule(){return doctorPersonalSchedule;}
+
+    public boolean isTestBool() { return testBool;}
+
+    public void setTestBool(boolean testBool) { this.testBool = testBool;}
+    
 }

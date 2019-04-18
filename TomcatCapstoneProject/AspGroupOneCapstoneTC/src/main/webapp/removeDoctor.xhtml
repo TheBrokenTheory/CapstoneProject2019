@@ -29,7 +29,7 @@
                                             required="true">
                                 <f:selectItem itemLabel="(Please select)" itemValue="" />
                                 <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
-                                            itemValue="#{doc.doctorID}" itemLabel="Dr. #{doc.doctorFirstName} #{doc.doctorLastName} ID #{doc.doctorID}"/>
+                                            itemValue="#{doc.doctorID}" itemLabel="Dr. #{doc.doctorFirstName} #{doc.doctorLastName} ID:#{doc.doctorID}"/>
                             </b:selectOneMenu>
                         </b:column>
 
