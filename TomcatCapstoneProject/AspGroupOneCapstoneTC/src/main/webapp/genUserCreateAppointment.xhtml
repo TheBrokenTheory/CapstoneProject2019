@@ -82,6 +82,11 @@
                                             action="#{eventBean.createAppt()}" update="@form"/>
                                 </b:column>
                             </b:row>
+                            <br/>
+                            <b:alert severity="warning" closable="true" rendered="#{eventBean.showAlertMsg}" col-md="6" >
+                                <strong>Heads Up!</strong>
+                                Selected doctor already has an appointment scheduled for that time
+                            </b:alert>
                         </b:container>
                     </h:form>
                     
