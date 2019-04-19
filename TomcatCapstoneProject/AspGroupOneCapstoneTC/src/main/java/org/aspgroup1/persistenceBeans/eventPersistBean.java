@@ -36,7 +36,7 @@ public class eventPersistBean {
     private String doctorSeen;
     private String dateTimeOfAppointment;
     List<String> eventList = new ArrayList();
-    boolean testBool;
+    boolean showAlertMsg;
     
     /**
      * Creates a new instance of eventPersistBean
@@ -51,21 +51,46 @@ public class eventPersistBean {
     //Creates Event Class & Adds to the eventList
     public void createAppt()
     {   
-        testBool = false;
+        showAlertMsg = false;
+        
         eventDate = UtilityMethods.convertDate(dateTimeOfAppointment);
         eventTime = UtilityMethods.convertTime(dateTimeOfAppointment);
         
-        //Creates new Event obj and stores it in ArrayList
-        ac.createAppointment(this.firstName, this.lastName, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
+        if (appointmentVerifies(eventDate, eventTime, this.doctorSeen))
+        {
+            //Creates new Event obj and stores it in ArrayList
+            ac.createAppointment(this.firstName, this.lastName, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
         
-        eventTitle = generateTitle(this.firstName, this.lastName);
-        eventList.add(jsonString(eventTitle, eventDate, eventTime));
-        eventString = createCalString();
+            eventTitle = generateTitle(this.firstName, this.lastName);
+            eventList.add(jsonString(eventTitle, eventDate, eventTime));
+            eventString = createCalString();
+        }
+        else
+        {
+            showAlertMsg = true;
+        }
     }
     
-    public boolean verifyAppointment()
+    //Checks to make sure it appt doesn't overlap with an existing
+    public boolean appointmentVerifies(String date, String time, String docSeen)
     {
-        boolean appointmentVerifies = false;
+        boolean appointmentVerifies = true;
+        List<Appointment> appointmentList = new ArrayList();
+        appointmentList= ac.getAppointments();
+        
+        for(int i = 0; i < eventList.size(); i++)
+        {
+            if(date.equals(appointmentList.get(i).getAppDate()))
+            {
+                if(time.equals(appointmentList.get(i).getAppTime()))
+                {
+                    if(docSeen.equals(appointmentList.get(i).getDoctorSeen()))
+                    {
+                        appointmentVerifies = false;
+                    }
+                }
+            }
+        }
         
         return appointmentVerifies;
     }
@@ -233,8 +258,8 @@ public class eventPersistBean {
     public StringBuilder getEventString(){return eventString;}
     public StringBuilder getDoctorPersonalSchedule(){return doctorPersonalSchedule;}
 
-    public boolean isTestBool() { return testBool;}
+    public boolean getShowAlertMsg() { return showAlertMsg;}
 
-    public void setTestBool(boolean testBool) { this.testBool = testBool;}
+    public void setShowAlertMsg(boolean testBool) { this.showAlertMsg = testBool;}
     
 }
