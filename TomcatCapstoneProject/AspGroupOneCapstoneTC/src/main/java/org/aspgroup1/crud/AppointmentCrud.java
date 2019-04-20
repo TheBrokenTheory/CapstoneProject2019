@@ -151,5 +151,35 @@ public class AppointmentCrud {
         }
         return appObj;
     }
+    
+    public void updateDiagnosis_Treatment(long id, String diagnosis, String treatment){
+        Session sessionObj = HibernateUtil.getSessionFactory().openSession();
+        
+        try {
+            // Getting Transaction Object From Session Object
+            sessionObj.beginTransaction();
+ 
+            //Get Current Appointment
+            Appointment appObj = findByID(id);
+            
+            //Update Diagnosis and Treatment Fields
+            appObj.setDiagnosis(diagnosis);
+            appObj.setTreatment(treatment);
+            
+            // Committing The Transactions To The Database
+            sessionObj.getTransaction().commit();
+            System.out.print("\nAppointment With Id?= " + appObj.getAppID()+ " Is Successfully Updated In The Database!\n");
+        } catch(Exception sqlException) {
+            if(null != sessionObj.getTransaction()) {
+                System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
+                sessionObj.getTransaction().rollback();
+            }
+            sqlException.printStackTrace();
+        } finally {
+            if(sessionObj != null) {
+                sessionObj.close();
+            }
+        }
+    }
 
 }
