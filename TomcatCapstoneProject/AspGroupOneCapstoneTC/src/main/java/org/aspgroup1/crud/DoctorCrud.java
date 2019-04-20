@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.aspgroup1.HibernateUtilities.HibernateUtil;
 import org.aspgroup1.entity.Doctor;
-import org.aspgroup1.entity.Schedule;
-import org.aspgroup1.crud.ScheduleCrud;
 
 //Hibernate Imports
 import org.hibernate.Session;
@@ -20,7 +18,7 @@ public class DoctorCrud {
     public DoctorCrud(){}
 
     
-    public void createDoctor(String doctorFN, String doctorLN, String doctorS, String doctorDOB, String doctorPN, int days[]){
+    public void createDoctor(String doctorFN, String doctorLN, String doctorS, String doctorDOB, String doctorPN){
         Doctor docObj;
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
@@ -42,8 +40,6 @@ public class DoctorCrud {
             //Commit to DB
             sessionObj.getTransaction().commit();
             
-            //Generate Doc Schedule
-            createSchedule(days, docObj.getDoctorID());
             
         } catch(Exception sqlException) {
             if(null != sessionObj.getTransaction()) {
@@ -57,22 +53,6 @@ public class DoctorCrud {
             }
         }
     }
-    
-    //Create Doc Schedule
-    public void createSchedule(int days[], long docID)
-    {
-        int mon = days[0];
-        int tue = days[1];
-        int wed = days[2];
-        int thu = days[3];
-        int fir = days[4];
-        int sat = days[5];
-        int sun = days[6];
-        ScheduleCrud sc = new ScheduleCrud();
-        
-        sc.createSchedule(docID, mon, tue, wed, thu, fir, sat, sun);
-    }
-    
     
     public List getDoctors(){
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
@@ -99,7 +79,6 @@ public class DoctorCrud {
         
         return doctorList;
     }
-    
     
     public void updateDoctor(long id, String doctorFN, String doctorLN, String doctorS, String doctorDOB, String doctorPN){
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();

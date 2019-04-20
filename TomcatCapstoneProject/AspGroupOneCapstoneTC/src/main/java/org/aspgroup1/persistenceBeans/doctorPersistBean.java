@@ -30,7 +30,6 @@ public class doctorPersistBean implements Serializable {
     private String doctorDOB;
     private String doctorPN;
     private int numDoc;
-    
     private boolean mondayBool;
     private boolean tuesdayBool;
     private boolean wednesdayBool;
@@ -47,21 +46,12 @@ public class doctorPersistBean implements Serializable {
     
     
     public void createDoc(){
-        int availableDays[] = new int[7];
-        //Convert Booleans
-        availableDays[0] = UtilityMethods.convertBool(mondayBool);
-        availableDays[1] = UtilityMethods.convertBool(tuesdayBool);
-        availableDays[2] = UtilityMethods.convertBool(wednesdayBool);
-        availableDays[3] = UtilityMethods.convertBool(thursdayBool);
-        availableDays[4] = UtilityMethods.convertBool(fridayBool);
-        availableDays[5] = UtilityMethods.convertBool(saturdayBool);
-        availableDays[6] = UtilityMethods.convertBool(sundayBool);
-        
-        
         doctorDOB = UtilityMethods.convertDate(doctorDOB);
-        dc.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN, availableDays);
+        dc.createDoctor(this.doctorFN, this.doctorLN, this.doctorS, this.doctorDOB, this.doctorPN);
         doctorsL = getDoctorsL();
         clearValues();
+        
+        
     }
     
     public List getDoctorsL(){

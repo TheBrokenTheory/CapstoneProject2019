@@ -13,7 +13,7 @@ public class ScheduleCrud {
     
     public ScheduleCrud(){}
     
-    public void createSchedule(long doctorID, int mon, int tue, int wed, int thur, int fri, int sat, int sun){
+    public void createSchedule(int doctorID, int mon, int tue, int wed, int thur, int fri, int sat, int sun){
         Schedule schObj;
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
