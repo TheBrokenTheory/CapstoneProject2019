@@ -8,6 +8,8 @@ import org.aspgroup1.crud.AppointmentCrud;
 import org.aspgroup1.entity.Appointment;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import org.aspgroup1.crud.PatientCrud;
+import org.aspgroup1.entity.Patient;
 import org.aspgroup1.utilities.UtilityMethods;
 
 /**
@@ -26,6 +28,7 @@ public class eventPersistBean {
     Appointment apptObj;
     AppointmentCrud ac;
     
+    private long patientID;
     private long appID;
     private String firstName;
     private String lastName;
@@ -33,7 +36,7 @@ public class eventPersistBean {
     private String eventDate;
     private String eventTime;
     private String reasonForVisit;
-    private String doctorSeen;
+    private long doctorSeen;
     private String dateTimeOfAppointment;
     List<String> eventList = new ArrayList();
     boolean showAlertMsg;
@@ -67,7 +70,7 @@ public class eventPersistBean {
             if (appointmentVerifies(eventDate, eventTime, this.doctorSeen))
             {
                 //Creates new Event obj and stores it in ArrayList
-                ac.createAppointment(this.firstName, this.lastName, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
+                ac.createAppointment(this.patientID, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
 
                 eventTitle = generateTitle(this.firstName, this.lastName);
                 eventList.add(jsonString(eventTitle, eventDate, eventTime));
@@ -89,7 +92,7 @@ public class eventPersistBean {
     }
     
     //Checks to make sure it appt doesn't overlap with an existing
-    public boolean appointmentVerifies(String date, String time, String docSeen)
+    public boolean appointmentVerifies(String date, String time, long docSeen)
     {
         boolean appointmentVerifies = true;
         List<Appointment> appointmentList = new ArrayList();
@@ -101,7 +104,7 @@ public class eventPersistBean {
             {
                 if(time.equals(appointmentList.get(i).getAppTime()))
                 {
-                    if(docSeen.equals(appointmentList.get(i).getDoctorSeen()))
+                    if(docSeen == appointmentList.get(i).getDoctorID())
                     {
                         appointmentVerifies = false;
                     }
@@ -140,9 +143,8 @@ public class eventPersistBean {
     
     public void fetchExistingApts()
     {
-        List<Appointment> appointmentList = new ArrayList();
-        appointmentList= ac.getAppointments();
-        
+        List<Appointment> appointmentList = appointmentList= ac.getAppointments();
+        PatientCrud pc = new PatientCrud();
         //Adds the appointments to JSON string
         for(int i=0; i < appointmentList.size(); i++)
         {
@@ -151,11 +153,12 @@ public class eventPersistBean {
             String eventTitle;
             String eventDate;
             String eventTime;
-            String reasonForVisit;
-            String doctorSeen;
             
-            firstName = appointmentList.get(i).getFirstName();
-            lastName = appointmentList.get(i).getLastName();
+            long aptID = appointmentList.get(i).getAppID();
+            long patID = appointmentList.get(i).getPatientID();
+            Patient patObj = pc.findByID(patID);
+            firstName = patObj.getPatientFirstName();
+            lastName = patObj.getPatientLastName();
             eventTitle = generateTitle(firstName, lastName);
             eventDate = appointmentList.get(i).getAppDate();
             eventTime = appointmentList.get(i).getAppTime();
@@ -277,8 +280,8 @@ public class eventPersistBean {
     public void setLastName(String lName){this.lastName = lName;}
     public String getReasonForVisit() {return reasonForVisit;}
     public void setReasonForVisit(String reason) {this.reasonForVisit = reason;}
-    public String getDoctorSeen(){return doctorSeen;}
-    public void setDoctorSeen(String doctorSeen){this.doctorSeen = doctorSeen;}
+    public long getDoctorSeen(){return doctorSeen;}
+    public void setDoctorSeen(long doctorSeen){this.doctorSeen = doctorSeen;}
     public String getDateTimeOfAppointment(){return dateTimeOfAppointment;}
     public void setDateTimeOfAppointment(String dateTime) {this.dateTimeOfAppointment = dateTime;}
     public StringBuilder getEventString(){return eventString;}

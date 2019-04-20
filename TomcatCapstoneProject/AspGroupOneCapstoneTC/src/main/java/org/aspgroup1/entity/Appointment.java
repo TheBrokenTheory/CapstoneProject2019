@@ -33,7 +33,7 @@ public class Appointment implements Serializable{
     private String reasonForVisit;
     
     @Column(name="doctorSeen")
-    private int doctorID;
+    private long doctorID;
     
     @Column(name="diagnosis")
     private String diagnosis;
@@ -76,10 +76,10 @@ public class Appointment implements Serializable{
     public void setReasonForVisit(String reasonForVisit) {
         this.reasonForVisit = reasonForVisit;
     }
-    public int getDoctorID() {
+    public long getDoctorID() {
         return doctorID;
     }
-    public void setDoctorID(int doctorID) {
+    public void setDoctorID(long doctorID) {
         this.doctorID = doctorID;
     }
     public String getDiagnosis() {

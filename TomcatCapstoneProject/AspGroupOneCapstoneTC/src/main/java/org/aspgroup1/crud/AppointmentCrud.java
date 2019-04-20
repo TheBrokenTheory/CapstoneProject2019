@@ -14,7 +14,7 @@ public class AppointmentCrud {
     
     public AppointmentCrud(){}
     
-    public void createAppointment(long patientID, String appDate, String appTime, String reasonForVisit, int doctorID){
+    public void createAppointment(long patientID, String appDate, String appTime, String reasonForVisit, long doctorID){
         Appointment appObj;
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
