@@ -14,7 +14,7 @@ public class AppointmentCrud {
     
     public AppointmentCrud(){}
     
-    public void createAppointment(String firstName, String lastName, String appDate, String appTime, String reasonForVisit, String doctorSeen){
+    public void createAppointment(long patientID, String appDate, String appTime, String reasonForVisit, int doctorID){
         Appointment appObj;
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
@@ -24,12 +24,11 @@ public class AppointmentCrud {
             
             //Creating Doctor Object
             appObj = new Appointment();
-            appObj.setFirstName(firstName);
-            appObj.setLastName(lastName);
+            appObj.setPatientID(patientID);
             appObj.setAppDate(appDate);
             appObj.setAppTime(appTime);
             appObj.setReasonForVisit(reasonForVisit);
-            appObj.setDoctorSeen(doctorSeen);
+            appObj.setDoctorID(doctorID);
             
             //Saving object information
             sessionObj.save(appObj);
@@ -73,7 +72,7 @@ public class AppointmentCrud {
         return appointmentList;
     }
     
-    public void updateAppointment(long id, String firstName, String lastName, String appDate, String appTime, String reasonForVisit, String doctorSeen){
+    public void updateAppointment(long id, long patientID, String appDate, String appTime, String reasonForVisit, int doctorID){
          Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
         try {
@@ -83,12 +82,11 @@ public class AppointmentCrud {
             // Creating Transaction Entity
             Appointment appObj = (Appointment) sessionObj.get(Appointment.class, id);
             
-            if(appObj.getFirstName() != firstName){ appObj.setFirstName(firstName); }
-            if(appObj.getLastName() != lastName){ appObj.setLastName(lastName); }
+            if(appObj.getPatientID() != patientID) {appObj.setPatientID(patientID);}
             if(appObj.getAppDate() != appDate){ appObj.setAppDate(appDate); }
             if(appObj.getAppTime() != appTime) { appObj.setAppTime(appTime); }
             if(appObj.getReasonForVisit() != reasonForVisit) { appObj.setReasonForVisit(reasonForVisit); }
-            if(appObj.getDoctorSeen() != doctorSeen) { appObj.setDoctorSeen(doctorSeen); }
+            if(appObj.getDoctorID()!= doctorID) { appObj.setDoctorID(doctorID); }
             
             // Committing The Transactions To The Database
             sessionObj.getTransaction().commit();
