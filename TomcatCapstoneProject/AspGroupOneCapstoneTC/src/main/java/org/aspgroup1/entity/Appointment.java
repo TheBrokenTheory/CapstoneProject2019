@@ -31,7 +31,7 @@ public class Appointment implements Serializable{
     @Column(name="reasonForVisit")
     private String reasonForVisit;
     
-    @Column(name="doctorSeen")
+    @Column(name="doctorID")
     private long doctorID;
     
     @Column(name="diagnosis")
