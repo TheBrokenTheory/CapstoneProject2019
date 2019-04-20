@@ -58,6 +58,7 @@
                                     <!--The user will select which doctor they are seeing here -->
                                     <b:selectOneMenu id="seeingDoc" value="#{eventBean.doctorSeen}" colMd="4" label="Select Doctor:" 
                                                 required="true">
+                                        <f:selectItem itemLabel="(Please select)" itemValue="" />
                                         <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
                                                     itemValue="#{doc.doctorID}" itemLabel="Dr. #{doc.doctorLastName}"/>
                                     </b:selectOneMenu>
