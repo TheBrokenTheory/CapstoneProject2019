@@ -19,8 +19,7 @@ public class Appointment implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long appID;
     
-    @ManyToOne
-    @JoinColumn(name="patientID")
+    @Column(name="patientID")
     private long patientID;
     
     @Column(name="appDate")
