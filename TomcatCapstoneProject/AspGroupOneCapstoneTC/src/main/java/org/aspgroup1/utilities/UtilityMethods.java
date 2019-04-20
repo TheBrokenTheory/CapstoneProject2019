@@ -6,6 +6,22 @@ package org.aspgroup1.utilities;
  * @author Jonathan Anders
  */
 public class UtilityMethods {
+    
+    public static int convertBool(boolean bool)
+    {
+        int convertedBool = 0;
+        
+        if(bool == true)
+        {
+            convertedBool = 1;
+        }
+        else if (bool == false)
+        {
+            convertedBool = 0;
+        }
+        
+        return convertedBool;
+    }
 
     //Converts time to proper format for fullCalendar
     public static String convertTime(String fullString)
