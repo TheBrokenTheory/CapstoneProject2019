@@ -3,11 +3,13 @@ package org.aspgroup1.crud;
 //Java Utility Imports
 import java.util.ArrayList;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.aspgroup1.HibernateUtilities.HibernateUtil;
 import org.aspgroup1.entity.Patient;
 
 //Hibernate Imports
 import org.hibernate.Session;
+import org.hibernate.annotations.Proxy;
 
 public class PatientCrud {
 
@@ -139,6 +141,7 @@ public class PatientCrud {
         }
     }
     
+    @Transactional
     public Patient findByID(long id){
         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         

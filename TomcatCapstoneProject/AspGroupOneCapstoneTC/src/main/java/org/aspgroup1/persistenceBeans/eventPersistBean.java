@@ -27,7 +27,7 @@ public class eventPersistBean {
     List eventL;
     Appointment apptObj;
     AppointmentCrud ac;
-     PatientCrud pc;
+    PatientCrud pc;
     
     private long patientID;
     private long appID;
@@ -50,7 +50,7 @@ public class eventPersistBean {
     {
         ac = new AppointmentCrud();
         pc = new PatientCrud();
-        //fetchExistingApts();
+        fetchExistingApts();
         eventString = createCalString();
     }
     
@@ -67,7 +67,7 @@ public class eventPersistBean {
         
         //Creates new Event obj and stores it in ArrayList
         ac.createAppointment(this.patientID, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
-
+        
         Patient patObj = pc.findByID(patientID);
         String fName = patObj.getPatientFirstName();
         String lName = patObj.getPatientLastName();
@@ -162,6 +162,7 @@ public class eventPersistBean {
     public void fetchExistingApts()
     {
         List<Appointment> appointmentList = appointmentList= ac.getAppointments();
+
         //Adds the appointments to JSON string
         for(int i=0; i < appointmentList.size(); i++)
         {
@@ -172,8 +173,10 @@ public class eventPersistBean {
             String eventTime;
             
             long aptID = appointmentList.get(i).getAppID();
+            
             long patID = appointmentList.get(i).getPatientID();
             Patient patObj = pc.findByID(patID);
+            
             firstName = patObj.getPatientFirstName();
             lastName = patObj.getPatientLastName();
             eventTitle = generateTitle(firstName, lastName);
