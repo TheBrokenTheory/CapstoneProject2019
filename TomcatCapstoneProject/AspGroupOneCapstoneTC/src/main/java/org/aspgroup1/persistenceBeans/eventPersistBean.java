@@ -37,6 +37,7 @@ public class eventPersistBean {
     private String dateTimeOfAppointment;
     List<String> eventList = new ArrayList();
     boolean showAlertMsg;
+    String alertMsg;
     
     /**
      * Creates a new instance of eventPersistBean
@@ -51,24 +52,40 @@ public class eventPersistBean {
     //Creates Event Class & Adds to the eventList
     public void createAppt()
     {   
+        alertMsg = "";
         showAlertMsg = false;
+        System.out.println(dateTimeOfAppointment);
         
+        int eventDay = UtilityMethods.convertDay(dateTimeOfAppointment);
         eventDate = UtilityMethods.convertDate(dateTimeOfAppointment);
         eventTime = UtilityMethods.convertTime(dateTimeOfAppointment);
         
-        if (appointmentVerifies(eventDate, eventTime, this.doctorSeen))
+        //Check that the doctor works on selected Day
+        if(doctorWorksOnSelectedDay(eventDay))
         {
-            //Creates new Event obj and stores it in ArrayList
-            ac.createAppointment(this.firstName, this.lastName, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
-        
-            eventTitle = generateTitle(this.firstName, this.lastName);
-            eventList.add(jsonString(eventTitle, eventDate, eventTime));
-            eventString = createCalString();
+            //Check that the appointment times don't overlap with the same doctor
+            if (appointmentVerifies(eventDate, eventTime, this.doctorSeen))
+            {
+                //Creates new Event obj and stores it in ArrayList
+                ac.createAppointment(this.firstName, this.lastName, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
+
+                eventTitle = generateTitle(this.firstName, this.lastName);
+                eventList.add(jsonString(eventTitle, eventDate, eventTime));
+                eventString = createCalString();
+            }
+            else
+            {
+                showAlertMsg = true;
+                alertMsg = "Sorry, This doctor already has an appointment for selected time & date.";
+            }
         }
         else
         {
             showAlertMsg = true;
+            alertMsg = "Sorry, This doctor is not scheduled to work on selected day.";
         }
+        
+        
     }
     
     //Checks to make sure it appt doesn't overlap with an existing
@@ -93,6 +110,16 @@ public class eventPersistBean {
         }
         
         return appointmentVerifies;
+    }
+    
+    public boolean doctorWorksOnSelectedDay(int eventDay)
+    {
+        boolean doctorWorks = true;
+        
+        
+        
+        
+        return doctorWorks;
     }
     
     public void cancelAppointment()
@@ -254,12 +281,11 @@ public class eventPersistBean {
     public void setDoctorSeen(String doctorSeen){this.doctorSeen = doctorSeen;}
     public String getDateTimeOfAppointment(){return dateTimeOfAppointment;}
     public void setDateTimeOfAppointment(String dateTime) {this.dateTimeOfAppointment = dateTime;}
-
     public StringBuilder getEventString(){return eventString;}
     public StringBuilder getDoctorPersonalSchedule(){return doctorPersonalSchedule;}
-
     public boolean getShowAlertMsg() { return showAlertMsg;}
-
     public void setShowAlertMsg(boolean testBool) { this.showAlertMsg = testBool;}
+    public String getAlertMsg(){return alertMsg;}
+    public void setAlertMsg(String msg) {this.alertMsg = msg;}
     
 }

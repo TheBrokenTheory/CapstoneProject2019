@@ -30,6 +30,47 @@ public class UtilityMethods {
         return timeSub;
     }
     
+    //Grabs day of the appointment
+    public static int convertDay(String fullString)
+    {
+        int day = 0;
+        
+        //Substring locations
+        //Day 0-3
+        String strDay = fullString.substring(0, 3);
+        System.out.println(strDay);
+        if("Mon".equals(strDay))
+        {
+            day = 0;
+        }
+        else if("Tue".equals(strDay))
+        {
+            day = 1;
+        }
+        else if("Wed".equals(strDay))
+        {
+            day = 2;
+        }
+        else if("Thu".equals(strDay))
+        {
+            day = 3;
+        }
+        else if("Fri".equals(strDay))
+        {
+            day = 4;
+        }
+        else if("Sat".equals(strDay))
+        {
+            day = 5;
+        }
+        else if("Sun".equals(strDay))
+        {
+            day = 6;
+        }
+        
+        return day;
+    }
+    
     //Converts date to proper format for fullCalendar
     public static String convertDate(String fullString)
     {  

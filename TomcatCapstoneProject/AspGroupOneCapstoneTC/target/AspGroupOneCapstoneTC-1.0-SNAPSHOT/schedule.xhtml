@@ -34,6 +34,12 @@
                                 </b:column>
                                 
                                 <b:column col-sm="8" style-class="newApptFormStyle">
+                                    <b:selectOneMenu value="#{docBean.doctorIDB}" colMd="4" label="Select Doctor:" 
+                                            required="true">
+                                        <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                        <f:selectItems value="#{patientBean.getPatientsL()}" var="patient" 
+                                            itemValue="#{patient.patientID}" itemLabel="Dr. #{patient.patientFirstName} #{patient.patientLastName} ID:#{patient.patientID}"/>
+                                    </b:selectOneMenu>
                                     <!--The user will enter the first name of the patient here -->
                                     <b:inputText id="firstName" value="#{eventBean.firstName}" ajax="true" required="true" 
                                                  requiredMessage="Please enter a valid first name."
@@ -83,10 +89,7 @@
                                 </b:column>    
                             </b:row>
                             <br/>
-                            <b:alert severity="warning" closable="true" rendered="#{eventBean.showAlertMsg}" col-md="6" >
-                                <strong>Heads Up!</strong>
-                                Selected doctor already has an appointment scheduled for that time
-                            </b:alert>
+                            <b:alert severity="warning" closable="true" rendered="#{eventBean.showAlertMsg}" col-md="6" value="#{eventBean.alertMsg}"/>
                         </b:container>
                     </h:form>
                     
