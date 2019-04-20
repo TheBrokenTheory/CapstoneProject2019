@@ -27,6 +27,7 @@ public class eventPersistBean {
     List eventL;
     Appointment apptObj;
     AppointmentCrud ac;
+     PatientCrud pc;
     
     private long patientID;
     private long appID;
@@ -48,7 +49,8 @@ public class eventPersistBean {
     public eventPersistBean()
     {
         ac = new AppointmentCrud();
-        fetchExistingApts();
+        pc = new PatientCrud();
+        //fetchExistingApts();
         eventString = createCalString();
     }
     
@@ -63,6 +65,18 @@ public class eventPersistBean {
         eventDate = UtilityMethods.convertDate(dateTimeOfAppointment);
         eventTime = UtilityMethods.convertTime(dateTimeOfAppointment);
         
+        //Creates new Event obj and stores it in ArrayList
+        ac.createAppointment(this.patientID, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
+
+        Patient patObj = pc.findByID(patientID);
+        String fName = patObj.getPatientFirstName();
+        String lName = patObj.getPatientLastName();
+
+        eventTitle = generateTitle(fName, lName);
+        eventList.add(jsonString(eventTitle, eventDate, eventTime));
+        eventString = createCalString();
+        
+        /*
         //Check that the doctor works on selected Day
         if(doctorWorksOnSelectedDay(eventDay))
         {
@@ -71,8 +85,12 @@ public class eventPersistBean {
             {
                 //Creates new Event obj and stores it in ArrayList
                 ac.createAppointment(this.patientID, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
-
-                eventTitle = generateTitle(this.firstName, this.lastName);
+                
+                Patient patObj = pc.findByID(patientID);
+                String fName = patObj.getPatientFirstName();
+                String lName = patObj.getPatientLastName();
+                
+                eventTitle = generateTitle(fName, lName);
                 eventList.add(jsonString(eventTitle, eventDate, eventTime));
                 eventString = createCalString();
             }
@@ -87,7 +105,7 @@ public class eventPersistBean {
             showAlertMsg = true;
             alertMsg = "Sorry, This doctor is not scheduled to work on selected day.";
         }
-        
+        */
         
     }
     
@@ -144,7 +162,6 @@ public class eventPersistBean {
     public void fetchExistingApts()
     {
         List<Appointment> appointmentList = appointmentList= ac.getAppointments();
-        PatientCrud pc = new PatientCrud();
         //Adds the appointments to JSON string
         for(int i=0; i < appointmentList.size(); i++)
         {
@@ -272,6 +289,8 @@ public class eventPersistBean {
     
     
     //Getters and Setters
+    public long getPatientID(){return this.patientID;}
+    public void setPatientID(long id){this.patientID = id;}
     public long getAppID(){return this.appID;}
     public void setAppID(long id){this.appID = id;}
     public String getFirstName(){return firstName;}

@@ -34,11 +34,11 @@
                                 </b:column>
                                 
                                 <b:column col-sm="8" style-class="newApptFormStyle">
-                                    <b:selectOneMenu value="#{docBean.doctorIDB}" colMd="4" label="Select Doctor:" 
+                                    <b:selectOneMenu value="#{eventBean.patientID}" colMd="4" label="Select Patient" 
                                             required="true" requiredMessage="Please choose a patient">
                                         <f:selectItem itemLabel="(Please select)" itemValue="" />
                                         <f:selectItems value="#{patientBean.getPatientsL()}" var="patient" 
-                                            itemValue="#{patient.patientID}" itemLabel="Dr. #{patient.patientFirstName} #{patient.patientLastName} ID:#{patient.patientID}"/>
+                                            itemValue="#{patient.patientID}" itemLabel="#{patient.patientFirstName} #{patient.patientLastName} ID:#{patient.patientID}"/>
                                     </b:selectOneMenu>
    
                                     <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="lefttmessages" only-most-severe="true" large-screen="full-width"/>
@@ -59,7 +59,7 @@
                                     <b:selectOneMenu id="seeingDoc" value="#{eventBean.doctorSeen}" colMd="4" label="Select Doctor:" 
                                                 required="true">
                                         <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
-                                                    itemValue="#{doc.doctorLastName}" itemLabel="Dr. #{doc.doctorLastName}"/>
+                                                    itemValue="#{doc.doctorID}" itemLabel="Dr. #{doc.doctorLastName}"/>
                                     </b:selectOneMenu>
                                     
                                     <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="rightmessages" only-most-severe="true" large-screen="full-width"/>                              
