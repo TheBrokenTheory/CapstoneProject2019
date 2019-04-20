@@ -7,21 +7,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Appointment")
-public class Appointment {
+public class Appointment implements Serializable{
     @Id
     @Column(name="appID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long appID;
     
-    @Column(name="firstName")
-    private String firstName;
-    
-    @Column(name="lastName")
-    private String lastName;
+    @ManyToOne
+    @JoinColumn(name="patientID")
+    private long patientID;
     
     @Column(name="appDate")
     private String appDate;
@@ -33,7 +33,13 @@ public class Appointment {
     private String reasonForVisit;
     
     @Column(name="doctorSeen")
-    private String doctorSeen;
+    private int doctorID;
+    
+    @Column(name="diagnosis")
+    private String diagnosis;
+    
+    @Column(name="treatment")
+    private String treatment;
     
     
     public Appointment(){
@@ -46,17 +52,11 @@ public class Appointment {
     public void setAppID(long appID) {
         this.appID = appID;
     }
-    public String getFirstName() {
-        return firstName;
+    public long getPatientID() {
+        return patientID;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPatientID(long patientID) {
+        this.patientID = patientID;
     }
     public String getAppDate() {
         return appDate;
@@ -76,11 +76,23 @@ public class Appointment {
     public void setReasonForVisit(String reasonForVisit) {
         this.reasonForVisit = reasonForVisit;
     }
-    public String getDoctorSeen() {
-        return doctorSeen;
+    public int getDoctorID() {
+        return doctorID;
     }
-    public void setDoctorSeen(String doctorSeen) {
-        this.doctorSeen = doctorSeen;
+    public void setDoctorID(int doctorID) {
+        this.doctorID = doctorID;
+    }
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+    public String getTreatment() {
+        return treatment;
+    }
+    public void setTreatment(String treatment) {
+        this.treatment = treatment;
     }
     
 }
