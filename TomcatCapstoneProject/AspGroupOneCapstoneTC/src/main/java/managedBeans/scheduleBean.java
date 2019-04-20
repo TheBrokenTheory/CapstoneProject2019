@@ -14,7 +14,7 @@ import org.aspgroup1.entity.Doctor;
  *
  * @author Jonathan Anders
  */
-@ManagedBean (name ="scheduleBean")
+@ManagedBean (name ="notUsing")
 @RequestScoped
 public class scheduleBean {
 

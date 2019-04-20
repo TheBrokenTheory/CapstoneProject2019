@@ -98,18 +98,18 @@
                         <b:column>    
                             <h:outputLabel value="Select Available Days:" class="dayMenu"/>
                             <br/>
-                            <b:selectBooleanCheckbox  caption="Monday"  colMd="1"/>
-                            <b:selectBooleanCheckbox caption="Tuesday" colMd="1"/>
-                            <b:selectBooleanCheckbox  caption="Wednesday" colMd="1"/>
-                            <b:selectBooleanCheckbox  caption="Thursday" colMd="1"/>
-                            <b:selectBooleanCheckbox  caption="Friday" colMd="1"/>
-                            <b:selectBooleanCheckbox  caption="Saturday" colMd="1"/>
-                            <b:selectBooleanCheckbox  caption="Sunday" colMd="1"/>
+                            <b:selectBooleanCheckbox value="#{docBean.mondayBool}" caption="Monday"/>
+                            <b:selectBooleanCheckbox value="#{docBean.tuesdayBool}" caption="Tuesday"/>
+                            <b:selectBooleanCheckbox value="#{docBean.wednesdayBool}" caption="Wednesday"/>
+                            <b:selectBooleanCheckbox value="#{docBean.thursdayBool}" caption="Thursday"/>
+                            <b:selectBooleanCheckbox value="#{docBean.fridayBool}" caption="Friday"/>
+                            <b:selectBooleanCheckbox value="#{docBean.saturdayBool}" caption="Saturday"/>
+                            <b:selectBooleanCheckbox value="#{docBean.sundayBool}" caption="Sunday"/>
                          </b:column>
                         
                         <!--Submit button-->
                         <b:commandButton class="searchBtn" value="Register" look="default" 
-                                         action="#{docBean.createDoc()}" update="@form" />
+                                         action="#{docBean.createDoc()}" update="@form"/>
                         <b:commandButton class="searchBtn" value="Clear Values" look="default" 
                                          action="#{docBean.clearValues()}" update="@form" />
                     </h:form>
