@@ -1,16 +1,97 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:cc="http://java.sun.com/jsf/composite/uicomponents">
+    <h:head>
+        <title>Health Care System Project</title>
+    </h:head>
+    <h:body>
+        <!--Top Menu Bar-->
+        <cc:topNavMenu/>
+        
+        <b:container fluid="true"> 
+            <b:row>
+                <!--Side Menu Bar-->   
+                <cc:sideNavMenu/>
+                
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <hr/>
+                    <hr/>
+                    <h1>Register Doctors</h1>
+                    <hr/>
+                    <h:form>
+                        <h3>Enter Appointment Results</h3>
+                        <b:column>
+                            <b:selectOneMenu value="#{eventBean.appID}" colMd="6" label="Select Appointment:" 
+                                                required="true">
+                                        <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                         <f:selectItems value="#{eventBean.getEventsL()}" var="apt" 
+                                            itemValue="#{apt.appID}" itemLabel="#{apt.appDate} #{apt.appTime} ID:#{apt.patientID}"/>
+                                    </b:selectOneMenu>
+                        </b:column>
+                            <b:column>
+                                <!--Enter first name-->
+                                <b:inputText id="diagnosis" value="" required="true"  
+                                            requiredMessage="Please enter a valid diagnosis."
+                                            label="Diagnosis" placeholder="Diagnosis" col-md="6"                                           
+                                            validatorMessage="The length of the diagnosis must be between 3 and 30 characters.">                                           
+                                    <f:validateLength minimum = "3" maximum = "30" />                      
+                                    <f:facet name="prepend" >
+                                        <b:icon name="user" />
+                                    </f:facet> 
+                                </b:inputText>
+                                <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="leftmessages" only-most-severe="true" large-screen="full-width"/>
+                            </b:column> 
+                            <b:column>
+                                <!--Enter last name-->
+                                <b:inputText id="treatment" value="" required="true"
+                                            requiredMessage="Please enter a valid treatment."
+                                            label="Treatment" placeholder="Treatment" col-md="6"
+                                            validatorMessage="The length of the treatment must be must be between 3 and 30 characters.">                                            
+                                    <f:validateLength minimum = "3" maximum = "30" />
+                                    <f:facet name="prepend">
+                                        <b:icon value="user" />
+                                    </f:facet>
+                                </b:inputText>
+                               
+                                <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="rightmessages" only-most-severe="true" large-screen="full-width"/> 
+                            </b:column> 
+                        <!--Submit button-->
+                        <b:commandButton class="submitBtn" value="Submit" look="default" 
+                                          update="@form"/>
+                        
+                        <hr/>
+                        
+                        <!-- Change to the Appt List/Bean-->
+                        <b:dataTable value="#{docBean.doctorsL}" var="" auto-update="true">           
+                            <b:dataTableColumn value="" label="Appointment ID"/>
+                            <b:dataTableColumn value="" label="Patient ID"/>
+                            <b:dataTableColumn value="" label="Date"/> 
+                            <b:dataTableColumn value="" label="Time"/>
+                            <b:dataTableColumn value="" label="Reason for visit"/> 
+                            <b:dataTableColumn value="" label="Doctor ID"/> 
+                            <b:dataTableColumn value="" label="Diagnosis"/> 
+                            <b:dataTableColumn value="" label="Treatment"/> 
+                        </b:dataTable>
+                        
+                    </h:form>
+                </b:column>
+            </b:row>  
+        </b:container>
+         <style type="text/css">
+            .submitBtn{
+                margin-top: 10px;
+                background-color: #E0E0E0;
+                margin-left: 30px;
+            }
+            .dayMenu{
+                margin-top: 5px;
+                padding-left: 15px;
+            }
+        </style>
+    </h:body>
 </html>

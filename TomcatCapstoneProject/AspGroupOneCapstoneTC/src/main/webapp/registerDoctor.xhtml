@@ -23,8 +23,7 @@
                     <hr/>
                     <h1>Register Doctors</h1>
                     <hr/>
-                 <!--   <h:form prependId="false"> -->
-                 <h:form>
+                    <h:form>
                         <h3>Enter doctor information</h3>
                           
                  
@@ -33,7 +32,7 @@
                                 <b:inputText id="firstname" value="#{docBean.doctorFN}" required="true"  
                                             requiredMessage="Please enter a valid first name."
                                             label="First Name" placeholder="First Name" col-md="4"                                           
-                                            validatorMessage="The length of the first name length must be between 3 and 30 characters.">                                           
+                                            validatorMessage="The length of the first name must be between 3 and 30 characters.">                                           
                                     <f:validateLength minimum = "3" maximum = "30" />
                                                                   
                                     <f:facet name="prepend" >
@@ -45,7 +44,7 @@
                                 <b:inputText id="lastname" value="#{docBean.doctorLN}" required="true"
                                             requiredMessage="Please enter a valid last name."
                                             label="Last Name" placeholder="Last Name" col-md="4"
-                                            validatorMessage="The length of the last name length must be must be between 3 and 30 characters.">                                            
+                                            validatorMessage="The length of the last name must be must be between 3 and 30 characters.">                                            
                                     <f:validateLength minimum = "3" maximum = "30" />
                                     <f:facet name="prepend">
                                         <b:icon value="user" />
