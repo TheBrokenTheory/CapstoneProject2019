@@ -5,10 +5,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.Proxy;
 
 
 @Entity
 @Table(name="Schedule")
+@Proxy(lazy = false)
 public class Schedule implements Serializable{
     
     @Id

@@ -38,7 +38,7 @@ public class UtilityMethods {
         //Substring locations
         //Day 0-3
         String strDay = fullString.substring(0, 3);
-        System.out.println(strDay);
+        
         if("Mon".equals(strDay))
         {
             day = 0;

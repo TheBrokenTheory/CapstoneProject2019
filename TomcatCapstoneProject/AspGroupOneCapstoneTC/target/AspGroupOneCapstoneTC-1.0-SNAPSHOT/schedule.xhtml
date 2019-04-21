@@ -41,8 +41,7 @@
                                             itemValue="#{patient.patientID}" itemLabel="#{patient.patientFirstName} #{patient.patientLastName} ID:#{patient.patientID}"/>
                                     </b:selectOneMenu>
    
-                                    <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="lefttmessages" only-most-severe="true" large-screen="full-width"/>
-                                    
+                                   
                                     <!--The user will select the reason for their visit here-->
                                     <b:selectOneMenu id="reasonForVisit" value="#{eventBean.reasonForVisit}" colMd="4" 
                                                     required="true" label="Reason for visit:"
@@ -57,7 +56,7 @@
 
                                     <!--The user will select which doctor they are seeing here -->
                                     <b:selectOneMenu id="seeingDoc" value="#{eventBean.doctorSeen}" colMd="4" label="Select Doctor:" 
-                                                required="true">
+                                                     required="true" requiredMessage="Please choose a doctor">
                                         <f:selectItem itemLabel="(Please select)" itemValue="" />
                                         <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
                                                     itemValue="#{doc.doctorID}" itemLabel="Dr. #{doc.doctorLastName}"/>
@@ -75,7 +74,7 @@
                                 </b:column>    
                             </b:row>
                             <br/>
-                            <b:alert severity="warning" closable="true" rendered="#{eventBean.showAlertMsg}" col-md="6" value="#{eventBean.alertMsg}"/>
+                            <b:alert severity="warning" closable="true" rendered="#{eventBean.showAlertMsg}" col-md="8" value="#{eventBean.alertMsg}"/>
                         </b:container>
                     </h:form>
                     

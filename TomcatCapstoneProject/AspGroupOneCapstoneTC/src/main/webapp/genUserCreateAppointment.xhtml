@@ -34,24 +34,14 @@
                                 </b:column>
                                 
                                 <b:column col-sm="8" style-class="newApptFormStyle">
-                                    <!--The user will enter the first name of the patient here -->
-                                    <b:inputText id="firstName" value="#{eventBean.firstName}" ajax="true" required="true" 
-                                                 requiredMessage="Please enter a valid first name."
-                                                col-md="4" label="Enter patient's first name:"
-                                                validatorMessage="Fist name length must be between 3 and 30 chracters.">
-                                        <f:validateLength minimum = "3" maximum = "30" />                                    
-                                    </b:inputText>
-                                    
-                                    <!--The user will enter the last name of the patient here -->
-                                    <b:inputText id="lsatName" value="#{eventBean.lastName}" ajax="true" required="true" 
-                                                 requiredMessage="Please enter a valid last name."
-                                                col-md="4" label="Enter patient's last name:"
-                                                validatorMessage="Last name length must be between 3 and 30 characters.">
-                                        <f:validateLength minimum = "3" maximum = "30" />                                   
-                                    </b:inputText>
-
-                                    <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="lefttmessages" only-most-severe="true" large-screen="full-width"/>
-                                    
+                                    <b:selectOneMenu value="#{eventBean.patientID}" colMd="4" label="Select Patient" 
+                                            required="true" requiredMessage="Please choose a patient">
+                                        <f:selectItem itemLabel="(Please select)" itemValue="" />
+                                        <f:selectItems value="#{patientBean.getPatientsL()}" var="patient" 
+                                            itemValue="#{patient.patientID}" itemLabel="#{patient.patientFirstName} #{patient.patientLastName} ID:#{patient.patientID}"/>
+                                    </b:selectOneMenu>
+   
+                                   
                                     <!--The user will select the reason for their visit here-->
                                     <b:selectOneMenu id="reasonForVisit" value="#{eventBean.reasonForVisit}" colMd="4" 
                                                     required="true" label="Reason for visit:"
@@ -66,9 +56,10 @@
 
                                     <!--The user will select which doctor they are seeing here -->
                                     <b:selectOneMenu id="seeingDoc" value="#{eventBean.doctorSeen}" colMd="4" label="Select Doctor:" 
-                                                required="true">
+                                                     required="true" requiredMessage="Please choose a doctor">
+                                        <f:selectItem itemLabel="(Please select)" itemValue="" />
                                         <f:selectItems value="#{docBean.getDoctorsL()}" var="doc" 
-                                                    itemValue="#{doc.doctorLastName}" itemLabel="Dr. #{doc.doctorLastName}"/>
+                                                    itemValue="#{doc.doctorID}" itemLabel="Dr. #{doc.doctorLastName}"/>
                                     </b:selectOneMenu>
                                     
                                     <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="rightmessages" only-most-severe="true" large-screen="full-width"/>                              
@@ -80,13 +71,10 @@
                                 <b:column>
                                     <b:commandButton class="searchBtn" value="Create New Appointment"
                                             action="#{eventBean.createAppt()}" update="@form"/>
-                                </b:column>
+                                </b:column>    
                             </b:row>
                             <br/>
-                            <b:alert severity="warning" closable="true" rendered="#{eventBean.showAlertMsg}" col-md="6" >
-                                <strong>Heads Up!</strong>
-                                Selected doctor already has an appointment scheduled for that time
-                            </b:alert>
+                            <b:alert severity="warning" closable="true" rendered="#{eventBean.showAlertMsg}" col-md="8" value="#{eventBean.alertMsg}"/>
                         </b:container>
                     </h:form>
                     

@@ -9,7 +9,9 @@ import org.aspgroup1.entity.Appointment;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import org.aspgroup1.crud.PatientCrud;
+import org.aspgroup1.crud.ScheduleCrud;
 import org.aspgroup1.entity.Patient;
+import org.aspgroup1.entity.Schedule;
 import org.aspgroup1.utilities.UtilityMethods;
 
 /**
@@ -65,31 +67,20 @@ public class eventPersistBean {
         eventDate = UtilityMethods.convertDate(dateTimeOfAppointment);
         eventTime = UtilityMethods.convertTime(dateTimeOfAppointment);
         
-        //Creates new Event obj and stores it in ArrayList
-        ac.createAppointment(this.patientID, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
-        
-        Patient patObj = pc.findByID(patientID);
-        String fName = patObj.getPatientFirstName();
-        String lName = patObj.getPatientLastName();
 
-        eventTitle = generateTitle(fName, lName);
-        eventList.add(jsonString(eventTitle, eventDate, eventTime));
-        eventString = createCalString();
-        
-        /*
         //Check that the doctor works on selected Day
-        if(doctorWorksOnSelectedDay(eventDay))
+        if(doctorWorksOnSelectedDay(eventDay, this.doctorSeen))
         {
             //Check that the appointment times don't overlap with the same doctor
             if (appointmentVerifies(eventDate, eventTime, this.doctorSeen))
             {
                 //Creates new Event obj and stores it in ArrayList
                 ac.createAppointment(this.patientID, this.eventDate, this.eventTime, this.reasonForVisit, this.doctorSeen);
-                
+        
                 Patient patObj = pc.findByID(patientID);
                 String fName = patObj.getPatientFirstName();
                 String lName = patObj.getPatientLastName();
-                
+
                 eventTitle = generateTitle(fName, lName);
                 eventList.add(jsonString(eventTitle, eventDate, eventTime));
                 eventString = createCalString();
@@ -105,7 +96,7 @@ public class eventPersistBean {
             showAlertMsg = true;
             alertMsg = "Sorry, This doctor is not scheduled to work on selected day.";
         }
-        */
+        
         
     }
     
@@ -133,12 +124,29 @@ public class eventPersistBean {
         return appointmentVerifies;
     }
     
-    public boolean doctorWorksOnSelectedDay(int eventDay)
+    //Checks that the selected doctor works on that day
+    public boolean doctorWorksOnSelectedDay(int eventDay, long docID)
     {
         boolean doctorWorks = true;
+        ScheduleCrud sc = new ScheduleCrud();
+        Schedule schObj = sc.findByID(docID);
+        int daysAvailable[] = new int[7];
         
-        
-        
+        daysAvailable[0] = schObj.getMon();
+        daysAvailable[1] = schObj.getTue();
+        daysAvailable[2] = schObj.getWed();
+        daysAvailable[3] = schObj.getThur();
+        daysAvailable[4] = schObj.getFri();
+        daysAvailable[5] = schObj.getSat();
+        daysAvailable[6] = schObj.getSun();
+
+        for(int i = 0; i < 6; i++)
+        {
+            if(daysAvailable[eventDay] != 1)
+            {
+                doctorWorks = false;
+            }
+        }
         
         return doctorWorks;
     }
