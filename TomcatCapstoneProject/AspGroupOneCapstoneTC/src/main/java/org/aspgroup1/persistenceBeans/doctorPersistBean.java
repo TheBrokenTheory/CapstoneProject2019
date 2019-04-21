@@ -12,7 +12,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import org.aspgroup1.crud.DoctorCrud;
+import org.aspgroup1.crud.ScheduleCrud;
 import org.aspgroup1.entity.Doctor;
+import org.aspgroup1.entity.Schedule;
 import org.aspgroup1.utilities.UtilityMethods;
 
 
@@ -91,6 +93,34 @@ public class doctorPersistBean implements Serializable {
     public void updateNumDocs()
     {
         this.numDoc = doctorsL.size();
+    }
+    
+    public String getDoctorWorkDays(long docID)
+    {
+        String workDays = "";
+        ScheduleCrud sc = new ScheduleCrud();
+        Schedule schObj = sc.findByID(docID);
+        int daysAvailable[] = new int[7];
+        
+        daysAvailable[0] = schObj.getMon();
+        daysAvailable[1] = schObj.getTue();
+        daysAvailable[2] = schObj.getWed();
+        daysAvailable[3] = schObj.getThur();
+        daysAvailable[4] = schObj.getFri();
+        daysAvailable[5] = schObj.getSat();
+        daysAvailable[6] = schObj.getSun();
+        
+        String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        
+        for(int i = 0; i < 6; i++)
+        {
+            if(daysAvailable[i] == 1)
+            {
+                workDays += days[i] + " ";
+            }
+        }
+        
+        return workDays;
     }
     
     public void clearValues()

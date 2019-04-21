@@ -24,6 +24,10 @@
                         <div class="center">
                             <p>
                                 <h:outputText id="docID" class="docIDText" value="ID: #{doc.doctorID}"/>
+                                <br/>
+                                <h:outputText class="text" value="Days Available"/>
+                                <br/>
+                                <h:outputText class="docID" value="#{docBean.getDoctorWorkDays(doc.doctorID)}"/>
                             </p>
                         </div>
                         
@@ -59,7 +63,7 @@
                 border: 1px solid;
                 margin-right: 35px;
                 width: 250px;
-                height: 350px;
+                height: 375px;
             }
             .docName{
                 font-size: 20px;
@@ -74,13 +78,11 @@
                 font-weight: lighter;
             }
             .icon{
-                padding-top: 12px;
                 padding-left: 80px;
-                padding-bottom: 10px;
+                padding-bottom: 2px;
             }
             .center {
                 text-align: center;
-                
             }
             .text{
                 font-size: 15px;
