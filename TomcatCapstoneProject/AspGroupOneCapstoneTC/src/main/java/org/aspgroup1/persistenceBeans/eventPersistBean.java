@@ -53,7 +53,7 @@ public class eventPersistBean {
         ac = new AppointmentCrud();
         pc = new PatientCrud();
         fetchExistingApts();
-        eventString = createCalString();
+        eventString = createCalString(eventList);
     }
     
     //Creates Event Class & Adds to the eventList
@@ -83,7 +83,7 @@ public class eventPersistBean {
 
                 eventTitle = generateTitle(fName, lName);
                 eventList.add(jsonString(eventTitle, eventDate, eventTime));
-                eventString = createCalString();
+                eventString = createCalString(eventList);
             }
             else
             {
@@ -158,7 +158,7 @@ public class eventPersistBean {
         eventL.clear();
         eventList.clear();
         fetchExistingApts();
-        eventString = createCalString();
+        eventString = createCalString(eventList);
     }
     
     public List getEventsL()
@@ -195,15 +195,15 @@ public class eventPersistBean {
     }
     
     //Creates the string required for the fullCalendar component
-    public StringBuilder createCalString()
+    public StringBuilder createCalString(List events)
     {
         StringBuilder calString = new StringBuilder();
         
         calString.append("[");
-        for(int i = 0; i < eventList.size(); i++)
+        for(int i = 0; i < events.size(); i++)
         {
-            calString.append(eventList.get(i));
-            if(i < eventList.size())
+            calString.append(events.get(i));
+            if(i < events.size())
             {
                 calString.append(",");
             }
@@ -238,50 +238,33 @@ public class eventPersistBean {
         
         return todaysAppointments;
     }
-    /*
+    
     //Populates a calendar for each Doc upon request
-    public String getDoctorsSchedule(String lastName)
+    public String getDoctorsSchedule(long docID)
     {
-        System.out.println("Test");
+        doctorPersonalSchedule.setLength(0);
+        List<Appointment> appointmentList = appointmentList= ac.getAppointments();
+        List<String> docEvents = new ArrayList();
         
-        doctorPersonalSchedule.append("[");
-        for(int i = 0; i < eventList.size(); i++)
+        for(int i = 0; i < appointmentList.size(); i++)
         {
-            List<Appointment> appointmentList = new ArrayList();
-            appointmentList= ac.getAppointments();
-        
-        //Adds the appointments to JSON string
-        for(int i=0; i < appointmentList.size(); i++)
-        {
-            String firstName;
-            String lastName;
-            String eventTitle;
-            String eventDate;
-            String eventTime;
-            String reasonForVisit;
-            String doctorSeen;
-            
-            firstName = appointmentList.get(i).getFirstName();
-            lastName = appointmentList.get(i).getLastName();
-            eventTitle = generateTitle(firstName, lastName);
-            eventDate = appointmentList.get(i).getAppDate();
-            eventTime = appointmentList.get(i).getAppTime();
-            eventList.add(jsonString(eventTitle, eventDate, eventTime));
-        }
-            
-   
-            
-            doctorPersonalSchedule.append(eventList.get(i));
-            if(i < eventList.size())
+            if(docID == appointmentList.get(i).getDoctorID())
             {
-                doctorPersonalSchedule.append(",");
+                long patID = appointmentList.get(i).getPatientID();
+                Patient patObj = pc.findByID(patID);
+                firstName = patObj.getPatientFirstName();
+                lastName = patObj.getPatientLastName();
+                eventTitle = generateTitle(firstName, lastName);
+                eventDate = appointmentList.get(i).getAppDate();
+                eventTime = appointmentList.get(i).getAppTime();
+                
+                docEvents.add(jsonString(eventTitle, eventDate, eventTime));
             }
         }
-        doctorPersonalSchedule.append("]");
-
+        doctorPersonalSchedule = createCalString(docEvents);
+        
         return "doctorSchedule";
     }
-    */
     
     //Generates Title of Event
     private String generateTitle(String fName, String lName)

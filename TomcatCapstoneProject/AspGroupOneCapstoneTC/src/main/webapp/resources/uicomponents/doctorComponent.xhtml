@@ -21,8 +21,11 @@
                                 <h:column><h:outputText id='docLastName' class="docName" value=" #{doc.doctorLastName}"/></h:column>
                             </p>
                         </div>
-                        
-                        <br/>
+                        <div class="center">
+                            <p>
+                                <h:outputText id="docID" class="docIDText" value="ID: #{doc.doctorID}"/>
+                            </p>
+                        </div>
                         
                         <div class="center">
                             <p>
@@ -44,7 +47,7 @@
                         
                         <div class="center">
                             <h:form>
-                                <b:commandLink class="scheduleButton" look="default" value="Doctor Schedule" action='#{eventBean.getDoctorsSchedule(docLastName)}' outcome="doctorSchedule"/>
+                                <b:commandLink class="scheduleButton" look="default" value="Doctor Schedule" action='#{eventBean.getDoctorsSchedule(doc.doctorID)}' outcome="doctorSchedule"/>
                             </h:form>
                         </div>
                     </b:well>
@@ -82,6 +85,9 @@
             .text{
                 font-size: 15px;
                 text-decoration: underline;
+            }
+            .docIDText{
+                 font-size: 15px;
             }
 
 
