@@ -67,15 +67,15 @@
                         <hr/>
                         
                         <!-- Change to the Appt List/Bean-->
-                        <b:dataTable value="#{docBean.doctorsL}" var="" auto-update="true">           
-                            <b:dataTableColumn value="" label="Appointment ID"/>
-                            <b:dataTableColumn value="" label="Patient ID"/>
-                            <b:dataTableColumn value="" label="Date"/> 
-                            <b:dataTableColumn value="" label="Time"/>
-                            <b:dataTableColumn value="" label="Reason for visit"/> 
-                            <b:dataTableColumn value="" label="Doctor ID"/> 
-                            <b:dataTableColumn value="" label="Diagnosis"/> 
-                            <b:dataTableColumn value="" label="Treatment"/> 
+                        <b:dataTable value="#{eventBean.getEventsL()}" var="apt" auto-update="true">           
+                            <b:dataTableColumn value="#{apt.appID}" label="Appointment ID"/>
+                            <b:dataTableColumn value="#{apt.patientID}" label="Patient ID"/>
+                            <b:dataTableColumn value="#{apt.appDate}" label="Date"/> 
+                            <b:dataTableColumn value="#{apt.appTime}" label="Time"/>
+                            <b:dataTableColumn value="#{apt.reasonForVisit}" label="Reason for visit"/> 
+                            <b:dataTableColumn value="#{apt.doctorID}" label="Doctor ID"/> 
+                            <b:dataTableColumn value="#{apt.diagnosis}" label="Diagnosis"/> 
+                            <b:dataTableColumn value="#{apt.treatment}" label="Treatment"/> 
                         </b:dataTable>
                         
                     </h:form>
