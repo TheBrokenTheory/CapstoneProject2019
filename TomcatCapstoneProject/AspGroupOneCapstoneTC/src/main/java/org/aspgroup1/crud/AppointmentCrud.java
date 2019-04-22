@@ -173,7 +173,7 @@ public class AppointmentCrud {
             System.out.println("appObj DIAGNOSIS: " + appObj.getDiagnosis());
             System.out.println("appObj TREATMENT: " + appObj.getTreatment());
             
-            sessionObj.update(appObj);
+            sessionObj.saveOrUpdate(appObj);
             
             // Committing The Transactions To The Database
             sessionObj.getTransaction().commit();
