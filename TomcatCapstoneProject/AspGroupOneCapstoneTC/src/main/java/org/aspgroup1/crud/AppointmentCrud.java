@@ -162,9 +162,18 @@ public class AppointmentCrud {
             //Get Current Appointment
             Appointment appObj = findByID(id);
             
+            System.out.println("CRUD DIAGNOSIS: " + diagnosis);
+            System.out.println("CRUD TREATMENT: " + treatment);
+            
+            
             //Update Diagnosis and Treatment Fields
             appObj.setDiagnosis(diagnosis);
             appObj.setTreatment(treatment);
+            
+            System.out.println("appObj DIAGNOSIS: " + appObj.getDiagnosis());
+            System.out.println("appObj TREATMENT: " + appObj.getTreatment());
+            
+            sessionObj.update(appObj);
             
             // Committing The Transactions To The Database
             sessionObj.getTransaction().commit();
