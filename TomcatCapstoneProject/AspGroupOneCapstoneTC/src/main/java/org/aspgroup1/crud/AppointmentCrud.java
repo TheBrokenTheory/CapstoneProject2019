@@ -162,10 +162,6 @@ public class AppointmentCrud {
             //Get Current Appointment
             Appointment appObj = findByID(id);
             
-            System.out.println("CRUD DIAGNOSIS: " + diagnosis);
-            System.out.println("CRUD TREATMENT: " + treatment);
-            
-            
             //Update Diagnosis and Treatment Fields
             appObj.setDiagnosis(diagnosis);
             appObj.setTreatment(treatment);
