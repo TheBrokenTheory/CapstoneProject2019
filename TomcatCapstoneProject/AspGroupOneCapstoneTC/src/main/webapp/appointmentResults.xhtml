@@ -30,7 +30,7 @@
                                                 required="true">
                                         <f:selectItem itemLabel="(Please select)" itemValue="" />
                                          <f:selectItems value="#{eventBean.getEventsL()}" var="apt" 
-                                            itemValue="#{apt.appID}" itemLabel="#{apt.appDate} #{apt.appTime} ID:#{apt.patientID}"/>
+                                            itemValue="#{apt.appID}" itemLabel="#{apt.appDate} #{apt.appTime} ID:#{apt.appID}"/>
                                     </b:selectOneMenu>
                         </b:column>
                             <b:column>
@@ -61,21 +61,21 @@
                                 <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="rightmessages" only-most-severe="true" large-screen="full-width"/> 
                             </b:column> 
                         <!--Submit button-->
-                        <b:commandButton class="submitBtn" value="Submit" look="default" 
+                        <b:commandButton class="submitBtn" action="#{eventBean.createAppResults()}" value="Submit" look="default" 
                                           update="@form"/>
                         
                         <hr/>
                         
                         <!-- Change to the Appt List/Bean-->
-                        <b:dataTable value="#{eventBean.getEventsL()}" var="apt" auto-update="true">           
-                            <b:dataTableColumn value="#{apt.appID}" label="Appointment ID"/>
-                            <b:dataTableColumn value="#{apt.patientID}" label="Patient ID"/>
-                            <b:dataTableColumn value="#{apt.appDate}" label="Date"/> 
-                            <b:dataTableColumn value="#{apt.appTime}" label="Time"/>
-                            <b:dataTableColumn value="#{apt.reasonForVisit}" label="Reason for visit"/> 
-                            <b:dataTableColumn value="#{apt.doctorID}" label="Doctor ID"/> 
-                            <b:dataTableColumn value="#{apt.diagnosis}" label="Diagnosis"/> 
-                            <b:dataTableColumn value="#{apt.treatment}" label="Treatment"/> 
+                        <b:dataTable value="#{eventBean.getEventsL()}" var="app" auto-update="true">           
+                            <b:dataTableColumn value="#{app.appID}" label="Appointment ID"/>
+                            <b:dataTableColumn value="#{app.patientID}" label="Patient ID"/>
+                            <b:dataTableColumn value="#{app.appDate}" label="Date"/> 
+                            <b:dataTableColumn value="#{app.appTime}" label="Time"/>
+                            <b:dataTableColumn value="#{app.reasonForVisit}" label="Reason for visit"/> 
+                            <b:dataTableColumn value="#{app.doctorID}" label="Doctor ID"/> 
+                            <b:dataTableColumn value="#{app.diagnosis}" label="Diagnosis"/> 
+                            <b:dataTableColumn value="#{app.treatment}" label="Treatment"/> 
                         </b:dataTable>
                         
                     </h:form>
