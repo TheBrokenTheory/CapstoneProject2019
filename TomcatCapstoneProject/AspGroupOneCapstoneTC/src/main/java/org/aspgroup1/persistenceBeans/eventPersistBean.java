@@ -26,7 +26,7 @@ public class eventPersistBean {
     private StringBuilder eventString = new StringBuilder();
     private StringBuilder doctorPersonalSchedule = new StringBuilder();
     
-    private List<Appointment> eventsL;
+    List eventL;
     Appointment apptObj;
     AppointmentCrud ac;
     PatientCrud pc;
@@ -38,8 +38,6 @@ public class eventPersistBean {
     private String eventTitle;
     private String eventDate;
     private String eventTime;
-    private String eventDiag;
-    private String eventTreat;
     private String reasonForVisit;
     private long doctorSeen;
     private String dateTimeOfAppointment;
@@ -102,18 +100,6 @@ public class eventPersistBean {
         
     }
     
-    public void addAppResult(){
-        ac.updateDiagnosis_Treatment(this.appID, this.eventDiag, this.eventTreat);
-        
-        getEventsL();
-        clearAppResult();
-    }
-    
-    public void clearAppResult(){
-        this.eventDiag = "";
-        this.eventTreat = "";
-    }
-    
     //Checks to make sure it appt doesn't overlap with an existing
     public boolean appointmentVerifies(String date, String time, long docSeen)
     {
@@ -169,7 +155,7 @@ public class eventPersistBean {
     {
         ac.deleteAppointment(this.appID);
         
-        eventsL.clear();
+        eventL.clear();
         eventList.clear();
         fetchExistingApts();
         eventString = createCalString(eventList);
@@ -177,9 +163,8 @@ public class eventPersistBean {
     
     public List getEventsL()
     {
-        eventsL.clear();       
-        eventsL = new ArrayList(ac.getAppointments());
-        return eventsL;
+        eventL = new ArrayList(ac.getAppointments());
+        return eventL;
     }
     
     public void fetchExistingApts()
@@ -318,9 +303,5 @@ public class eventPersistBean {
     public void setShowAlertMsg(boolean testBool) { this.showAlertMsg = testBool;}
     public String getAlertMsg(){return alertMsg;}
     public void setAlertMsg(String msg) {this.alertMsg = msg;}
-    public String getEventDiag() { return eventDiag; }
-    public void setEventDiag(String eventDiag) {this.eventDiag = eventDiag;}
-    public String getEventTreat() {return eventTreat;}
-    public void setEventTreat(String eventTreat) {this.eventTreat = eventTreat;}
     
 }
