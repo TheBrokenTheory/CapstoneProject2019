@@ -30,12 +30,12 @@
                                                 required="true">
                                         <f:selectItem itemLabel="(Please select)" itemValue="" />
                                          <f:selectItems value="#{eventBean.getEventsL()}" var="apt" 
-                                            itemValue="#{apt.appID}" itemLabel="#{apt.appDate} #{apt.appTime} ID:#{apt.patientID}"/>
+                                            itemValue="#{apt.appID}" itemLabel="#{apt.appDate} #{apt.appTime} ID:#{apt.appID}"/>
                                     </b:selectOneMenu>
                         </b:column>
                             <b:column>
                                 <!--Enter first name-->
-                                <b:inputText id="diagnosis" value="" required="true"  
+                                <b:inputText id="diagnosis" value="#{eventBean.eventDiag}" required="true"  
                                             requiredMessage="Please enter a valid diagnosis."
                                             label="Diagnosis" placeholder="Diagnosis" col-md="6"                                           
                                             validatorMessage="The length of the diagnosis must be between 3 and 30 characters.">                                           
@@ -48,7 +48,7 @@
                             </b:column> 
                             <b:column>
                                 <!--Enter last name-->
-                                <b:inputText id="treatment" value="" required="true"
+                                <b:inputText id="treatment" value="#{eventBean.eventTreat}" required="true"
                                             requiredMessage="Please enter a valid treatment."
                                             label="Treatment" placeholder="Treatment" col-md="6"
                                             validatorMessage="The length of the treatment must be must be between 3 and 30 characters.">                                            
@@ -61,21 +61,21 @@
                                 <b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="rightmessages" only-most-severe="true" large-screen="full-width"/> 
                             </b:column> 
                         <!--Submit button-->
-                        <b:commandButton class="submitBtn" value="Submit" look="default" 
+                        <b:commandButton class="submitBtn" action="#{eventBean.createAppResults()}" value="Submit" look="default" 
                                           update="@form"/>
                         
                         <hr/>
                         
                         <!-- Change to the Appt List/Bean-->
-                        <b:dataTable value="#{docBean.doctorsL}" var="" auto-update="true">           
-                            <b:dataTableColumn value="" label="Appointment ID"/>
-                            <b:dataTableColumn value="" label="Patient ID"/>
-                            <b:dataTableColumn value="" label="Date"/> 
-                            <b:dataTableColumn value="" label="Time"/>
-                            <b:dataTableColumn value="" label="Reason for visit"/> 
-                            <b:dataTableColumn value="" label="Doctor ID"/> 
-                            <b:dataTableColumn value="" label="Diagnosis"/> 
-                            <b:dataTableColumn value="" label="Treatment"/> 
+                        <b:dataTable value="#{eventBean.getEventsL()}" var="app" auto-update="true">           
+                            <b:dataTableColumn value="#{app.appID}" label="Appointment ID"/>
+                            <b:dataTableColumn value="#{app.patientID}" label="Patient ID"/>
+                            <b:dataTableColumn value="#{app.appDate}" label="Date"/> 
+                            <b:dataTableColumn value="#{app.appTime}" label="Time"/>
+                            <b:dataTableColumn value="#{app.reasonForVisit}" label="Reason for visit"/> 
+                            <b:dataTableColumn value="#{app.doctorID}" label="Doctor ID"/> 
+                            <b:dataTableColumn value="#{app.diagnosis}" label="Diagnosis"/> 
+                            <b:dataTableColumn value="#{app.treatment}" label="Treatment"/> 
                         </b:dataTable>
                         
                     </h:form>
