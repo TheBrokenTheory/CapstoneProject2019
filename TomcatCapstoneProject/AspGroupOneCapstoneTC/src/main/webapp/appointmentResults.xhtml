@@ -35,7 +35,7 @@
                         </b:column>
                             <b:column>
                                 <!--Enter first name-->
-                                <b:inputText id="diagnosis" value="" required="true"  
+                                <b:inputText id="diagnosis" value="#{eventBean.eventDiag}" required="true"  
                                             requiredMessage="Please enter a valid diagnosis."
                                             label="Diagnosis" placeholder="Diagnosis" col-md="6"                                           
                                             validatorMessage="The length of the diagnosis must be between 3 and 30 characters.">                                           
@@ -48,7 +48,7 @@
                             </b:column> 
                             <b:column>
                                 <!--Enter last name-->
-                                <b:inputText id="treatment" value="" required="true"
+                                <b:inputText id="treatment" value="#{eventBean.eventTreat}" required="true"
                                             requiredMessage="Please enter a valid treatment."
                                             label="Treatment" placeholder="Treatment" col-md="6"
                                             validatorMessage="The length of the treatment must be must be between 3 and 30 characters.">                                            
