@@ -29,7 +29,7 @@
                             <b:selectOneMenu value="#{eventBean.appID}" colMd="6" label="Select Appointment:" 
                                                 required="true">
                                         <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                         <f:selectItems value="#{eventBean.getEventsL()}" var="apt" 
+                                         <f:selectItems value="#{eventBean.getEventsLMod()}" var="apt" 
                                             itemValue="#{apt.appID}" itemLabel="#{apt.appDate} #{apt.appTime} ID:#{apt.appID}"/>
                                     </b:selectOneMenu>
                         </b:column>
@@ -67,7 +67,7 @@
                         <hr/>
                         
                         <!-- Change to the Appt List/Bean-->
-                        <b:dataTable value="#{eventBean.getEventsL()}" var="app" auto-update="true">           
+                        <b:dataTable value="#{eventBean.getEventsLMod()}" var="app" auto-update="true">           
                             <b:dataTableColumn value="#{app.appID}" label="Appointment ID"/>
                             <b:dataTableColumn value="#{app.patientID}" label="Patient ID"/>
                             <b:dataTableColumn value="#{app.appDate}" label="Date"/> 
