@@ -8,6 +8,7 @@ import org.aspgroup1.crud.AppointmentCrud;
 import org.aspgroup1.entity.Appointment;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import org.aspgroup1.Records.MedicalRecord;
 import org.aspgroup1.crud.PatientCrud;
 import org.aspgroup1.crud.ScheduleCrud;
 import org.aspgroup1.entity.Patient;
@@ -183,7 +184,7 @@ public class eventPersistBean {
     
     public void fetchExistingApts()
     {
-        List<Appointment> appointmentList = appointmentList= ac.getAppointments();
+        List<Appointment> appointmentList = ac.getAppointments();
 
         //Adds the appointments to JSON string
         for(int i=0; i < appointmentList.size(); i++)
@@ -207,6 +208,28 @@ public class eventPersistBean {
             eventList.add(jsonString(eventTitle, eventDate, eventTime));
         }
     }
+
+    public List getRecordsL()
+    {
+        List<Appointment> appointmentList = ac.getAppointments();
+        List<MedicalRecord> recordsList = new ArrayList();
+         
+        //Adds the appointments to JSON string
+        for(int i=0; i < appointmentList.size(); i++)
+        {
+            if(appointmentList.get(i).getRecorded() == 1)
+            {
+                long aptID = appointmentList.get(i).getAppID();
+                MedicalRecord record = new MedicalRecord(aptID);
+                recordsList.add(record);
+            }
+        }
+
+        return recordsList;
+    }
+    
+    
+    
     
     //Creates the string required for the fullCalendar component
     public StringBuilder createCalString(List events)
