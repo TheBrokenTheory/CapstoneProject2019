@@ -42,6 +42,9 @@ public class Appointment implements Serializable{
     @Column(name="treatment")
     private String treatment;
     
+    @Column(name="recorded")
+    private int recorded;
+    
     
     public Appointment(){
         
@@ -94,6 +97,12 @@ public class Appointment implements Serializable{
     }
     public void setTreatment(String treatment) {
         this.treatment = treatment;
+    }
+    public int getRecorded() {
+        return recorded;
+    }
+    public void setRecorded(int recorded) {
+        this.recorded = recorded;
     }
     
 }
