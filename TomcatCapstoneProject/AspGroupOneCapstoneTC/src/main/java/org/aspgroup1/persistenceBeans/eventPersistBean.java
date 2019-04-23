@@ -207,6 +207,7 @@ public class eventPersistBean {
             eventList.add(jsonString(eventTitle, eventDate, eventTime));
         }
     }
+
     
     //Creates the string required for the fullCalendar component
     public StringBuilder createCalString(List events)
