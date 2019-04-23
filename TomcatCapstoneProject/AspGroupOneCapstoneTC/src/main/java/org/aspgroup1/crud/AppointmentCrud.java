@@ -72,38 +72,6 @@ public class AppointmentCrud {
         return appointmentList;
     }
     
-    public void updateAppointment(long id, long patientID, String appDate, String appTime, String reasonForVisit, int doctorID){
-         Session sessionObj = HibernateUtil.getSessionFactory().openSession();
-        
-        try {
-            // Getting Transaction Object From Session Object
-            sessionObj.beginTransaction();
- 
-            // Creating Transaction Entity
-            Appointment appObj = (Appointment) sessionObj.get(Appointment.class, id);
-            
-            if(appObj.getPatientID() != patientID) {appObj.setPatientID(patientID);}
-            if(appObj.getAppDate() != appDate){ appObj.setAppDate(appDate); }
-            if(appObj.getAppTime() != appTime) { appObj.setAppTime(appTime); }
-            if(appObj.getReasonForVisit() != reasonForVisit) { appObj.setReasonForVisit(reasonForVisit); }
-            if(appObj.getDoctorID()!= doctorID) { appObj.setDoctorID(doctorID); }
-            
-            // Committing The Transactions To The Database
-            sessionObj.getTransaction().commit();
-            System.out.print("\nAppointment With Id?= " + appObj.getAppID()+ " Is Successfully Updated In The Database!\n");
-        } catch(Exception sqlException) {
-            if(null != sessionObj.getTransaction()) {
-                System.out.print("\n.......Transaction Is Being Rolled Back.......\n");
-                sessionObj.getTransaction().rollback();
-            }
-            sqlException.printStackTrace();
-        } finally {
-            if(sessionObj != null) {
-                sessionObj.close();
-            }
-        }
-    }
-    
     public void deleteAppointment(long id){
          Session sessionObj = HibernateUtil.getSessionFactory().openSession();
         
@@ -165,9 +133,7 @@ public class AppointmentCrud {
             //Update Diagnosis and Treatment Fields
             appObj.setDiagnosis(diagnosis);
             appObj.setTreatment(treatment);
-            
-            System.out.println("appObj DIAGNOSIS: " + appObj.getDiagnosis());
-            System.out.println("appObj TREATMENT: " + appObj.getTreatment());
+            appObj.setRecorded(1);
             
             sessionObj.saveOrUpdate(appObj);
             
