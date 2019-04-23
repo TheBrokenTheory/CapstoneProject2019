@@ -24,42 +24,18 @@
                     <h1>View Medical History</h1>
                     <hr/>
                     
-                   <!--Search DB for medical records -->
-                    <b:row>
-                        <b:column>
-                            <!-- Search Database for Medical History Add Menu items as needed -->
-                            <b:form horizontal="true">
-                                <b:formGroup>
-                                    <b:selectOneMenu value="" colMd="2" required="true" label="Search By:" labelColMd="1">
-                                      <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                      <f:selectItem itemLabel="First Name"/>
-                                      <f:selectItem itemLabel="Last Name"/>
-                                      <f:selectItem itemLabel="Patient Id Number"/>
-                                      <f:selectItem itemLabel="Doctor Seen"/>
-                                    </b:selectOneMenu>
-                                    <b:inputText value="" colMd="2" label="Enter Search Field:" labelColMd="1" />
-                                    <b:commandButton class="searchBtn" value="Search" 
-                                        ajax="true" update="@none" style="width:125px" />
-                                </b:formGroup>
-                                
-                            </b:form>
-                        </b:column>
-                    </b:row>
-                   
-                    <hr/>
-                    <!--View Medical History Table Start-->
-                    <!--Add columns as needed-->
-                    <!--CHANGE VALUE OF DATATABLE TO THE ACTUAL BEAN-->
-                    <b:dataTable value="#{dbBean.docId}">           
-                        <b:dataTableColumn label="Patient Number"/>
-                        <b:dataTableColumn label="Patient Last Name"/>
-                        <b:dataTableColumn label="Patient First Name"/>
-                        <b:dataTableColumn label="Reason For Visit"/>
-                        <b:dataTableColumn label="Past Diagnosis"/>
-                        <b:dataTableColumn label="Treatments"/>
-                        <b:dataTableColumn label="Doctor Seen"/>
+                    <b:dataTable value="#{eventBean.getRecordsL()}" var="record" auto-update="true">           
+                        <b:dataTableColumn value="#{record.patientID}" label="Patient ID"/>
+                        <b:dataTableColumn value="#{record.patientFirstName}" label="Patient First Name"/>
+                        <b:dataTableColumn value="#{record.patientLastName}" label="Patient Last Name"/>
+                        <b:dataTableColumn value="#{record.dateOfApt}" label="Appointment Date"/>
+                        <b:dataTableColumn value="#{record.timeOfApt}" label="Appointment Time"/>
+                        <b:dataTableColumn value="#{record.doctorID}" label="Doctor ID"/>
+                        <b:dataTableColumn value="#{record.doctorLastName}" label="Doctor Last Name"/>
+                        <b:dataTableColumn value="#{record.reasonForVisit}" label="Reason For Visit"/>
+                        <b:dataTableColumn value="#{record.diagnosis}" label="Diagnosis"/>
+                        <b:dataTableColumn value="#{record.treatment}" label="Treatment"/>
                     </b:dataTable>
-                    <!--End table-->
                     
                 </b:column>
             </b:row>  
