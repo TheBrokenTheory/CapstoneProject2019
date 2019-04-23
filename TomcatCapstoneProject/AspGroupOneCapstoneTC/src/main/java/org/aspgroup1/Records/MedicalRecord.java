@@ -43,13 +43,23 @@ public class MedicalRecord {
         Appointment appt = ac.findByID(apptID);
         
         patientID = appt.getPatientID();
-        doctorID = appt.getDoctorID();
         Patient pat = pc.findByID(patientID);
-        Doctor doc = dc.findByID(doctorID);
+        
+        doctorID = appt.getDoctorID();
+        if(dc.findByID(doctorID) != null)
+        {
+            Doctor doc = dc.findByID(doctorID);
+            doctorLastName = doc.getDoctorLastName();
+        }
+        else
+        {
+            doctorID = 000000;
+            doctorLastName = null;
+        }
+        
         
         patientFirstName = pat.getPatientFirstName();
         patientLastName = pat.getPatientLastName();
-        doctorLastName = doc.getDoctorLastName();
         dateOfApt = appt.getAppDate();
         timeOfApt = appt.getAppTime();
         reasonForVisit = appt.getReasonForVisit();

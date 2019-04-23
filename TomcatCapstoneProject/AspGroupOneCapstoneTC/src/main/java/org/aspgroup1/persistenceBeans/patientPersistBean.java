@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import org.aspgroup1.crud.AppointmentCrud;
 import org.aspgroup1.crud.PatientCrud;
+import org.aspgroup1.entity.Appointment;
 import org.aspgroup1.entity.Patient;
 import org.aspgroup1.utilities.UtilityMethods;
 
@@ -60,8 +62,18 @@ public class patientPersistBean {
         return patObj;
     }
     
+    //Remove all appts for this patient
     public void deletePatient()
     {
+        AppointmentCrud ac = new AppointmentCrud();
+        List<Appointment> appointmentList = ac.getAppointments();
+        for(int i=0; i < appointmentList.size(); i++)
+        {
+            if(appointmentList.get(i).getPatientID() == this.patientID)
+            {
+                ac.deleteAppointment(appointmentList.get(i).getAppID());
+            }
+        }
         pc.deletePatient(this.patientID);
         patientL = getPatientsL();  
     }
