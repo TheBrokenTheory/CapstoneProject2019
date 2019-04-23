@@ -24,7 +24,7 @@
                     <h1>View Medical History</h1>
                     <hr/>
                     
-                    <b:dataTable value="#{eventBean.getRecordsL()}" var="record" auto-update="true">           
+                    <b:dataTable value="#{eventBean.getRecordsL()}" var="record" auto-update="true" >    
                         <b:dataTableColumn value="#{record.patientID}" label="Patient ID"/>
                         <b:dataTableColumn value="#{record.patientFirstName}" label="Patient First Name"/>
                         <b:dataTableColumn value="#{record.patientLastName}" label="Patient Last Name"/>
@@ -45,6 +45,9 @@
         <style type="text/css">
             .searchBtn{
                 background-color: #E0E0E0;
+            }
+            .colHeaders{
+                text-align: center;
             }
         </style>
     </h:body>
