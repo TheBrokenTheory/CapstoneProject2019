@@ -166,6 +166,11 @@ public class AppointmentCrud {
             appObj.setDiagnosis(diagnosis);
             appObj.setTreatment(treatment);
             
+            System.out.println("appObj DIAGNOSIS: " + appObj.getDiagnosis());
+            System.out.println("appObj TREATMENT: " + appObj.getTreatment());
+            
+            sessionObj.saveOrUpdate(appObj);
+            
             // Committing The Transactions To The Database
             sessionObj.getTransaction().commit();
             System.out.print("\nAppointment With Id?= " + appObj.getAppID()+ " Is Successfully Updated In The Database!\n");

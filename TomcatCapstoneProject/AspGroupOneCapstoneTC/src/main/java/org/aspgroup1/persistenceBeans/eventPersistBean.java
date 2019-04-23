@@ -39,6 +39,8 @@ public class eventPersistBean {
     private String eventDate;
     private String eventTime;
     private String reasonForVisit;
+    private String eventDiag;
+    private String eventTreat;
     private long doctorSeen;
     private String dateTimeOfAppointment;
     List<String> eventList = new ArrayList();
@@ -96,8 +98,20 @@ public class eventPersistBean {
             showAlertMsg = true;
             alertMsg = "Sorry, This doctor is not scheduled to work on selected day.";
         }
+    }
+    
+    public void createAppResults(){
         
+        ac.updateDiagnosis_Treatment(this.appID, this.eventDiag, this.eventTreat);     
         
+        getEventsL();
+        clearAppResults();
+        
+    }
+    
+    public void clearAppResults(){
+        this.eventDiag = "";
+        this.eventTreat = "";
     }
     
     //Checks to make sure it appt doesn't overlap with an existing
@@ -303,5 +317,9 @@ public class eventPersistBean {
     public void setShowAlertMsg(boolean testBool) { this.showAlertMsg = testBool;}
     public String getAlertMsg(){return alertMsg;}
     public void setAlertMsg(String msg) {this.alertMsg = msg;}
+    public String getEventDiag() {return eventDiag;}
+    public void setEventDiag(String eventDiag) {this.eventDiag = eventDiag;}
+    public String getEventTreat() {return eventTreat;}
+    public void setEventTreat(String eventTreat) {this.eventTreat = eventTreat;}
     
 }
