@@ -8,6 +8,8 @@ import org.aspgroup1.crud.AppointmentCrud;
 import org.aspgroup1.entity.Appointment;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import org.aspgroup1.Records.MedicalRecord;
 import org.aspgroup1.crud.PatientCrud;
 import org.aspgroup1.crud.ScheduleCrud;
@@ -105,7 +107,7 @@ public class eventPersistBean {
         
         ac.updateDiagnosis_Treatment(this.appID, this.eventDiag, this.eventTreat);     
         
-        getEventsL();
+        getEventsLMod();
         clearAppResults();
         
     }
@@ -181,6 +183,50 @@ public class eventPersistBean {
         eventL = new ArrayList(ac.getAppointments());
         return eventL;
     }
+    
+    public List getEventsLMod(){
+        List<Appointment> appointmentList = ac.getAppointments();
+        List<Appointment> updateAppList = new ArrayList();
+        
+        for(int i = 0; i < appointmentList.size(); i++){
+            if(recorded(appointmentList.get(i).getRecorded()) == false){
+                if(afterSwitch(appointmentList.get(i)) == false){
+                    updateAppList.add(appointmentList.get(i));    
+                }  
+            } 
+        }
+        
+        return updateAppList;
+    }
+    
+    public boolean afterSwitch(Appointment a){
+        boolean afterSwitch = false;
+        
+        LocalDate appDate = LocalDate.parse(a.getAppDate());
+        LocalDate currDate = java.time.LocalDate.now();
+        LocalTime appTime = LocalTime.parse(a.getAppTime());
+        LocalTime currTime = java.time.LocalTime.now();
+        
+        if(appDate.isAfter(currDate) == true){
+            afterSwitch = true;
+        }
+        else if(appDate.isEqual(currDate) == true && appTime.isAfter(currTime) == true){
+            afterSwitch = true;
+        }
+        
+        return afterSwitch;
+    }
+    
+    public boolean recorded(int r){
+        boolean rec = false;
+        if(r == 1){
+            rec = true;
+        }
+
+        return rec;
+    }
+    
+    
     
     public void fetchExistingApts()
     {
